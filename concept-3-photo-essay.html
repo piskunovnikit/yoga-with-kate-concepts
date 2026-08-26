@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400&family=Schibsted+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0b1e26; --ink:#eaf2f3; --ink-soft:#9fc0c7; --line:#1f3944; --accent:#7fc7dc;}
+  :root{--bg:#faf3ea; --ink:#3d2f24; --ink-soft:#8a7360; --line:#e6d8c5; --accent:#c9764f;}
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{background:var(--bg); color:var(--ink); font-family:'Schibsted Grotesk',sans-serif; font-weight:300; line-height:1.6;}
@@ -21,23 +21,24 @@
 
   /* fixed dot index tracking scroll position visually (single authored motion: fill on load) */
   .index{position:fixed; left:28px; top:50%; transform:translateY(-50%); z-index:20; display:flex; flex-direction:column; gap:14px;}
-  .index a{width:8px; height:8px; border-radius:50%; border:1px solid var(--ink-soft); display:block;}
+  .index a{width:8px; height:8px; border-radius:50%; border:1px solid rgba(255,255,255,0.5); display:block;}
   .index a.on{background:var(--accent); border-color:var(--accent);}
 
-  header{position:absolute; top:0; left:0; right:0; z-index:10; padding:30px 0;}
+  header{position:absolute; top:0; left:0; right:0; z-index:10; padding:30px 0; color:#fff;}
   header .wrap{display:flex; justify-content:space-between; align-items:center;}
   .logo{font-family:'Newsreader',serif; font-style:italic; font-size:24px;}
   nav{display:flex; gap:30px;}
-  nav a{font-size:13px; letter-spacing:0.06em; color:var(--ink-soft);}
+  nav a{font-size:13px; letter-spacing:0.06em; color:rgba(255,255,255,0.85);}
+  nav a:hover{color:#fff;}
 
   .frame{position:relative; min-height:100vh; display:flex; align-items:flex-end; overflow:hidden; border-bottom:1px solid var(--line);}
   .frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
-  .frame::after{content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(6,16,20,0.75) 0%, rgba(6,16,20,0.1) 55%);}
-  .frame-cap{position:relative; z-index:2; padding:0 0 70px;}
+  .frame::after{content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(35,22,14,0.75) 0%, rgba(35,22,14,0.1) 55%);}
+  .frame-cap{position:relative; z-index:2; padding:0 0 70px; color:#fff;}
   .frame-cap .wrap{max-width:640px;}
-  .frame-index{font-size:12px; letter-spacing:0.16em; color:var(--accent); margin-bottom:16px;}
-  .frame h2{font-size:clamp(28px,4.6vw,54px); line-height:1.2; margin-bottom:14px;}
-  .frame p{color:var(--ink-soft); font-size:16px; max-width:46ch;}
+  .frame-index{font-size:12px; letter-spacing:0.16em; color:#e8b090; margin-bottom:16px;}
+  .frame h2{font-size:clamp(28px,4.6vw,54px); line-height:1.2; margin-bottom:14px; color:#fff;}
+  .frame p{color:rgba(255,255,255,0.82); font-size:16px; max-width:46ch;}
 
   .frame.tall{min-height:70vh;}
 
@@ -56,7 +57,7 @@
   .foot-links{display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom:60px;}
   .foot-links a{font-size:13px; letter-spacing:0.05em; border:1px solid var(--line); padding:13px 28px; border-radius:2px;}
   .foot-links a:hover{border-color:var(--accent); color:var(--accent);}
-  .foot-note{font-size:12px; color:#557179;}
+  .foot-note{font-size:12px; color:#a68f7a;}
 
   @media(max-width:860px){
     nav{display:none;}

@@ -31,7 +31,10 @@
   .poster-photo img{width:100%; height:100%; object-fit:cover;}
 
   .ticker{border-bottom:1px solid var(--line); padding:16px 0; overflow:hidden; white-space:nowrap;}
+  .ticker-track{display:inline-flex; animation:ticker-scroll 22s linear infinite;}
   .ticker span{display:inline-block; font-family:'Bodoni Moda',serif; font-size:20px; text-transform:uppercase; letter-spacing:0.04em; padding-right:36px;}
+  @keyframes ticker-scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+  @media(prefers-reduced-motion:reduce){.ticker-track{animation:none;}}
 
   /* asymmetric photo + manifesto text, not centered cards */
   .manifesto{padding:100px 0; border-bottom:1px solid var(--line);}
@@ -92,7 +95,7 @@
   <div class="poster-photo"><img src="img-real/hands-bw.jpg" alt="Крупный план — руки в асане"></div>
 </section>
 
-<div class="ticker"><span>ХАТХА-ЙОГА · ДЫХАНИЕ · ВНИМАНИЕ · ТЕЛО · ХАТХА-ЙОГА · ДЫХАНИЕ · ВНИМАНИЕ · ТЕЛО ·</span></div>
+<div class="ticker"><div class="ticker-track"><span>ХАТХА-ЙОГА · ДЫХАНИЕ · ВНИМАНИЕ · ТЕЛО · ХАТХА-ЙОГА · ДЫХАНИЕ · ВНИМАНИЕ · ТЕЛО · ХАТХА-ЙОГА · ДЫХАНИЕ · ВНИМАНИЕ · ТЕЛО · ХАТХА-ЙОГА · ДЫХАНИЕ · ВНИМАНИЕ · ТЕЛО ·</span><span>ХАТХА-ЙОГА · ДЫХАНИЕ · ВНИМАНИЕ · ТЕЛО · ХАТХА-ЙОГА · ДЫХАНИЕ · ВНИМАНИЕ · ТЕЛО · ХАТХА-ЙОГА · ДЫХАНИЕ · ВНИМАНИЕ · ТЕЛО · ХАТХА-ЙОГА · ДЫХАНИЕ · ВНИМАНИЕ · ТЕЛО ·</span></div></div>
 
 <section class="manifesto">
   <div class="wrap manifesto-grid">
