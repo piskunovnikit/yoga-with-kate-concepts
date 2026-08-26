@@ -163,6 +163,20 @@
 
 <script>
 (function(){
+  var dots = document.querySelectorAll('.index a');
+  var frames = document.querySelectorAll('.frame');
+  if(dots.length && frames.length && 'IntersectionObserver' in window){
+    var frameObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var idx = Array.prototype.indexOf.call(frames, entry.target);
+          dots.forEach(function(d,i){ d.classList.toggle('on', i === idx); });
+        }
+      });
+    }, {threshold:0.5});
+    frames.forEach(function(f){ frameObs.observe(f); });
+  }
+
   var sels = ['.offer-row'];
   var els = [];
   sels.forEach(function(s){ document.querySelectorAll(s).forEach(function(el){ els.push(el); }); });
