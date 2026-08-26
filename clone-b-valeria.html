@@ -11,52 +11,65 @@
   :root{--bg:#ffffff; --ink:#2a2a2a; --ink-soft:#7a7a7a; --accent:#6f9aa8; --line:#e2e2e2;}
   *{box-sizing:border-box; margin:0; padding:0;}
   body{background:#e9e9e9; color:var(--ink); font-family:'Jost',sans-serif; font-weight:300; line-height:1.6; display:flex; justify-content:center; padding:40px 16px;}
-  .page{max-width:420px; width:100%; background:var(--bg); box-shadow:0 30px 80px rgba(0,0,0,0.18);}
+  .page{max-width:760px; width:100%; background:var(--bg); box-shadow:0 30px 80px rgba(0,0,0,0.18);}
   h1,h2,.serif{font-family:'Cormorant Garamond',serif;}
   a{color:inherit; text-decoration:none;}
   img{display:block; max-width:100%;}
   .ph-note{position:fixed; bottom:14px; right:14px; z-index:99; background:var(--ink); color:#fff; font-size:11px; padding:8px 12px; border-radius:20px; font-family:'Jost',sans-serif;}
 
-  .block{padding:34px 24px;}
-  .name{text-align:center; padding:40px 24px 8px;}
-  .name .first{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:30px; color:var(--ink); letter-spacing:0.03em;}
-  .name .last{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:30px; color:var(--accent); letter-spacing:0.03em;}
-  .name .role{font-size:12px; color:var(--ink-soft); margin-top:6px; letter-spacing:0.02em;}
+  .block{padding:44px 44px;}
+  .name{text-align:center; padding:56px 24px 10px;}
+  .name .first{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:42px; color:var(--ink); letter-spacing:0.03em;}
+  .name .last{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:42px; color:var(--accent); letter-spacing:0.03em;}
+  .name .role{font-size:14px; color:var(--ink-soft); margin-top:8px; letter-spacing:0.02em;}
 
-  .hero-photo{padding:0 24px;}
-  .hero-photo img{width:100%; height:420px; object-fit:cover; object-position:center 30%;}
+  .hero-photo{padding:0 44px;}
+  .hero-photo img{width:100%; height:520px; object-fit:cover; object-position:center 30%;}
 
-  .lead{text-align:center; padding:20px 30px 4px;}
-  .lead p{font-size:13px; color:var(--ink-soft);}
+  .lead{text-align:center; padding:26px 60px 6px;}
+  .lead p{font-size:16px; color:var(--ink-soft);}
 
-  .cta-wrap{text-align:center; padding:16px 0 30px;}
-  .btn{display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#fff; padding:11px 26px; font-size:13px; border-radius:2px;}
+  .cta-wrap{text-align:center; padding:20px 0 40px;}
+  .btn{display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#fff; padding:13px 32px; font-size:14px; border-radius:2px;}
 
-  .section-title{text-align:center; padding:0 24px 20px; font-family:'Cormorant Garamond',serif; font-weight:600; font-size:22px;}
+  .section-title{text-align:center; padding:0 24px 26px; font-family:'Cormorant Garamond',serif; font-weight:600; font-size:30px;}
 
-  .pair{display:grid; grid-template-columns:1fr 1fr; gap:4px; padding:0 24px;}
-  .pair img{width:100%; height:170px; object-fit:cover;}
+  .pair{display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:0 44px;}
+  .pair img{width:100%; height:260px; object-fit:cover;}
 
-  .offer{padding:26px 24px;}
-  .offer .cap{font-size:13px; font-weight:500; letter-spacing:0.02em; margin-bottom:10px; text-transform:uppercase;}
-  .offer p{font-size:13px; color:var(--ink-soft); margin-bottom:16px;}
-  .price-row{display:flex; align-items:center; gap:10px; font-size:13px; margin-bottom:20px;}
+  .offer{padding:36px 44px;}
+  .offer .cap{font-size:15px; font-weight:500; letter-spacing:0.02em; margin-bottom:12px; text-transform:uppercase;}
+  .offer p{font-size:15px; color:var(--ink-soft); margin-bottom:20px; max-width:52ch;}
+  .price-row{display:flex; align-items:center; gap:10px; font-size:15px; margin-bottom:24px;}
   .price-row .dash{flex:1; border-top:1px dashed var(--line);}
   .price-row .val{font-weight:500; white-space:nowrap;}
-  .offer .btn{width:100%; justify-content:center;}
+  .offer .btn{width:auto; justify-content:center;}
 
-  .about-block{padding:34px 24px;}
-  .about-list{list-style:none; counter-reset:item;}
-  .about-list li{display:flex; gap:14px; margin-bottom:20px; font-size:13px; color:var(--ink-soft);}
-  .about-list li .n{counter-increment:item; font-family:'Cormorant Garamond',serif; font-weight:600; color:var(--accent); font-size:16px;}
+  .about-block{padding:46px 44px;}
+  .about-list{list-style:none; counter-reset:item; max-width:520px; margin:0 auto;}
+  .about-list li{display:flex; gap:18px; margin-bottom:24px; font-size:15px; color:var(--ink-soft);}
+  .about-list li .n{counter-increment:item; font-family:'Cormorant Garamond',serif; font-weight:600; color:var(--accent); font-size:20px;}
 
-  .big-photo{padding:0 24px 30px;}
-  .big-photo img{width:100%; height:440px; object-fit:cover; object-position:center 25%;}
+  .big-photo{padding:0 44px 40px;}
+  .big-photo img{width:100%; height:540px; object-fit:cover; object-position:center 25%;}
 
-  .contacts{background:var(--accent); color:#fff; padding:36px 24px;}
-  .contacts h2{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:22px; text-align:center; margin-bottom:22px;}
-  .contact-row{display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.25); font-size:14px;}
+  .contacts{background:var(--accent); color:#fff; padding:48px 44px;}
+  .contacts h2{font-family:'Cormorant Garamond',serif; font-weight:600; font-size:28px; text-align:center; margin-bottom:26px;}
+  .contact-row{display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.25); font-size:16px; max-width:400px; margin:0 auto;}
   .contact-row:last-child{border-bottom:none;}
+
+  @media(max-width:640px){
+    .page{max-width:420px;}
+    .block{padding:34px 24px;}
+    .name .first, .name .last{font-size:30px;}
+    .hero-photo, .pair, .offer, .about-block, .big-photo, .contacts{padding-left:24px; padding-right:24px;}
+    .hero-photo img{height:420px;}
+    .pair img{height:170px;}
+    .big-photo img{height:440px;}
+    .section-title{font-size:22px;}
+    .about-list{max-width:none;}
+    .contact-row{max-width:none;}
+  }
 
   .foot-note{text-align:center; font-size:11px; color:var(--ink-soft); padding:20px 24px 30px;}
 </style>
