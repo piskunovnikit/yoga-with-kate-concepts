@@ -22,7 +22,8 @@
   header .wrap{display:flex; justify-content:space-between; align-items:center;}
   .logo{font-family:'DM Serif Display',serif; font-size:22px;}
   nav{display:flex; gap:28px;}
-  nav a{font-size:13px; color:var(--ink-soft);}
+  nav a{font-size:13px; color:var(--ink-soft); transition:color .2s ease;}
+  nav a:hover{color:var(--ink);}
 
   /* scrapbook hero: layered rotated photos, no grid */
   .board{position:relative; padding:20px 0 100px;}
@@ -41,7 +42,9 @@
   .p3:hover{transform:rotate(-3deg) translateY(-6px); box-shadow:0 26px 46px rgba(61,49,40,0.3);}
   .tape{position:absolute; width:70px; height:26px; background:rgba(226,204,170,0.75); z-index:6;}
 
-  .btn{display:inline-flex; align-items:center; gap:10px; background:var(--accent); color:#fff; padding:14px 30px; font-size:14px; border-radius:2px; margin-top:34px; position:relative; z-index:5;}
+  .btn{display:inline-flex; align-items:center; gap:10px; background:var(--accent); color:#fff; padding:14px 30px; font-size:14px; border-radius:2px; margin-top:34px; position:relative; z-index:5; transition:background-color .2s ease, transform .2s ease, box-shadow .2s ease;}
+  .btn:hover{background:#9c5c3c; box-shadow:0 10px 24px rgba(181,113,74,0.35); transform:translateY(-2px);}
+  .btn:active{transform:translateY(0); box-shadow:0 4px 10px rgba(181,113,74,0.3);}
 
   /* practice notes: torn-paper cards at slight angles, hand annotations */
   .notes{padding:70px 0 110px;}
@@ -74,7 +77,8 @@
   footer .hand{font-size:32px; color:var(--accent); display:block; margin-bottom:6px;}
   footer h2{font-size:clamp(28px,4vw,46px); margin-bottom:40px;}
   .foot-links{display:flex; justify-content:center; gap:18px; flex-wrap:wrap; margin-bottom:56px;}
-  .foot-links a{font-size:14px; padding:12px 28px; border:1px solid var(--ink); border-radius:30px;}
+  .foot-links a{font-size:14px; padding:12px 28px; border:1px solid var(--ink); border-radius:30px; transition:background-color .2s ease, color .2s ease;}
+  .foot-links a:hover{background:var(--ink); color:var(--bg);}
   .foot-note{font-size:12px; color:var(--ink-soft);}
 
   @media(max-width:860px){
