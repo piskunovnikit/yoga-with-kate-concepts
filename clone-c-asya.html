@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#fff; --grey:#f2f2f0; --ink:#1c1c1c; --ink-soft:#2b3a67; --pink:#f3a8c8; --line:#e6e6e2;}
+  :root{--bg:#fff; --grey:#f2f2f0; --ink:#1c1c1c; --ink-soft:#2b3a67; --pink:#4fa3d6; --line:#e6e6e2;}
   *{box-sizing:border-box; margin:0; padding:0;}
   body{background:var(--bg); color:var(--ink-soft); font-family:'Nunito',sans-serif; font-weight:400; line-height:1.6;}
   .wrap{max-width:1200px; margin:0 auto; padding:0 40px;}
@@ -286,6 +286,7 @@
   var els = [];
   sels.forEach(function(s){ document.querySelectorAll(s).forEach(function(el){ els.push(el); }); });
   els.forEach(function(el){ el.setAttribute('data-reveal',''); });
+  document.querySelectorAll('section').forEach(function(sec, i){ if(i > 0 && !els.includes(sec)){ sec.setAttribute('data-reveal',''); els.push(sec); } });
   if('IntersectionObserver' in window){
     var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
