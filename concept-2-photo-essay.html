@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoga with Kate — Концепт 2: Фото-эссе</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0b1e26; --ink:#eaf2f3; --ink-soft:#9fc0c7; --line:#1f3944; --accent:#7fc7dc;}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--ink); font-family:'Schibsted Grotesk',sans-serif; font-weight:300; line-height:1.6;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  h1,h2,.serif{font-family:'Instrument Serif',serif; font-weight:400;}
+  .italic{font-style:italic;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .ph-note{position:fixed; bottom:14px; right:14px; z-index:99; background:rgba(255,255,255,0.1); backdrop-filter:blur(6px); color:#fff; font-size:11px; padding:8px 12px; border-radius:20px;}
+
+  /* fixed dot index tracking scroll position visually (single authored motion: fill on load) */
+  .index{position:fixed; left:28px; top:50%; transform:translateY(-50%); z-index:20; display:flex; flex-direction:column; gap:14px;}
+  .index a{width:8px; height:8px; border-radius:50%; border:1px solid var(--ink-soft); display:block;}
+  .index a.on{background:var(--accent); border-color:var(--accent);}
+
+  header{position:absolute; top:0; left:0; right:0; z-index:10; padding:30px 0;}
+  header .wrap{display:flex; justify-content:space-between; align-items:center;}
+  .logo{font-family:'Instrument Serif',serif; font-style:italic; font-size:24px;}
+  nav{display:flex; gap:30px;}
+  nav a{font-size:13px; letter-spacing:0.06em; color:var(--ink-soft);}
+
+  .frame{position:relative; min-height:100vh; display:flex; align-items:flex-end; overflow:hidden; border-bottom:1px solid var(--line);}
+  .frame img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .frame::after{content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(6,16,20,0.75) 0%, rgba(6,16,20,0.1) 55%);}
+  .frame-cap{position:relative; z-index:2; padding:0 0 70px;}
+  .frame-cap .wrap{max-width:640px;}
+  .frame-index{font-size:12px; letter-spacing:0.16em; color:var(--accent); margin-bottom:16px;}
+  .frame h2{font-size:clamp(28px,4.6vw,54px); line-height:1.2; margin-bottom:14px;}
+  .frame p{color:var(--ink-soft); font-size:16px; max-width:46ch;}
+
+  .frame.tall{min-height:70vh;}
+
+  .offer{padding:110px 0; border-bottom:1px solid var(--line);}
+  .offer-head{max-width:600px; margin-bottom:60px;}
+  .offer-head h2{font-size:clamp(26px,3.4vw,40px); margin-bottom:16px;}
+  .offer-head p{color:var(--ink-soft); font-size:16px;}
+  .offer-list{border-top:1px solid var(--line);}
+  .offer-row{display:flex; justify-content:space-between; align-items:center; padding:28px 0; border-bottom:1px solid var(--line); gap:20px;}
+  .offer-row .name{font-family:'Instrument Serif',serif; font-size:24px;}
+  .offer-row .desc{color:var(--ink-soft); font-size:14px; margin-top:6px; max-width:44ch;}
+  .offer-row .price{font-family:'Instrument Serif',serif; font-style:italic; font-size:22px; color:var(--accent); white-space:nowrap;}
+
+  footer{padding:110px 0 56px; text-align:center;}
+  footer h2{font-size:clamp(30px,5vw,64px); margin-bottom:44px;}
+  .foot-links{display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom:60px;}
+  .foot-links a{font-size:13px; letter-spacing:0.05em; border:1px solid var(--line); padding:13px 28px; border-radius:2px;}
+  .foot-links a:hover{border-color:var(--accent); color:var(--accent);}
+  .foot-note{font-size:12px; color:#557179;}
+
+  @media(max-width:860px){
+    nav{display:none;}
+    .index{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="ph-note">Концепт 2 · фото-эссе, тёмный · реальные фото</div>
+
+<div class="index">
+  <a class="on"></a><a></a><a></a><a></a>
+</div>
+
+<header>
+  <div class="wrap">
+    <div class="logo">Yoga with Kate</div>
+    <nav>
+      <a href="#offer">Занятия</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<section class="frame">
+  <img src="img-real/embankment-blue.jpg" alt="Екатерина в асане на набережной">
+  <div class="frame-cap">
+    <div class="wrap">
+      <h2>Тело помнит то, что забыл разум</h2>
+      <p>Хатха-йога для тех, кто устал спешить — онлайн и очно, Санкт-Петербург.</p>
+    </div>
+  </div>
+</section>
+
+<section class="frame tall">
+  <img src="img-real/arms-beach-bw.jpg" alt="Силуэт у воды, руки вверх">
+  <div class="frame-cap">
+    <div class="wrap">
+      <div class="frame-index">Дыхание</div>
+      <h2 class="italic">Прежде чем двигаться — научитесь дышать</h2>
+    </div>
+  </div>
+</section>
+
+<section class="frame tall">
+  <img src="img-real/group-stretch-color.jpg" alt="Групповая практика, растяжка">
+  <div class="frame-cap">
+    <div class="wrap">
+      <div class="frame-index">Практика</div>
+      <h2 class="italic">Регулярность важнее интенсивности</h2>
+    </div>
+  </div>
+</section>
+
+<section class="frame tall">
+  <img src="img-real/feet-mat.jpg" alt="Стопы на коврике для йоги">
+  <div class="frame-cap">
+    <div class="wrap">
+      <div class="frame-index">Начало</div>
+      <h2 class="italic">Каждая практика начинается с этой точки опоры</h2>
+    </div>
+  </div>
+</section>
+
+<section class="offer" id="offer">
+  <div class="wrap">
+    <div class="offer-head">
+      <h2>Форматы</h2>
+      <p>8 лет практики, 3 года преподавания классической хатха-йоги.</p>
+    </div>
+    <div class="offer-list">
+      <div class="offer-row"><div><div class="name">Групповые в Zoom</div><div class="desc">1 занятие, 3 раза в неделю, живой эфир</div></div><div class="price">от 700 ₽</div></div>
+      <div class="offer-row"><div><div class="name">Онлайн-курс</div><div class="desc">8 уроков в записи, 1,5–2 часа</div></div><div class="price">5 000 ₽</div></div>
+      <div class="offer-row"><div><div class="name">Персонально</div><div class="desc">Индивидуальная программа, очно или онлайн</div></div><div class="price">от 3 500 ₽</div></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2 class="italic">Пора начать</h2>
+    <div class="foot-links">
+      <a href="#">Telegram</a>
+      <a href="#">WhatsApp</a>
+      <a href="#">Instagram</a>
+    </div>
+    <div class="foot-note">Yoga with Kate · Екатерина Благодацкая © 2026 · концепт-макет</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoga with Kate — Концепт 1: Журнальный разворот</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Piazzolla:ital,opsz,wght@0,8..30,400;0,8..30,500;1,8..30,400&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f8f9; --ink:#16323b; --ink-soft:#4f6f77; --line:#c7dbe0; --accent:#2c6d82; --paper:#fff;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:'Work Sans',sans-serif; font-weight:400; line-height:1.65; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  h1,h2,h3,.serif{font-family:'Piazzolla',serif;}
+  a{color:inherit;}
+  img{display:block; max-width:100%;}
+  .ph-note{position:fixed; bottom:14px; right:14px; z-index:99; background:var(--ink); color:#fff; font-size:11px; padding:8px 12px; border-radius:20px; font-family:'Work Sans',sans-serif;}
+
+  header{padding:26px 0; border-bottom:1px solid var(--line);}
+  header .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:'Piazzolla',serif; font-style:italic; font-size:22px;}
+  nav{display:flex; gap:30px;}
+  nav a{font-size:13px; letter-spacing:0.04em; color:var(--ink-soft); text-decoration:none;}
+  nav a:hover{color:var(--ink);}
+
+  /* masthead hero: photo full-bleed, headline bottom-left magazine style */
+  .masthead{position:relative; height:88vh; min-height:600px; overflow:hidden;}
+  .masthead img{width:100%; height:100%; object-fit:cover;}
+  .masthead::after{content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(10,30,36,0.55) 0%, rgba(10,30,36,0) 45%);}
+  .masthead-cap{position:absolute; left:0; right:0; bottom:0; padding:48px 0 40px; z-index:2;}
+  .masthead-cap .wrap{display:flex; justify-content:space-between; align-items:flex-end; gap:24px;}
+  .masthead h1{color:#fff; font-size:clamp(30px,4.6vw,56px); font-weight:400; max-width:640px; line-height:1.15;}
+  .masthead .issue{color:#dcebef; font-size:13px; letter-spacing:0.08em; text-align:right; white-space:nowrap;}
+
+  /* article: two-column magazine text with drop cap and inline photo */
+  .article{padding:96px 0; border-bottom:1px solid var(--line);}
+  .article-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:70px;}
+  .article-text p{font-size:17px; color:var(--ink); max-width:52ch; margin-bottom:20px;}
+  .article-text p.lead::first-letter{font-family:'Piazzolla',serif; font-size:64px; float:left; line-height:0.8; padding:6px 10px 0 0; color:var(--accent);}
+  .article-photo{position:sticky; top:32px;}
+  .article-photo img{width:100%; height:560px; object-fit:cover;}
+  .article-photo .credit{font-size:12px; color:var(--ink-soft); margin-top:10px; font-style:italic; font-family:'Piazzolla',serif;}
+
+  /* pull quote spanning width */
+  .pullquote{padding:80px 0; text-align:center;}
+  .pullquote blockquote{font-family:'Piazzolla',serif; font-style:italic; font-weight:400; font-size:clamp(24px,3.4vw,38px); max-width:820px; margin:0 auto; line-height:1.4; color:var(--ink);}
+  .pullquote cite{display:block; margin-top:24px; font-style:normal; font-size:13px; letter-spacing:0.06em; color:var(--ink-soft);}
+
+  /* offerings as an editorial contents list, not cards */
+  .contents{padding:96px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .contents h2{font-size:clamp(26px,3.2vw,36px); font-weight:400; margin-bottom:50px;}
+  .toc-row{display:grid; grid-template-columns:1fr auto auto; gap:28px; align-items:baseline; padding:26px 0; border-top:1px solid var(--line);}
+  .toc-row:last-child{border-bottom:1px solid var(--line);}
+  .toc-row .title{font-family:'Piazzolla',serif; font-size:22px;}
+  .toc-row .desc{grid-column:1; font-size:14px; color:var(--ink-soft); margin-top:4px;}
+  .toc-row .price{font-family:'Piazzolla',serif; font-size:20px; color:var(--accent); white-space:nowrap;}
+  .toc-row .cta{font-size:13px; letter-spacing:0.05em; text-decoration:underline; text-underline-offset:4px; white-space:nowrap;}
+
+  /* about: photo + running text side by side, reversed rhythm */
+  .about{padding:96px 0;}
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;}
+  .about-photo img{width:100%; height:520px; object-fit:cover;}
+  .about-text .kicker-line{width:48px; height:1px; background:var(--accent); margin-bottom:22px;}
+  .about-text h2{font-size:clamp(26px,3.2vw,38px); font-weight:400; margin-bottom:20px; line-height:1.25;}
+  .about-text p{color:var(--ink-soft); font-size:16px; max-width:44ch; margin-bottom:16px;}
+
+  footer{padding:90px 0 56px; background:var(--ink); color:#e7f1f3;}
+  footer .wrap{display:grid; grid-template-columns:1.2fr 0.8fr; gap:50px; align-items:end;}
+  footer h2{font-family:'Piazzolla',serif; font-weight:400; font-size:clamp(28px,4vw,44px); line-height:1.2;}
+  .foot-links{display:flex; flex-direction:column; gap:12px; align-items:flex-end;}
+  .foot-links a{font-size:14px; color:#e7f1f3; text-decoration:none; border-bottom:1px solid rgba(231,241,243,0.3); padding-bottom:3px; width:fit-content;}
+  .foot-links a:hover{border-color:#e7f1f3;}
+  .foot-note{margin-top:60px; font-size:12px; color:#7fa3ac; border-top:1px solid rgba(231,241,243,0.15); padding-top:22px;}
+
+  @media(max-width:860px){
+    .article-grid, .about-grid, footer .wrap{grid-template-columns:1fr; gap:36px;}
+    .article-photo{position:static;}
+    .article-photo img, .about-photo img{height:340px;}
+    .toc-row{grid-template-columns:1fr; row-gap:8px;}
+    .foot-links{align-items:flex-start;}
+    nav{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="ph-note">Концепт 1 · журнальный разворот · реальные фото</div>
+
+<header>
+  <div class="wrap">
+    <div class="logo">Yoga with Kate</div>
+    <nav>
+      <a href="#about">Обо мне</a>
+      <a href="#contents">Занятия</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<section class="masthead">
+  <img src="img-real/embankment-blue.jpg" alt="Екатерина в асане на набережной у воды">
+  <div class="masthead-cap">
+    <div class="wrap">
+      <h1>Практика, которая возвращает тело туда, где оно есть — сейчас</h1>
+      <div class="issue">Санкт-Петербург<br>Хатха-йога · дыхание · тишина</div>
+    </div>
+  </div>
+</section>
+
+<section class="article">
+  <div class="wrap article-grid">
+    <div class="article-text">
+      <p class="lead">Йога началась для меня не с растяжки, а с тишины. С момента, когда тело перестаёт спорить с разумом и просто остаётся — на мате, на набережной, в комнате с утренним светом. Восемь лет практики привели меня к простой мысли: гибкость не цель, она следствие внимания.</p>
+      <p>Я преподаю классическую хатха-йогу — без спешки, без сравнения с соседним ковриком. На занятиях мы работаем с дыханием так же внимательно, как с телом: это то, что остаётся с человеком и вне мата.</p>
+      <p>Каждая практика — это разговор с телом, а не список асан для галочки. Именно поэтому у меня нет двух одинаковых занятий, даже если тема повторяется.</p>
+    </div>
+    <div class="article-photo">
+      <img src="img-real/split-mat-color.jpg" alt="Растяжка на мате в студии с естественным светом">
+      <div class="credit">Утренняя практика, домашняя студия</div>
+    </div>
+  </div>
+</section>
+
+<section class="pullquote">
+  <div class="wrap">
+    <blockquote>«Йога — это не про то, чтобы дотянуться до пальцев ног. Это про то, чтобы услышать, что происходит по пути».</blockquote>
+    <cite>— Екатерина Благодацкая</cite>
+  </div>
+</section>
+
+<section class="contents" id="contents">
+  <div class="wrap">
+    <h2>Форматы практики</h2>
+    <div class="toc-row">
+      <div><div class="title">Групповые занятия</div><div class="desc">Онлайн в Zoom, 3 раза в неделю, 1,5 часа, живой эфир</div></div>
+      <div class="price">от 700 ₽</div>
+      <a href="#" class="cta">Записаться →</a>
+    </div>
+    <div class="toc-row">
+      <div><div class="title">Онлайн-курс</div><div class="desc">8 уроков в записи, 1,5–2 часа, для любого уровня подготовки</div></div>
+      <div class="price">5 000 ₽</div>
+      <a href="#" class="cta">Записаться →</a>
+    </div>
+    <div class="toc-row">
+      <div><div class="title">Персональные занятия</div><div class="desc">Индивидуальная программа с учётом тела и целей, очно или онлайн</div></div>
+      <div class="price">от 3 500 ₽</div>
+      <a href="#" class="cta">Записаться →</a>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo"><img src="img-real/portrait-car.jpg" alt="Екатерина Благодацкая, портрет"></div>
+    <div class="about-text">
+      <div class="kicker-line"></div>
+      <h2>Практикую 8 лет, преподаю 3 года</h2>
+      <p>Постоянно учусь: прохожу курсы, посещаю семинары, разбираю первоисточники. Мне важно не механически ставить позы, а понимать, как устроено тело человека напротив меня.</p>
+      <p>На моих занятиях безопасно и никогда не скучно — вне зависимости от того, впервые вы на мате или занимаетесь годами.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Готовы начать?<br>Напишите мне.</h2>
+    <div class="foot-links">
+      <a href="#">Telegram</a>
+      <a href="#">WhatsApp</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+  <div class="wrap foot-note">Yoga with Kate · Екатерина Благодацкая © 2026 · концепт-макет</div>
+</footer>
+
+</body>
+</html>

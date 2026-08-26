@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoga with Kate — Концепт 7: Киноплёнка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital@0;1&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fbfbfa; --ink:#101418; --ink-soft:#63707a; --line:#e2e6e8; --accent:#3b6b7d;}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--ink); font-family:'Jost',sans-serif; font-weight:300; line-height:1.6;}
+  .wrap{max-width:1240px; margin:0 auto; padding:0 32px;}
+  h1,h2,.serif{font-family:'Libre Caslon Text',serif; font-weight:400;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%; filter:sepia(0.12) saturate(0.7) hue-rotate(155deg) brightness(0.98);}
+  .ph-note{position:fixed; bottom:14px; right:14px; z-index:99; background:var(--ink); color:#fff; font-size:11px; padding:8px 12px; border-radius:20px; font-family:'Jost',sans-serif;}
+
+  header{padding:32px 0; position:absolute; top:0; left:0; right:0; z-index:10; mix-blend-mode:difference; color:#fff;}
+  header .wrap{display:flex; justify-content:space-between; align-items:center;}
+  .logo{font-family:'Libre Caslon Text',serif; font-style:italic; font-size:22px;}
+  nav{display:flex; gap:34px;}
+  nav a{font-size:12px; letter-spacing:0.12em; text-transform:uppercase;}
+
+  .hero{height:100vh; min-height:640px; display:flex; align-items:center; justify-content:center; text-align:center; position:relative;}
+  .hero h1{font-size:clamp(40px,7vw,96px); line-height:1.05; max-width:920px;}
+  .hero .sub{margin-top:26px; font-size:15px; letter-spacing:0.06em; color:var(--ink-soft);}
+
+  /* horizontal filmstrip gallery: one authored motion (scroll-snap drag), duotone photos for cohesion */
+  .filmstrip{padding:0 0 40px;}
+  .filmstrip-track{display:flex; gap:2px; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 32px; scrollbar-width:none;}
+  .filmstrip-track::-webkit-scrollbar{display:none;}
+  .frame{flex:0 0 auto; width:min(72vw,560px); height:74vh; min-height:420px; scroll-snap-align:center; position:relative; overflow:hidden;}
+  .frame img{width:100%; height:100%; object-fit:cover;}
+  .frame .cap{position:absolute; left:20px; bottom:18px; color:#fff; font-size:13px; letter-spacing:0.04em;}
+  .strip-hint{text-align:center; font-size:12px; color:var(--ink-soft); letter-spacing:0.08em; padding:18px 0 60px;}
+
+  .statement{padding:60px 0 130px; text-align:center;}
+  .statement p{font-family:'Libre Caslon Text',serif; font-style:italic; font-size:clamp(22px,3vw,34px); max-width:760px; margin:0 auto; line-height:1.45;}
+
+  .offer{border-top:1px solid var(--line); padding:100px 0;}
+  .offer-grid{display:grid; grid-template-columns:repeat(3,1fr);}
+  .offer-col{padding:0 40px 0 0; border-right:1px solid var(--line);}
+  .offer-col:last-child{border-right:none; padding-right:0;}
+  .offer-col:not(:first-child){padding-left:40px;}
+  .offer-col h3{font-size:22px; margin-bottom:14px;}
+  .offer-col p{font-size:14px; color:var(--ink-soft); margin-bottom:22px; min-height:42px;}
+  .offer-col .price{font-family:'Libre Caslon Text',serif; font-size:26px;}
+
+  .info-bar{position:sticky; bottom:0; background:var(--ink); color:#fff; z-index:5;}
+  .info-bar .wrap{display:flex; justify-content:space-between; align-items:center; padding:18px 32px;}
+  .info-bar .name{font-family:'Libre Caslon Text',serif; font-style:italic; font-size:16px;}
+  .info-bar a{font-size:12px; letter-spacing:0.08em; text-transform:uppercase; border-bottom:1px solid rgba(255,255,255,0.4);}
+
+  footer{padding:90px 0 90px; text-align:center;}
+  footer h2{font-size:clamp(30px,5vw,60px); margin-bottom:44px;}
+  .foot-links{display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-bottom:20px;}
+  .foot-links a{font-size:13px; letter-spacing:0.06em; text-transform:uppercase; border-bottom:1px solid var(--line); padding-bottom:6px;}
+  .foot-note{font-size:12px; color:var(--ink-soft); margin-top:60px;}
+
+  @media(max-width:860px){
+    .offer-grid{grid-template-columns:1fr; row-gap:36px;}
+    .offer-col{border-right:none; padding:0 !important;}
+    .frame{width:84vw; height:56vh; min-height:340px;}
+    nav{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="ph-note">Концепт 7 · киноплёнка, дуотон · реальные фото</div>
+
+<header>
+  <div class="wrap">
+    <div class="logo">Yoga with Kate</div>
+    <nav>
+      <a href="#offer">Занятия</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Практика на всю жизнь, а не на одно лето</h1>
+    <div class="sub">Екатерина Благодацкая · хатха-йога · Санкт-Петербург</div>
+  </div>
+</section>
+
+<section class="filmstrip">
+  <div class="filmstrip-track">
+    <div class="frame"><img src="img-real/embankment-blue.jpg" alt="Асана на набережной"><div class="cap">Набережная, утро</div></div>
+    <div class="frame"><img src="img-real/split-mat-color.jpg" alt="Растяжка на мате"><div class="cap">Домашняя студия</div></div>
+    <div class="frame"><img src="img-real/group-stretch-color.jpg" alt="Групповая практика"><div class="cap">Групповое занятие</div></div>
+    <div class="frame"><img src="img-real/meditation-bw.jpg" alt="Медитация"><div class="cap">Тишина после практики</div></div>
+    <div class="frame"><img src="img-real/feet-mat.jpg" alt="Стопы на коврике"><div class="cap">Точка опоры</div></div>
+  </div>
+  <div class="strip-hint">← провести, чтобы посмотреть больше →</div>
+</section>
+
+<section class="statement">
+  <div class="wrap">
+    <p>«Йога — это не про то, чтобы дотянуться до пальцев ног. Это про то, чтобы услышать, что происходит по пути».</p>
+  </div>
+</section>
+
+<section class="offer" id="offer">
+  <div class="wrap offer-grid">
+    <div class="offer-col">
+      <h3>Группа в Zoom</h3>
+      <p>3 раза в неделю, 1,5 часа, живой эфир</p>
+      <div class="price">от 700 ₽</div>
+    </div>
+    <div class="offer-col">
+      <h3>Онлайн-курс</h3>
+      <p>8 уроков в записи, 1,5–2 часа, любой уровень</p>
+      <div class="price">5 000 ₽</div>
+    </div>
+    <div class="offer-col">
+      <h3>Персонально</h3>
+      <p>Индивидуальная программа, очно или онлайн</p>
+      <div class="price">от 3 500 ₽</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Начнём?</h2>
+    <div class="foot-links">
+      <a href="#">Telegram-канал</a>
+      <a href="#">WhatsApp</a>
+      <a href="#">Instagram</a>
+    </div>
+    <div class="foot-note">Yoga with Kate · Екатерина Благодацкая © 2026 · концепт-макет</div>
+  </div>
+</footer>
+
+<div class="info-bar">
+  <div class="wrap">
+    <div class="name">Yoga with Kate</div>
+    <a href="#offer">Записаться на пробное →</a>
+  </div>
+</div>
+
+</body>
+</html>

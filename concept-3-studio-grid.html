@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoga with Kate — Концепт 3: Студийная сетка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#eef5f6; --ink:#0f2a30; --ink-soft:#4c6d74; --line:#0f2a30; --accent:#1f7a94; --paper:#fff;}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:'Archivo',sans-serif; font-weight:400; line-height:1.5;}
+  .wrap{max-width:1240px; margin:0 auto; padding:0 28px;}
+  .mono{font-family:'Space Mono',monospace;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .ph-note{position:fixed; bottom:14px; right:14px; z-index:99; background:var(--ink); color:#fff; font-size:11px; padding:8px 12px; border-radius:2px; font-family:'Space Mono',monospace;}
+
+  header{border-bottom:1px solid var(--line); padding:20px 0;}
+  header .wrap{display:flex; justify-content:space-between; align-items:center;}
+  .logo{font-weight:700; font-size:18px; text-transform:uppercase; letter-spacing:0.02em;}
+  nav{display:flex; gap:0;}
+  nav a{font-size:12px; letter-spacing:0.04em; text-transform:uppercase; padding:8px 16px; border-left:1px solid var(--line);}
+
+  /* bento hero: photo tile + type tile + info tile, hard grid lines, no shadows */
+  .bento{border-bottom:1px solid var(--line);}
+  .bento-grid{display:grid; grid-template-columns:1.3fr 1fr; grid-template-rows:auto auto;}
+  .bento-photo{grid-row:1/3; border-right:1px solid var(--line); min-height:560px; overflow:hidden;}
+  .bento-photo img{width:100%; height:100%; object-fit:cover;}
+  .bento-type{padding:56px 44px; border-bottom:1px solid var(--line);}
+  .bento-type .mono{font-size:12px; color:var(--accent); letter-spacing:0.08em; margin-bottom:18px; display:block;}
+  .bento-type h1{font-size:clamp(28px,3.4vw,42px); font-weight:600; line-height:1.15;}
+  .bento-info{padding:36px 44px; display:flex; flex-direction:column; gap:18px; justify-content:center;}
+  .bento-info .row{display:flex; justify-content:space-between; font-size:14px; padding-bottom:16px; border-bottom:1px solid var(--line);}
+  .bento-info .row:last-child{border-bottom:none; padding-bottom:0;}
+  .bento-info .row span:first-child{color:var(--ink-soft);}
+
+  /* schedule table — mirrors her real story graphics */
+  .schedule{padding:80px 0; border-bottom:1px solid var(--line);}
+  .schedule h2{font-size:clamp(22px,2.6vw,30px); font-weight:600; margin-bottom:8px;}
+  .schedule .sub{color:var(--ink-soft); font-size:14px; margin-bottom:44px;}
+  table{width:100%; border-collapse:collapse;}
+  thead th{text-align:left; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); font-weight:500; padding:0 0 14px; border-bottom:1px solid var(--line);}
+  tbody td{padding:20px 0; border-bottom:1px solid var(--line); font-size:15px; vertical-align:top;}
+  tbody tr:last-child td{border-bottom:1px solid var(--line);}
+  td.day{font-weight:600; width:16%;}
+  td.time{font-family:'Space Mono',monospace; width:20%; color:var(--accent);}
+  td.place{color:var(--ink-soft); width:26%;}
+  td.book a{font-size:13px; text-decoration:underline; text-underline-offset:3px; float:right;}
+
+  /* pricing as structured spec sheet, not cards */
+  .pricing{padding:80px 0; border-bottom:1px solid var(--line);}
+  .pricing h2{font-size:clamp(22px,2.6vw,30px); font-weight:600; margin-bottom:44px;}
+  .spec-grid{display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line);}
+  .spec{border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:32px 28px;}
+  .spec .mono{font-size:11px; color:var(--accent); letter-spacing:0.06em; display:block; margin-bottom:14px;}
+  .spec h3{font-size:19px; font-weight:600; margin-bottom:10px;}
+  .spec p{font-size:13px; color:var(--ink-soft); margin-bottom:20px;}
+  .spec .price{font-family:'Space Mono',monospace; font-size:24px;}
+
+  /* about: photo strip + text, structured columns */
+  .about{padding:80px 0; border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:0.7fr 1.3fr; gap:0; border-top:1px solid var(--line);}
+  .about-photo{border-right:1px solid var(--line);}
+  .about-photo img{width:100%; height:100%; object-fit:cover; min-height:420px;}
+  .about-text{padding:44px;}
+  .about-text h2{font-size:clamp(22px,2.6vw,30px); font-weight:600; margin-bottom:20px;}
+  .about-text p{font-size:15px; color:var(--ink-soft); max-width:50ch; margin-bottom:14px;}
+
+  footer{padding:70px 0;}
+  .foot-grid{display:grid; grid-template-columns:2fr 1fr 1fr; gap:20px; padding-top:36px; border-top:1px solid var(--line);}
+  footer h2{font-size:clamp(26px,3.4vw,40px); font-weight:600;}
+  .foot-col span{display:block; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:14px;}
+  .foot-col a{display:block; font-size:14px; margin-bottom:8px; text-decoration:underline; text-underline-offset:3px;}
+  .foot-note{margin-top:50px; font-size:11px; color:var(--ink-soft);}
+
+  @media(max-width:860px){
+    .bento-grid{grid-template-columns:1fr;}
+    .bento-photo{grid-row:auto; border-right:none; border-bottom:1px solid var(--line); min-height:320px;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-photo{border-right:none; border-bottom:1px solid var(--line);}
+    .spec-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr; gap:36px;}
+    table, thead{display:none;}
+    tbody, tr, td{display:block; width:100% !important;}
+    tbody tr{border-bottom:1px solid var(--line); padding:14px 0;}
+    tbody td{border-bottom:none; padding:4px 0;}
+    nav{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="ph-note">Концепт 3 · студийная сетка (Swiss/data) · реальные фото</div>
+
+<header>
+  <div class="wrap">
+    <div class="logo">Yoga w/ Kate</div>
+    <nav>
+      <a href="#schedule">Расписание</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<section class="bento">
+  <div class="bento-grid">
+    <div class="bento-photo"><img src="img-real/embankment-blue.jpg" alt="Екатерина в асане на набережной"></div>
+    <div class="bento-type">
+      <span class="mono">САНКТ-ПЕТЕРБУРГ · ХАТХА-ЙОГА</span>
+      <h1>Регулярная практика с преподавателем, который держит фокус на технике и дыхании</h1>
+    </div>
+    <div class="bento-info">
+      <div class="row"><span>Опыт практики</span><span>8 лет</span></div>
+      <div class="row"><span>Преподаю</span><span>3 года</span></div>
+      <div class="row"><span>Формат</span><span>Очно / онлайн</span></div>
+      <div class="row"><span>Уровень</span><span>Любой</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="schedule" id="schedule">
+  <div class="wrap">
+    <h2>Расписание на неделю</h2>
+    <div class="sub">Актуальные даты и локации — уточняйте перед записью</div>
+    <table>
+      <thead><tr><th>День</th><th>Время</th><th>Локация</th><th>Формат</th><th></th></tr></thead>
+      <tbody>
+        <tr><td class="day">Вторник</td><td class="time">19:30–21:00</td><td class="place">м. Василеостровская</td><td>Группа</td><td class="book"><a href="#">Записаться →</a></td></tr>
+        <tr><td class="day">Среда</td><td class="time">10:00–11:00</td><td class="place">Севкабель</td><td>Группа</td><td class="book"><a href="#">Записаться →</a></td></tr>
+        <tr><td class="day">Четверг</td><td class="time">19:30–21:00</td><td class="place">ЙогаЛаборатория</td><td>Группа</td><td class="book"><a href="#">Записаться →</a></td></tr>
+        <tr><td class="day">Воскресенье</td><td class="time">9:30–11:00</td><td class="place">ЦПКиО</td><td>Группа</td><td class="book"><a href="#">Записаться →</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <h2>Тарифы</h2>
+    <div class="spec-grid">
+      <div class="spec"><span class="mono">GROUP</span><h3>Групповые в Zoom</h3><p>3 раза в неделю, 1,5 часа, живой эфир</p><div class="price">от 700 ₽</div></div>
+      <div class="spec"><span class="mono">COURSE</span><h3>Онлайн-курс</h3><p>8 уроков в записи, 1,5–2 часа</p><div class="price">5 000 ₽</div></div>
+      <div class="spec"><span class="mono">PRIVATE</span><h3>Персонально</h3><p>Индивидуальная программа, очно/онлайн</p><div class="price">от 3 500 ₽</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap about-grid">
+    <div class="about-photo"><img src="img-real/portrait-car.jpg" alt="Екатерина Благодацкая"></div>
+    <div class="about-text">
+      <h2>Екатерина Благодацкая</h2>
+      <p>Практикую йогу более 8 лет, преподаю 3 года. Постоянно повышаю квалификацию — курсы, семинары, разбор первоисточников.</p>
+      <p>Занятия подходят практикующим любого уровня: на них безопасно и никогда не скучно.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Записаться на пробное занятие</h2>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <span>Контакты</span>
+        <a href="#">Telegram</a>
+        <a href="#">WhatsApp</a>
+        <a href="#">Instagram</a>
+      </div>
+      <div class="foot-col">
+        <span>Навигация</span>
+        <a href="#schedule">Расписание</a>
+        <a href="#pricing">Тарифы</a>
+      </div>
+      <div class="foot-col">
+        <span>Город</span>
+        <a href="#">Санкт-Петербург</a>
+      </div>
+    </div>
+    <div class="foot-note mono">YOGA WITH KATE · ЕКАТЕРИНА БЛАГОДАЦКАЯ © 2026 · КОНЦЕПТ-МАКЕТ</div>
+  </div>
+</footer>
+
+</body>
+</html>

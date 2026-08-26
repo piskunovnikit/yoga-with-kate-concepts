@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoga with Kate — Концепт 4: Типографический постер</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Archivo+Black&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f6f5f2; --ink:#0d0d0d; --ink-soft:#5a5a5a; --line:#0d0d0d;}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:'Work Sans',sans-serif; font-weight:300; line-height:1.6;}
+  .wrap{max-width:1240px; margin:0 auto; padding:0 32px;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%; filter:grayscale(1) contrast(1.08);}
+  .ph-note{position:fixed; bottom:14px; right:14px; z-index:99; background:var(--ink); color:#fff; font-size:11px; padding:8px 12px; border-radius:20px; font-family:'Work Sans',sans-serif;}
+
+  header{padding:24px 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center;}
+  .wrap.head-inner{display:flex; justify-content:space-between; align-items:center; width:100%;}
+  .logo{font-family:'Bodoni Moda',serif; font-size:20px; letter-spacing:0.06em; text-transform:uppercase;}
+  nav{display:flex; gap:28px;}
+  nav a{font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft);}
+
+  /* poster hero: type is the graphic, photo bleeds behind partially */
+  .poster{position:relative; border-bottom:1px solid var(--line); padding:0 0 0;}
+  .poster-type{position:relative; z-index:2; padding:60px 0 0;}
+  .poster h1{font-family:'Archivo Black',sans-serif; text-transform:uppercase; font-size:clamp(60px,14vw,220px); line-height:0.82; letter-spacing:-0.01em;}
+  .poster h1 .thin{font-family:'Bodoni Moda',serif; font-style:italic; text-transform:none; font-weight:400; display:block; font-size:0.32em; letter-spacing:0; margin-top:10px;}
+  .poster-photo{width:46%; margin-left:auto; height:70vh; min-height:460px; overflow:hidden; border-top:1px solid var(--line); border-left:1px solid var(--line); margin-top:-40px;}
+  .poster-photo img{width:100%; height:100%; object-fit:cover;}
+
+  .ticker{border-bottom:1px solid var(--line); padding:16px 0; overflow:hidden; white-space:nowrap;}
+  .ticker span{display:inline-block; font-family:'Bodoni Moda',serif; font-size:20px; text-transform:uppercase; letter-spacing:0.04em; padding-right:36px;}
+
+  /* asymmetric photo + manifesto text, not centered cards */
+  .manifesto{padding:100px 0; border-bottom:1px solid var(--line);}
+  .manifesto-grid{display:grid; grid-template-columns:0.8fr 1.2fr; gap:0;}
+  .manifesto-photo{border-right:1px solid var(--line);}
+  .manifesto-photo img{width:100%; height:100%; object-fit:cover; min-height:480px;}
+  .manifesto-text{padding:0 0 0 60px; display:flex; flex-direction:column; justify-content:center;}
+  .manifesto-text p{font-family:'Bodoni Moda',serif; font-size:clamp(22px,2.6vw,32px); line-height:1.3; margin-bottom:24px;}
+  .manifesto-text .sig{font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft);}
+
+  /* services: full-width stacked rows, huge index numerals doing real work (page position, not decorative) */
+  .services{border-bottom:1px solid var(--line);}
+  .srow{display:grid; grid-template-columns:120px 1fr 220px; align-items:center; border-top:1px solid var(--line); padding:30px 0;}
+  .srow:last-child{border-bottom:1px solid var(--line);}
+  .srow .idx{font-family:'Archivo Black',sans-serif; font-size:15px;}
+  .srow h3{font-family:'Bodoni Moda',serif; font-size:26px; text-transform:uppercase;}
+  .srow p{font-size:13px; color:var(--ink-soft); margin-top:4px; text-transform:none;}
+  .srow .price{font-family:'Bodoni Moda',serif; font-size:22px; text-align:right;}
+
+  footer{padding:90px 0 50px;}
+  footer h2{font-family:'Archivo Black',sans-serif; text-transform:uppercase; font-size:clamp(40px,8vw,110px); line-height:0.88; margin-bottom:50px;}
+  .foot-links{display:flex; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .foot-links a{flex:1; text-align:center; padding:22px 0; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; border-right:1px solid var(--line);}
+  .foot-links a:last-child{border-right:none;}
+  .foot-note{margin-top:26px; font-size:11px; color:var(--ink-soft); letter-spacing:0.04em;}
+
+  @media(max-width:860px){
+    .poster-photo{width:100%; margin-top:20px;}
+    .manifesto-grid{grid-template-columns:1fr;}
+    .manifesto-photo img{min-height:300px;}
+    .manifesto-text{padding:40px 0 0;}
+    .srow{grid-template-columns:1fr; gap:8px;}
+    .srow .price{text-align:left;}
+    .foot-links{flex-direction:column;}
+    .foot-links a{border-right:none; border-bottom:1px solid var(--line);}
+    .foot-links a:last-child{border-bottom:none;}
+    nav{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="ph-note">Концепт 4 · типографический постер Ч/Б · реальные фото</div>
+
+<header>
+  <div class="wrap head-inner">
+    <div class="logo">Yoga w/ Kate</div>
+    <nav>
+      <a href="#services">Занятия</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<section class="poster">
+  <div class="wrap poster-type">
+    <h1>Дышать.<span class="thin">не спешить.</span></h1>
+  </div>
+  <div class="poster-photo"><img src="img-real/hands-bw.jpg" alt="Крупный план — руки в асане"></div>
+</section>
+
+<div class="ticker"><span>ХАТХА-ЙОГА · ДЫХАНИЕ · ВНИМАНИЕ · ТЕЛО · ХАТХА-ЙОГА · ДЫХАНИЕ · ВНИМАНИЕ · ТЕЛО ·</span></div>
+
+<section class="manifesto">
+  <div class="wrap manifesto-grid">
+    <div class="manifesto-photo"><img src="img-real/meditation-bw.jpg" alt="Екатерина в медитации"></div>
+    <div class="manifesto-text">
+      <p>«Я не учу позам. Я учу возвращаться в тело — через дыхание и внимание, без спешки и сравнения с другими».</p>
+      <div class="sig">Екатерина Благодацкая, преподаватель</div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="srow"><div class="idx">GRP</div><div><h3>Групповые в Zoom</h3><p>3 раза в неделю, 1,5 часа, живой эфир</p></div><div class="price">от 700 ₽</div></div>
+    <div class="srow"><div class="idx">CRS</div><div><h3>Онлайн-курс</h3><p>8 уроков в записи, 1,5–2 часа</p></div><div class="price">5 000 ₽</div></div>
+    <div class="srow"><div class="idx">PRV</div><div><h3>Персонально</h3><p>Индивидуальная программа, очно/онлайн</p></div><div class="price">от 3 500 ₽</div></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Пиши.<br>Дыши.<br>Практикуй.</h2>
+    <div class="foot-links">
+      <a href="#">Telegram</a>
+      <a href="#">WhatsApp</a>
+      <a href="#">Instagram</a>
+    </div>
+    <div class="foot-note">YOGA WITH KATE · ЕКАТЕРИНА БЛАГОДАЦКАЯ © 2026 · КОНЦЕПТ-МАКЕТ</div>
+  </div>
+</footer>
+
+</body>
+</html>
