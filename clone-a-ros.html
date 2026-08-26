@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoga with Kate — Клон A: Yoga with Ros (1:1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#faf8f5; --grey:#9a968d; --grey-bg:#a6a29a; --ink:#2b2822; --ink-soft:#6b665c; --line:#d8d3c8; --cream:#f4f1e9;}
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:'Jost',sans-serif; font-weight:300; line-height:1.6;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  h1,h2,h3,.serif{font-family:'Cormorant',serif;}
+  .script{font-family:'Cormorant',serif; font-style:italic;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .ph-note{position:fixed; bottom:14px; right:14px; z-index:99; background:var(--ink); color:#fff; font-size:11px; padding:8px 12px; border-radius:20px; font-family:'Jost',sans-serif;}
+
+  header{position:absolute; top:0; left:0; right:0; z-index:10; padding-top:34px;}
+  header .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:'Cormorant',serif; font-size:24px; letter-spacing:0.16em; text-transform:uppercase; color:#fff; text-align:center; flex:1;}
+  nav{display:flex; gap:36px;}
+  nav a{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:#fff; opacity:0.9;}
+  .social{display:flex; gap:12px; opacity:0.9;}
+  .social span{width:14px; height:14px; border:1px solid #fff; border-radius:50%; display:inline-block;}
+
+  .hero{position:relative; height:100vh; min-height:640px; overflow:hidden;}
+  .hero img{width:100%; height:100%; object-fit:cover; object-position:center 55%;}
+  .hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(30,25,20,0.3) 0%, rgba(30,25,20,0.05) 30%, rgba(30,25,20,0.15) 100%);}
+  .hero-cap{position:absolute; right:32px; bottom:28px; z-index:2; color:#f4f1e9; font-size:11px; letter-spacing:0.1em; text-align:right; max-width:280px;}
+
+  .intro{background:var(--grey-bg); color:var(--ink); padding:110px 0 90px;}
+  .intro-grid{display:grid; grid-template-columns:1fr 1.15fr; gap:60px; align-items:center;}
+  .intro-head{grid-column:1/3; text-align:center; margin-bottom:60px;}
+  .intro-head h2{font-size:clamp(24px,3vw,34px); font-weight:400; letter-spacing:0.02em; line-height:1.3;}
+  .intro-visual{position:relative; height:440px;}
+  .intro-visual .arch{position:absolute; top:0; left:6%; width:270px; height:340px; border-radius:135px 135px 0 0; overflow:hidden;}
+  .intro-visual .arch img{width:100%; height:100%; object-fit:cover;}
+  .intro-visual .small{position:absolute; bottom:10px; left:0; width:150px; height:120px; overflow:hidden; box-shadow:0 14px 26px rgba(0,0,0,0.18);}
+  .intro-visual .small img{width:100%; height:100%; object-fit:cover;}
+  .intro-text .script{font-size:22px; margin-bottom:14px; display:block;}
+  .intro-text p{font-size:14px; color:var(--ink); max-width:420px; margin-bottom:20px; line-height:1.7;}
+  .read-link{font-size:11px; letter-spacing:0.1em; text-transform:uppercase; border-bottom:1px solid var(--ink); padding-bottom:4px;}
+  .intro-extra{position:relative; height:180px; margin-top:20px;}
+  .intro-extra img{position:absolute; right:0; top:0; width:150px; height:180px; object-fit:cover; box-shadow:0 14px 26px rgba(0,0,0,0.18);}
+
+  .magic{padding:110px 0 100px; text-align:center;}
+  .magic .script{font-size:20px; display:block; margin-bottom:4px;}
+  .magic h2{font-size:clamp(24px,3vw,32px); letter-spacing:0.08em; font-weight:500; margin-bottom:70px;}
+  .format-grid{display:flex; align-items:flex-end; gap:34px; text-align:left;}
+  .format-card{flex:1; display:flex; flex-direction:column;}
+  .format-card .img{overflow:hidden; border:1px solid #fff; box-shadow:0 18px 34px rgba(43,40,34,0.14); background:#fff; padding:6px;}
+  .format-card .img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .format-card:nth-child(1) .img{height:280px;}
+  .format-card:nth-child(2) .img{height:380px;}
+  .format-card:nth-child(3) .img{height:220px;}
+  .format-card .stem{width:1px; height:24px; background:var(--line); margin:16px auto 10px;}
+  .format-card .label{font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); text-align:center;}
+
+  footer{padding:70px 0 40px; text-align:center; font-size:12px; color:var(--ink-soft);}
+
+  @media(max-width:860px){
+    .intro-grid{grid-template-columns:1fr; gap:36px;}
+    .intro-head{grid-column:1;}
+    .format-grid{flex-direction:column; align-items:stretch;}
+    .format-card:nth-child(1) .img, .format-card:nth-child(2) .img, .format-card:nth-child(3) .img{height:260px;}
+    nav{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="ph-note">Клон A · Yoga with Ros, 1:1 · реальные фото</div>
+
+<header>
+  <div class="wrap">
+    <div class="social"><span></span><span></span><span></span></div>
+    <div class="logo">Yoga with Kate</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Programs</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="img-real/embankment-blue.jpg" alt="Екатерина в асане у воды">
+  <div class="hero-cap">Практика для тех, кто<br>готов вернуться к себе</div>
+</section>
+
+<section class="intro">
+  <div class="wrap intro-grid">
+    <div class="intro-head">
+      <h2>Ready to tune into<br>your body's truth?</h2>
+    </div>
+    <div class="intro-visual">
+      <div class="arch"><img src="img-real/portrait-car.jpg" alt="Екатерина Благодацкая"></div>
+      <div class="small"><img src="img-real/split-mat-color.jpg" alt="Практика на мате"></div>
+    </div>
+    <div>
+      <span class="script">Hi beautiful, I'm Kate.</span>
+      <p>Welcome to a sacred space of self-discovery and transformation through the beautiful practice of yoga. I create a sanctuary where you can explore the depths of your being — age, body type, and flexibility hold no limitations, for yoga is truly for everyone.</p>
+      <a href="#" class="read-link">READ MY STORY →</a>
+      <div class="intro-extra"><img src="img-real/meditation-bw.jpg" alt="Медитация"></div>
+    </div>
+  </div>
+</section>
+
+<section class="magic">
+  <div class="wrap">
+    <span class="script">Pull your blooms</span>
+    <h2>LET'S MAKE SOME MAGIC</h2>
+    <div class="format-grid">
+      <div class="format-card">
+        <div class="img"><img src="img-real/feet-mat.jpg" alt="Индивидуальные занятия"></div>
+        <div class="stem"></div>
+        <div class="label">01. PRIVATES</div>
+      </div>
+      <div class="format-card">
+        <div class="img"><img src="img-real/group-stretch-color.jpg" alt="Групповые занятия"></div>
+        <div class="stem"></div>
+        <div class="label">02. CLASSES</div>
+      </div>
+      <div class="format-card">
+        <div class="img"><img src="img-real/arms-beach-bw.jpg" alt="Мастер-классы"></div>
+        <div class="stem"></div>
+        <div class="label">03. WORKSHOPS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>Yoga with Kate · Екатерина Благодацкая © 2026 · клон-макет по референсу «Yoga with Ros»</footer>
+
+</body>
+</html>
