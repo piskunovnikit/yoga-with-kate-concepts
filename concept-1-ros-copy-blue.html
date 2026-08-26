@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoga with Kate — Концепт 1: Копия Ros в голубом</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f3f8f9; --bg2:#c7dde2; --ink:#1f3d44; --ink-soft:#4c6b72;
+    --line:#a9c8cf; --accent:#3d7f92; --cream:#fbfaf6;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--ink); font-family:'Jost',sans-serif; font-weight:300; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
+  .script{font-family:'Cormorant Garamond',serif; font-style:italic;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .ph-note{position:fixed; bottom:14px; right:14px; z-index:99; background:rgba(31,61,68,0.85); color:#fff; font-size:11px; padding:8px 12px; border-radius:20px; font-family:'Jost',sans-serif;}
+
+  header{position:absolute; top:0; left:0; right:0; z-index:10; padding-top:34px;}
+  header .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:'Cormorant Garamond',serif; font-size:22px; letter-spacing:0.14em; text-transform:uppercase; color:#fff;}
+  nav{display:flex; gap:36px;}
+  nav a{font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:#fff; opacity:0.9;}
+  nav a:hover{opacity:1; border-bottom:1px solid #fff;}
+
+  /* hero: full-bleed photo, italic tagline, headline bottom, exactly like the Ros reference */
+  .hero{position:relative; height:100vh; min-height:640px; overflow:hidden;}
+  .hero img{width:100%; height:100%; object-fit:cover; object-position:center 25%;}
+  .hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,45,52,0.35) 0%, rgba(20,45,52,0.1) 40%, rgba(20,45,52,0.55) 100%);}
+  .hero-content{position:absolute; left:0; right:0; bottom:64px; text-align:center; color:#fff; z-index:2;}
+  .hero-tag{font-size:13px; letter-spacing:0.3em; text-transform:uppercase; margin-bottom:18px; opacity:0.9;}
+  .hero h1{font-size:clamp(34px,5.4vw,58px); font-weight:400; max-width:780px; margin:0 auto; line-height:1.15;}
+
+  /* "ready to tune into your body's truth" section — circular photo + small square photo, exactly like Ros */
+  .intro{background:var(--bg2); padding:120px 0 100px; position:relative;}
+  .intro-grid{display:grid; grid-template-columns:1fr 1.1fr; gap:60px; align-items:center;}
+  .intro-visual{position:relative; height:520px;}
+  .intro-visual .round{position:absolute; top:0; left:10%; width:280px; height:340px; border-radius:140px 140px 140px 140px/170px 170px 170px 170px; overflow:hidden; box-shadow:0 30px 60px rgba(31,61,68,0.25);}
+  .intro-visual .round img{width:100%; height:100%; object-fit:cover;}
+  .intro-visual .small{position:absolute; bottom:0; right:0; width:190px; height:230px; border:8px solid var(--cream); overflow:hidden; box-shadow:0 20px 40px rgba(31,61,68,0.2);}
+  .intro-visual .small img{width:100%; height:100%; object-fit:cover;}
+  .intro-text h2{font-size:clamp(28px,3.6vw,42px); font-weight:400; line-height:1.2; margin-bottom:28px;}
+  .intro-text .script{font-size:20px; color:var(--accent); display:block; margin-bottom:6px;}
+  .intro-text p{max-width:460px; color:var(--ink-soft); font-size:16px; margin-bottom:28px;}
+  .btn-outline{display:inline-flex; align-items:center; gap:10px; border:1px solid var(--ink); padding:13px 28px; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; transition:0.25s;}
+  .btn-outline:hover{background:var(--ink); color:#fff;}
+
+  /* "let's make some magic" — 3 photos of different height in frames with a stem line, exactly like Ros */
+  .formats{padding:120px 0; text-align:center; background:var(--bg);}
+  .formats .script{color:var(--accent); font-size:22px; display:block; margin-bottom:10px;}
+  .formats h2{font-size:clamp(28px,4vw,44px); font-weight:400; margin-bottom:70px;}
+  .format-grid{display:flex; align-items:flex-end; gap:36px; text-align:left;}
+  .format-card{flex:1; display:flex; flex-direction:column;}
+  .format-card .img{overflow:hidden; border:7px solid var(--cream); box-shadow:0 20px 40px rgba(31,61,68,0.14);}
+  .format-card .img img{width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s;}
+  .format-card:hover .img img{transform:scale(1.06);}
+  .format-card:nth-child(1) .img{height:300px;}
+  .format-card:nth-child(2) .img{height:400px;}
+  .format-card:nth-child(3) .img{height:230px;}
+  .format-card .stem{width:1px; height:26px; background:var(--line); margin:16px 0 12px;}
+  .format-card h3{font-size:20px; font-weight:500; margin-bottom:6px;}
+  .format-card p{font-size:14px; color:var(--ink-soft);}
+  .format-card .format-label{font-size:12px; letter-spacing:0.14em; color:var(--accent); margin-bottom:6px;}
+
+  /* about strip, dark */
+  .about{padding:110px 0; background:var(--ink); color:var(--cream);}
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center;}
+  .about img{width:100%; height:460px; object-fit:cover;}
+  .about .script{color:#9ec7d1; font-size:20px; display:block; margin-bottom:14px;}
+  .about h2{font-size:clamp(26px,3.4vw,38px); font-weight:400; margin-bottom:22px; line-height:1.25;}
+  .about p{color:#cfe1e5; font-size:16px; max-width:460px; margin-bottom:14px;}
+
+  /* reviews */
+  .reviews{padding:110px 0; background:var(--bg2);}
+  .reviews-head{text-align:center; margin-bottom:60px;}
+  .reviews-head .script{color:var(--accent); font-size:20px; display:block; margin-bottom:10px;}
+  .reviews-head h2{font-size:clamp(26px,3.4vw,40px); font-weight:400;}
+  .review-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .review-card{background:var(--cream); padding:34px 28px; border-radius:4px;}
+  .review-card p{color:var(--ink-soft); margin-bottom:20px; font-style:italic; font-family:'Cormorant Garamond',serif; font-size:19px; line-height:1.5;}
+  .review-name{font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink);}
+
+  /* pricing */
+  .pricing{padding:120px 0; background:var(--bg); text-align:center;}
+  .pricing .script{color:var(--accent); font-size:20px; display:block; margin-bottom:10px;}
+  .pricing h2{font-size:clamp(26px,3.4vw,40px); font-weight:400; margin-bottom:64px;}
+  .price-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--line); text-align:left;}
+  .price-card{padding:44px 36px; border-right:1px solid var(--line);}
+  .price-card:last-child{border-right:none;}
+  .price-card h3{font-size:24px; font-weight:500; margin-bottom:6px;}
+  .price-card .price{font-family:'Cormorant Garamond',serif; font-size:36px; color:var(--accent); margin:18px 0;}
+  .price-card ul{list-style:none; margin-bottom:28px;}
+  .price-card li{font-size:14px; color:var(--ink-soft); padding:7px 0; border-top:1px solid var(--line);}
+
+  /* contact/footer */
+  footer{padding:100px 0 60px; background:var(--ink); color:var(--cream); text-align:center;}
+  footer .script{color:#9ec7d1; font-size:22px; display:block; margin-bottom:14px;}
+  footer h2{font-size:clamp(28px,4vw,46px); font-weight:400; margin-bottom:40px;}
+  .contact-links{display:flex; justify-content:center; gap:40px; margin-bottom:60px; flex-wrap:wrap;}
+  .contact-links a{font-size:14px; letter-spacing:0.1em; text-transform:uppercase; padding-bottom:6px; border-bottom:1px solid rgba(255,255,255,0.3);}
+  .contact-links a:hover{border-color:#fff;}
+  .foot-note{font-size:12px; color:#7fa2aa;}
+
+  @media(max-width:860px){
+    .intro-grid, .about-grid{grid-template-columns:1fr; gap:40px;}
+    .intro-visual{height:400px;}
+    .format-grid{flex-direction:column; align-items:stretch;}
+    .format-card:nth-child(1) .img, .format-card:nth-child(2) .img, .format-card:nth-child(3) .img{height:280px;}
+    .review-grid{grid-template-columns:1fr;}
+    .price-grid{grid-template-columns:1fr;}
+    .price-card{border-right:none; border-bottom:1px solid var(--line);}
+    nav{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="ph-note">Концепт 1 · точная копия вёрстки Ros в голубом · реальные фото</div>
+
+<header>
+  <div class="wrap">
+    <div class="logo">Yoga with Kate</div>
+    <nav>
+      <a href="#about">Обо мне</a>
+      <a href="#formats">Занятия</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="img-real/embankment-blue.jpg" alt="Екатерина в асане на набережной у воды">
+  <div class="hero-content">
+    <div class="hero-tag">Хатха-йога · Санкт-Петербург</div>
+    <h1>Дыши глубже. Двигайся мягче.<br>Возвращайся к себе.</h1>
+  </div>
+</section>
+
+<section class="intro" id="about">
+  <div class="wrap intro-grid">
+    <div class="intro-visual">
+      <div class="round"><img src="img-real/portrait-car.jpg" alt="Екатерина Благодацкая, преподаватель йоги"></div>
+      <div class="small"><img src="img-real/feet-mat.jpg" alt="Стопы на коврике"></div>
+    </div>
+    <div class="intro-text">
+      <span class="script">Готовы услышать</span>
+      <h2>Правду своего тела?</h2>
+      <p>Привет, я Екатерина. Я создаю пространство, где тело и дыхание наконец совпадают — без спешки, без сравнения с другими, без «надо». Здесь нет ограничений по возрасту, гибкости или уровню подготовки: йога — для всех, кто готов вернуться к себе.</p>
+      <a href="#" class="btn-outline">Читать мою историю →</a>
+    </div>
+  </div>
+</section>
+
+<section class="formats" id="formats">
+  <div class="wrap">
+    <span class="script">Выбирайте свой ритм</span>
+    <h2>Давайте создадим немного магии</h2>
+    <div class="format-grid">
+      <div class="format-card">
+        <div class="img"><img src="img-real/split-mat-color.jpg" alt="Индивидуальные занятия"></div>
+        <div class="stem"></div>
+        <div class="format-label">ИНДИВИДУАЛЬНО</div>
+        <h3>Личная практика</h3>
+        <p>Программа под ваше тело, цели и темп — онлайн или очно.</p>
+      </div>
+      <div class="format-card">
+        <div class="img"><img src="img-real/group-stretch-color.jpg" alt="Групповые занятия"></div>
+        <div class="stem"></div>
+        <div class="format-label">ГРУППОВЫЕ</div>
+        <h3>Занятия в потоке</h3>
+        <p>Регулярные группы 3 раза в неделю, живой эфир или зал.</p>
+      </div>
+      <div class="format-card">
+        <div class="img"><img src="img-real/meditation-bw.jpg" alt="Медитация и мастер-классы"></div>
+        <div class="stem"></div>
+        <div class="format-label">РЕТРИТЫ</div>
+        <h3>Мастер-классы</h3>
+        <p>Глубокое погружение — тематические выезды и интенсивы.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap about-grid">
+    <img src="img-real/arms-beach-bw.jpg" alt="Екатерина у воды">
+    <div>
+      <span class="script">Моя философия</span>
+      <h2>Йога — это не про растяжку. Это про состояние.</h2>
+      <p>8 лет практики, 3 года преподавания. Я обучаю классической хатха-йоге, работе с дыханием и вниманием — тому, что остаётся с вами и вне мата.</p>
+      <p>Каждое занятие безопасно, без спешки и без скуки — подходит для любого уровня подготовки.</p>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="reviews-head">
+      <span class="script">Что говорят практикующие</span>
+      <h2>Отзывы</h2>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <p>«С нетерпением жду каждое занятие. Впервые почувствовала тело, а не просто позы».</p>
+        <div class="review-name">— Мария</div>
+      </div>
+      <div class="review-card">
+        <p>«Екатерина умеет держать баланс мягкости и дисциплины. После курса пропала тревожность в теле».</p>
+        <div class="review-name">— Роман</div>
+      </div>
+      <div class="review-card">
+        <p>«Очень бережная подача, никакого сравнения с другими. Уже записалась на следующий поток».</p>
+        <div class="review-name">— Полина</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing">
+  <div class="wrap">
+    <span class="script">Форматы и стоимость</span>
+    <h2>Абонементы</h2>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Группа в Zoom</h3>
+        <div class="price">от 700 ₽</div>
+        <ul>
+          <li>1 занятие в потоке</li>
+          <li>3 раза в неделю</li>
+          <li>Запись доступна 48ч</li>
+        </ul>
+        <a href="#" class="btn-outline">Записаться</a>
+      </div>
+      <div class="price-card">
+        <h3>Онлайн-курс</h3>
+        <div class="price">5 000 ₽</div>
+        <ul>
+          <li>8 уроков в записи</li>
+          <li>1,5–2 часа</li>
+          <li>Любой уровень</li>
+        </ul>
+        <a href="#" class="btn-outline">Записаться</a>
+      </div>
+      <div class="price-card">
+        <h3>Персонально</h3>
+        <div class="price">от 3 500 ₽</div>
+        <ul>
+          <li>Индивидуальная программа</li>
+          <li>Гибкое расписание</li>
+          <li>Онлайн или очно</li>
+        </ul>
+        <a href="#" class="btn-outline">Записаться</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <span class="script">Пора начать</span>
+    <h2>Давайте познакомимся</h2>
+    <div class="contact-links">
+      <a href="#">Telegram</a>
+      <a href="#">WhatsApp</a>
+      <a href="#">Instagram</a>
+    </div>
+    <div class="foot-note">Yoga with Kate · Екатерина Благодацкая © 2026 · концепт-макет</div>
+  </div>
+</footer>
+
+</body>
+</html>
