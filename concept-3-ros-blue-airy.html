@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoga with Kate — Концепт 3 (лёгкий, воздушный голубой)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --bg2:#eef7f9; --ink:#1f3d44; --ink-soft:#6b8d94;
+    --line:#dceaed; --accent:#6bb3c7; --sky:#dff1f5;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--ink); font-family:'Jost',sans-serif; font-weight:300; line-height:1.7;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  h1,h2,h3{font-family:'Cormorant Garamond',serif; font-weight:400;}
+  .script{font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--accent);}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .ph-note{position:fixed; bottom:14px; right:14px; z-index:99; background:var(--ink); color:#fff; font-size:11px; padding:8px 12px; border-radius:20px;}
+
+  header{padding:28px 0; border-bottom:1px solid var(--line);}
+  header .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:'Cormorant Garamond',serif; font-size:22px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink);}
+  nav{display:flex; gap:34px;}
+  nav a{font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft);}
+  nav a:hover{color:var(--ink);}
+
+  .hero{padding:90px 0 0; background:var(--bg2);}
+  .hero-grid{display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:50px;}
+  .hero-tag{font-size:13px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); margin-bottom:22px;}
+  .hero h1{font-size:clamp(34px,4.6vw,54px); line-height:1.2; margin-bottom:24px;}
+  .hero p{color:var(--ink-soft); font-size:16px; max-width:420px; margin-bottom:34px;}
+  .btn{display:inline-flex; align-items:center; gap:10px; background:var(--accent); color:#fff; padding:14px 30px; font-size:13px; letter-spacing:0.08em; text-transform:uppercase;}
+  .hero-img{height:560px; overflow:hidden; border-radius:0 0 0 160px;}
+  .hero-img img{width:100%; height:100%; object-fit:cover;}
+
+  .strip{padding:26px 0; background:var(--sky); text-align:center;}
+  .strip .wrap{display:flex; justify-content:center; gap:60px; flex-wrap:wrap;}
+  .strip span{font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft);}
+
+  .intro{padding:130px 0;}
+  .intro-grid{display:grid; grid-template-columns:1fr 1.1fr; gap:60px; align-items:center;}
+  .intro-visual{position:relative; height:480px;}
+  .intro-visual .round{position:absolute; top:0; left:0; width:70%; height:100%; border-radius:50%; overflow:hidden;}
+  .intro-visual .round img{width:100%; height:100%; object-fit:cover;}
+  .intro-visual .float{position:absolute; bottom:20px; right:0; width:180px; height:220px; overflow:hidden; box-shadow:0 20px 50px rgba(31,61,68,0.15); border-radius:8px;}
+  .intro-visual .float img{width:100%; height:100%; object-fit:cover;}
+  .intro-text h2{font-size:clamp(28px,3.4vw,40px); margin:14px 0 24px; line-height:1.25;}
+  .intro-text p{color:var(--ink-soft); font-size:16px; max-width:440px; margin-bottom:26px;}
+
+  .formats{padding:120px 0; background:var(--bg2); text-align:center;}
+  .formats h2{font-size:clamp(28px,3.8vw,42px); margin:14px 0 64px;}
+  .format-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; text-align:left;}
+  .format-card{background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 20px 40px rgba(31,61,68,0.06);}
+  .format-card .img{height:260px; overflow:hidden;}
+  .format-card .img img{width:100%; height:100%; object-fit:cover;}
+  .format-card .cap{padding:26px 24px;}
+  .format-card .num{font-size:12px; letter-spacing:0.12em; color:var(--accent); margin-bottom:8px;}
+  .format-card h3{font-size:21px; margin-bottom:8px;}
+  .format-card p{font-size:14px; color:var(--ink-soft);}
+
+  .reviews{padding:120px 0; text-align:center;}
+  .reviews h2{font-size:clamp(28px,3.6vw,40px); margin:14px 0 60px;}
+  .review-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .review-card{background:var(--bg2); padding:36px 28px; border-radius:16px; text-align:left;}
+  .review-card p{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:19px; margin-bottom:18px; line-height:1.5;}
+  .review-name{font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent);}
+
+  .pricing{padding:130px 0; background:var(--bg2); text-align:center;}
+  .pricing h2{font-size:clamp(28px,3.6vw,42px); margin:14px 0 64px;}
+  .price-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .price-card{background:#fff; border-radius:16px; padding:42px 32px; text-align:left; box-shadow:0 20px 40px rgba(31,61,68,0.06);}
+  .price-card h3{font-size:22px; margin-bottom:6px;}
+  .price-card .price{font-family:'Cormorant Garamond',serif; font-size:36px; color:var(--accent); margin:16px 0;}
+  .price-card ul{list-style:none; margin-bottom:26px;}
+  .price-card li{font-size:14px; color:var(--ink-soft); padding:7px 0; border-top:1px solid var(--line);}
+
+  footer{padding:110px 0 60px; text-align:center;}
+  footer h2{font-size:clamp(28px,4vw,46px); margin:14px 0 40px;}
+  .contact-links{display:flex; justify-content:center; gap:40px; margin-bottom:56px; flex-wrap:wrap;}
+  .contact-links a{font-size:14px; letter-spacing:0.08em; text-transform:uppercase; padding-bottom:6px; border-bottom:1px solid var(--line); color:var(--ink-soft);}
+  .foot-note{font-size:12px; color:#a3bcc1;}
+
+  @media(max-width:860px){
+    .hero-grid, .intro-grid{grid-template-columns:1fr; gap:36px;}
+    .hero-img{height:340px; border-radius:0;}
+    .intro-visual{height:340px;}
+    .format-grid, .review-grid, .price-grid{grid-template-columns:1fr;}
+    nav{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="ph-note">Концепт 3 · воздушный, светлый · заменить фото</div>
+
+<header>
+  <div class="wrap">
+    <div class="logo">Yoga with Kate</div>
+    <nav>
+      <a href="#about">Обо мне</a>
+      <a href="#formats">Занятия</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-tag">Йога-инструктор онлайн</div>
+      <h1>Учу понимать своё тело через асаны и дыхание</h1>
+      <p>Мягкая практика для тех, кто хочет вернуть телу лёгкость, а голове — тишину.</p>
+      <a href="#" class="btn">Записаться на пробное</a>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=900&q=80" alt="Практика йоги у воды">
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <span>8 лет практики</span>
+    <span>3 года преподавания</span>
+    <span>Онлайн · офлайн</span>
+    <span>Группы и личные занятия</span>
+  </div>
+</div>
+
+<section class="intro" id="about">
+  <div class="wrap intro-grid">
+    <div class="intro-visual">
+      <div class="round"><img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="Екатерина"></div>
+      <div class="float"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=500&q=80" alt="Асана"></div>
+    </div>
+    <div class="intro-text">
+      <span class="script">Привет, я Екатерина</span>
+      <h2>Йога — это про состояние, а не гибкость</h2>
+      <p>Постоянно учусь, посещаю семинары и повышаю квалификацию. Мои занятия подходят практикующим любого уровня — на них безопасно и никогда не скучно.</p>
+      <a href="#" class="btn">Читать историю →</a>
+    </div>
+  </div>
+</section>
+
+<section class="formats" id="formats">
+  <div class="wrap">
+    <span class="script">Форматы</span>
+    <h2>Выберите свой формат</h2>
+    <div class="format-grid">
+      <div class="format-card">
+        <div class="img"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=700&q=80" alt="Онлайн-курс"></div>
+        <div class="cap"><div class="num">ОНЛАЙН-КУРС</div><h3>8 уроков в записи</h3><p>1,5–2 часа, для любого уровня подготовки.</p></div>
+      </div>
+      <div class="format-card">
+        <div class="img"><img src="https://images.unsplash.com/photo-1573384522873-6a9dd7d1f60f?auto=format&fit=crop&w=700&q=80" alt="Zoom-занятия"></div>
+        <div class="cap"><div class="num">УРОКИ В ZOOM</div><h3>Занятия 3 раза в неделю</h3><p>Группа в реальном времени, 1,5 часа.</p></div>
+      </div>
+      <div class="format-card">
+        <div class="img"><img src="https://images.unsplash.com/photo-1552196563-55cd4e45efb3?auto=format&fit=crop&w=700&q=80" alt="Персональные занятия"></div>
+        <div class="cap"><div class="num">ПЕРСОНАЛЬНО</div><h3>Индивидуальные занятия</h3><p>С учётом особенностей тела и целей.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <span class="script">Отзывы</span>
+    <h2>Что говорят ученики</h2>
+    <div class="review-grid">
+      <div class="review-card"><p>«Впервые почувствовала тело, а не просто позы».</p><div class="review-name">— Мария</div></div>
+      <div class="review-card"><p>«Баланс мягкости и дисциплины — редкое сочетание».</p><div class="review-name">— Роман</div></div>
+      <div class="review-card"><p>«Бережная подача, без сравнения с другими».</p><div class="review-name">— Полина</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing">
+  <div class="wrap">
+    <span class="script">Стоимость</span>
+    <h2>Онлайн-курс</h2>
+    <div class="price-grid">
+      <div class="price-card"><h3>Пробное</h3><div class="price">0 ₽</div><ul><li>1 занятие</li><li>Онлайн или очно</li></ul><a href="#" class="btn">Записаться</a></div>
+      <div class="price-card"><h3>Уроки в Zoom</h3><div class="price">700 ₽</div><ul><li>1 занятие</li><li>3 раза в неделю</li></ul><a href="#" class="btn">Записаться</a></div>
+      <div class="price-card"><h3>Онлайн-курс</h3><div class="price">5000 ₽</div><ul><li>8 уроков в записи</li><li>1,5–2 часа</li></ul><a href="#" class="btn">Записаться</a></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <span class="script">Свяжитесь со мной</span>
+    <h2>Контакты</h2>
+    <div class="contact-links">
+      <a href="#">Telegram</a>
+      <a href="#">WhatsApp</a>
+      <a href="#">Instagram</a>
+    </div>
+    <div class="foot-note">Yoga with Kate © 2026 · концепт-макет</div>
+  </div>
+</footer>
+</body>
+</html>
