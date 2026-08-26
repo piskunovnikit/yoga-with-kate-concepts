@@ -30,7 +30,7 @@
 
   /* horizontal filmstrip gallery: one authored motion (scroll-snap drag), real photos, drag to scroll */
   .filmstrip{padding:0 0 40px;}
-  .filmstrip-track{display:flex; gap:2px; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 32px; scrollbar-width:none; cursor:grab; -webkit-user-select:none; user-select:none;}
+  .filmstrip-track{display:flex; gap:2px; overflow-x:auto; scroll-snap-type:x proximity; padding:0 32px; scrollbar-width:none; cursor:grab; -webkit-user-select:none; user-select:none;}
   .filmstrip-track.dragging{cursor:grabbing; scroll-snap-type:none;}
   .filmstrip-track img{-webkit-user-drag:none;}
   .filmstrip-track::-webkit-scrollbar{display:none;}
@@ -185,10 +185,9 @@
       if(moved){ e.preventDefault(); e.stopPropagation(); }
     }, true);
     track.addEventListener('wheel', function(e){
-      if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
-        track.scrollLeft += e.deltaY;
-        e.preventDefault();
-      }
+      var delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      track.scrollLeft += delta;
+      e.preventDefault();
     }, {passive:false});
   }
 
