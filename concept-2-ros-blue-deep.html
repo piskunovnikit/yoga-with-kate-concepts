@@ -50,13 +50,17 @@
 
   .formats{padding:130px 0; text-align:center;}
   .formats h2{font-size:clamp(30px,4vw,46px); font-weight:400; margin:14px 0 74px;}
-  .format-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); text-align:left;}
-  .format-card{background:var(--bg);}
-  .format-card .img{height:380px; overflow:hidden; position:relative;}
-  .format-card .img img{width:100%; height:100%; object-fit:cover; opacity:0.85;}
-  .format-card .cap{padding:26px 28px 34px;}
-  .format-card .num{font-size:12px; letter-spacing:0.14em; color:var(--accent); margin-bottom:10px;}
-  .format-card h3{font-size:24px; font-weight:500; margin-bottom:10px;}
+  .format-grid{display:flex; align-items:flex-end; gap:36px; text-align:left;}
+  .format-card{flex:1; display:flex; flex-direction:column;}
+  .format-card .img{overflow:hidden; border:7px solid var(--bg2); box-shadow:0 20px 40px rgba(0,0,0,0.35);}
+  .format-card .img img{width:100%; height:100%; object-fit:cover; display:block; opacity:0.9;}
+  .format-card:nth-child(1) .img{height:300px;}
+  .format-card:nth-child(2) .img{height:400px;}
+  .format-card:nth-child(3) .img{height:230px;}
+  .format-card .stem{width:1px; height:26px; background:var(--line); margin:16px 0 12px;}
+  .format-card .cap{padding:0;}
+  .format-card .num{font-size:12px; letter-spacing:0.14em; color:var(--accent); margin-bottom:8px;}
+  .format-card h3{font-size:20px; font-weight:500; margin-bottom:6px;}
   .format-card p{font-size:14px; color:var(--ink-soft);}
 
   .reviews{padding:120px 0; background:var(--bg2); text-align:center;}
@@ -84,7 +88,9 @@
   @media(max-width:860px){
     .intro-grid{grid-template-columns:1fr; gap:44px;}
     .intro-visual{height:400px;}
-    .format-grid, .review-grid, .price-grid{grid-template-columns:1fr;}
+    .format-grid{flex-direction:column; align-items:stretch;}
+    .format-card:nth-child(1) .img, .format-card:nth-child(2) .img, .format-card:nth-child(3) .img{height:280px;}
+    .review-grid, .price-grid{grid-template-columns:1fr;}
     nav{display:none;}
   }
 </style>
@@ -135,14 +141,17 @@
     <div class="format-grid">
       <div class="format-card">
         <div class="img"><img src="img/photo-1518611012118-696072aa579a.jpg" alt="Индивидуальные занятия"></div>
+        <div class="stem"></div>
         <div class="cap"><div class="num">01 · ИНДИВИДУАЛЬНЫЕ</div><h3>Личная практика</h3><p>Программа под ваше тело и цели, онлайн или очно.</p></div>
       </div>
       <div class="format-card">
         <div class="img"><img src="img/photo-1599901860904-17e6ed7083a0.jpg" alt="Групповые занятия"></div>
+        <div class="stem"></div>
         <div class="cap"><div class="num">02 · ГРУППОВЫЕ</div><h3>Клуб в потоке</h3><p>Живой эфир 3 раза в неделю в закрытом Telegram.</p></div>
       </div>
       <div class="format-card">
         <div class="img"><img src="img/photo-1490645935967-10de6ba17061.jpg" alt="Ретриты"></div>
+        <div class="stem"></div>
         <div class="cap"><div class="num">03 · РЕТРИТЫ</div><h3>Погружение</h3><p>Выездные интенсивы в тишине и природе.</p></div>
       </div>
     </div>

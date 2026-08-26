@@ -58,14 +58,17 @@
   .formats{padding:120px 0; text-align:center; background:var(--bg);}
   .formats .script{color:var(--accent); font-size:22px; display:block; margin-bottom:10px;}
   .formats h2{font-size:clamp(28px,4vw,44px); font-weight:400; margin-bottom:70px;}
-  .format-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; text-align:left;}
-  .format-card{border:1px solid var(--line); background:#fff;}
-  .format-card .img{height:340px; overflow:hidden;}
-  .format-card .img img{width:100%; height:100%; object-fit:cover; transition:transform 0.5s;}
+  .format-grid{display:flex; align-items:flex-end; gap:36px; text-align:left;}
+  .format-card{flex:1; display:flex; flex-direction:column;}
+  .format-card .img{overflow:hidden; border:7px solid var(--cream); box-shadow:0 20px 40px rgba(31,61,68,0.14);}
+  .format-card .img img{width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s;}
   .format-card:hover .img img{transform:scale(1.06);}
-  .format-card .cap{padding:22px 24px 26px;}
-  .format-card .num{font-size:12px; letter-spacing:0.14em; color:var(--accent); margin-bottom:8px;}
-  .format-card h3{font-size:22px; font-weight:500; margin-bottom:8px;}
+  .format-card:nth-child(1) .img{height:300px;}
+  .format-card:nth-child(2) .img{height:400px;}
+  .format-card:nth-child(3) .img{height:230px;}
+  .format-card .stem{width:1px; height:26px; background:var(--line); margin:16px 0 12px;}
+  .format-card .num{font-size:12px; letter-spacing:0.14em; color:var(--accent); margin-bottom:6px;}
+  .format-card h3{font-size:20px; font-weight:500; margin-bottom:6px;}
   .format-card p{font-size:14px; color:var(--ink-soft);}
 
   /* about strip */
@@ -110,7 +113,9 @@
   @media(max-width:860px){
     .intro-grid, .about-grid{grid-template-columns:1fr; gap:40px;}
     .intro-visual{height:400px;}
-    .format-grid, .review-grid{grid-template-columns:1fr;}
+    .format-grid{flex-direction:column; align-items:stretch;}
+    .format-card:nth-child(1) .img, .format-card:nth-child(2) .img, .format-card:nth-child(3) .img{height:280px;}
+    .review-grid{grid-template-columns:1fr;}
     .price-grid{grid-template-columns:1fr;}
     .price-card{border-right:none; border-bottom:1px solid var(--line);}
     nav{display:none;}
@@ -163,6 +168,7 @@
     <div class="format-grid">
       <div class="format-card">
         <div class="img"><img src="img/photo-1518611012118-696072aa579a.jpg" alt="Индивидуальные занятия"></div>
+        <div class="stem"></div>
         <div class="cap">
           <div class="num">01 · ИНДИВИДУАЛЬНЫЕ</div>
           <h3>Личная практика</h3>
@@ -171,6 +177,7 @@
       </div>
       <div class="format-card">
         <div class="img"><img src="img/photo-1599901860904-17e6ed7083a0.jpg" alt="Групповые занятия"></div>
+        <div class="stem"></div>
         <div class="cap">
           <div class="num">02 · ГРУППОВЫЕ</div>
           <h3>Занятия в потоке</h3>
@@ -179,6 +186,7 @@
       </div>
       <div class="format-card">
         <div class="img"><img src="img/photo-1490645935967-10de6ba17061.jpg" alt="Мастер-классы и ретриты"></div>
+        <div class="stem"></div>
         <div class="cap">
           <div class="num">03 · РЕТРИТЫ</div>
           <h3>Мастер-классы</h3>
