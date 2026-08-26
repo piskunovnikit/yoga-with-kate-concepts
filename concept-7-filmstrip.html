@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yoga with Kate — Концепт 8: Киноплёнка</title>
+<title>Yoga with Kate — Концепт 7: Киноплёнка</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital@0;1&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
   .wrap{max-width:1240px; margin:0 auto; padding:0 32px;}
   h1,h2,.serif{font-family:'Libre Caslon Text',serif; font-weight:400;}
   a{color:inherit; text-decoration:none;}
-  img{display:block; max-width:100%; filter:sepia(0.12) saturate(0.7) hue-rotate(155deg) brightness(0.98);}
+  img{display:block; max-width:100%;}
   .ph-note{position:fixed; bottom:14px; right:14px; z-index:99; background:var(--ink); color:#fff; font-size:11px; padding:8px 12px; border-radius:20px; font-family:'Jost',sans-serif;}
 
   header{padding:32px 0; position:absolute; top:0; left:0; right:0; z-index:10; mix-blend-mode:difference; color:#fff;}
@@ -28,9 +28,11 @@
   .hero h1{font-size:clamp(40px,7vw,96px); line-height:1.05; max-width:920px;}
   .hero .sub{margin-top:26px; font-size:15px; letter-spacing:0.06em; color:var(--ink-soft);}
 
-  /* horizontal filmstrip gallery: one authored motion (scroll-snap drag), duotone photos for cohesion */
+  /* horizontal filmstrip gallery: one authored motion (scroll-snap drag), real photos, drag to scroll */
   .filmstrip{padding:0 0 40px;}
-  .filmstrip-track{display:flex; gap:2px; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 32px; scrollbar-width:none;}
+  .filmstrip-track{display:flex; gap:2px; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 32px; scrollbar-width:none; cursor:grab; -webkit-user-select:none; user-select:none;}
+  .filmstrip-track.dragging{cursor:grabbing; scroll-snap-type:none;}
+  .filmstrip-track img{-webkit-user-drag:none;}
   .filmstrip-track::-webkit-scrollbar{display:none;}
   .frame{flex:0 0 auto; width:min(72vw,560px); height:74vh; min-height:420px; scroll-snap-align:center; position:relative; overflow:hidden;}
   .frame img{width:100%; height:100%; object-fit:cover;}
@@ -82,7 +84,7 @@
 </style>
 </head>
 <body>
-<div class="ph-note">Концепт 8 · киноплёнка, дуотон · реальные фото</div>
+<div class="ph-note">Концепт 7 · киноплёнка, drag-scroll · реальные фото</div>
 
 <header>
   <div class="wrap">
@@ -160,10 +162,41 @@
 
 <script>
 (function(){
+  var track = document.querySelector('.filmstrip-track');
+  if(track){
+    var isDown = false, startX = 0, scrollStart = 0, moved = false;
+    track.addEventListener('mousedown', function(e){
+      isDown = true; moved = false;
+      track.classList.add('dragging');
+      startX = e.pageX; scrollStart = track.scrollLeft;
+    });
+    window.addEventListener('mouseup', function(){
+      isDown = false;
+      track.classList.remove('dragging');
+    });
+    window.addEventListener('mousemove', function(e){
+      if(!isDown) return;
+      e.preventDefault();
+      var dx = e.pageX - startX;
+      if(Math.abs(dx) > 4) moved = true;
+      track.scrollLeft = scrollStart - dx;
+    });
+    track.addEventListener('click', function(e){
+      if(moved){ e.preventDefault(); e.stopPropagation(); }
+    }, true);
+    track.addEventListener('wheel', function(e){
+      if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+        track.scrollLeft += e.deltaY;
+        e.preventDefault();
+      }
+    }, {passive:false});
+  }
+
   var sels = ['.offer-col'];
   var els = [];
   sels.forEach(function(s){ document.querySelectorAll(s).forEach(function(el){ els.push(el); }); });
   els.forEach(function(el){ el.setAttribute('data-reveal',''); });
+  document.querySelectorAll('section').forEach(function(sec, i){ if(i > 0 && !els.includes(sec)){ sec.setAttribute('data-reveal',''); els.push(sec); } });
   if('IntersectionObserver' in window){
     var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
