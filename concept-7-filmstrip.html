@@ -30,7 +30,8 @@
 
   /* horizontal filmstrip gallery: one authored motion (scroll-snap drag), real photos, drag to scroll */
   .filmstrip{padding:0 0 40px;}
-  .filmstrip-track{display:flex; gap:2px; overflow-x:auto; padding:0 32px 16px; cursor:grab; -webkit-user-select:none; user-select:none; touch-action:pan-y;}
+  .filmstrip-track{display:flex; gap:2px; overflow-x:auto; padding:0 32px; cursor:grab; -webkit-user-select:none; user-select:none; touch-action:pan-y; scrollbar-width:none;}
+  .filmstrip-track::-webkit-scrollbar{display:none;}
   .filmstrip-track.dragging{cursor:grabbing;}
   .filmstrip-track img{-webkit-user-drag:none;}
   .frame{flex:0 0 auto; width:min(72vw,560px); height:74vh; min-height:420px; position:relative; overflow:hidden;}

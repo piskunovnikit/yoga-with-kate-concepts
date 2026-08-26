@@ -27,7 +27,9 @@
   .intro-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
   .intro-text h2{font-size:clamp(26px,3vw,34px); margin-bottom:24px;}
   .intro-text p{font-size:16px; max-width:44ch; margin-bottom:30px;}
-  .btn-pink{display:inline-flex; align-items:center; background:var(--sky); color:#fff; font-weight:700; padding:16px 34px; border-radius:6px; font-size:14px;}
+  .btn-pink{display:inline-flex; align-items:center; background:var(--sky); color:#fff; font-weight:700; padding:16px 34px; border-radius:6px; font-size:14px; transition:background-color .2s ease, box-shadow .2s ease, transform .2s ease;}
+  .btn-pink:hover{background:#3d87b8; box-shadow:0 10px 24px rgba(79,163,214,0.4); transform:translateY(-2px);}
+  .btn-pink:active{transform:translateY(0);}
   .photo-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
   .photo-grid img{width:100%; height:210px; object-fit:cover; border-radius:6px;}
 
@@ -61,15 +63,12 @@
   .review .co{font-size:11px; color:#8a8a8a; letter-spacing:0.04em;}
 
   .wellness-banner{margin:80px auto; max-width:1200px; padding:0 40px;}
-  .wellness-inner{background:linear-gradient(115deg,#a8c8dc 0%,#f0b860 35%,#e07840 65%,#d896a8 100%); border-radius:32px; padding:80px 40px; text-align:center;}
-  .wellness-inner h2{color:#fff; font-size:clamp(28px,4vw,40px); margin-bottom:26px;}
-  .wellness-inner p{color:#fff; max-width:640px; margin:0 auto 34px; font-size:15px; opacity:0.95;}
-  .btn-white{display:inline-flex; background:#fff; color:var(--ink); font-weight:700; padding:14px 32px; border-radius:30px; font-size:14px;}
-  .demo-variants{display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:20px;}
-  .var-1{display:inline-flex; font-weight:700; padding:14px 32px; border-radius:30px; font-size:14px; background:linear-gradient(120deg, #4fa3d6 0%, #ffffff 100%); color:#1c1c1c;}
-  .var-2{display:inline-flex; font-weight:700; padding:14px 32px; border-radius:30px; font-size:14px; background:linear-gradient(120deg, #ffffff 0%, #4fa3d6 100%); color:#0d3a52; text-shadow:0 1px 2px rgba(255,255,255,0.4);}
-  .var-3{display:inline-flex; font-weight:700; padding:14px 32px; border-radius:30px; font-size:14px; background:linear-gradient(135deg, #eaf4fb 0%, #4fa3d6 100%); color:#0d3a52;}
-  .var-label{font-size:11px; color:#fff; opacity:0.85; display:block; margin-bottom:6px; text-align:center;}
+  .wellness-inner{background:linear-gradient(120deg,#4fa3d6 0%,#eaf4fb 100%); border-radius:32px; padding:80px 40px; text-align:center;}
+  .wellness-inner h2{color:#0d3a52; font-size:clamp(28px,4vw,40px); margin-bottom:26px;}
+  .wellness-inner p{color:#0d3a52; max-width:640px; margin:0 auto 34px; font-size:15px; opacity:0.9;}
+  .btn-white{display:inline-flex; background:#fff; color:var(--ink); font-weight:700; padding:14px 32px; border-radius:30px; font-size:14px; transition:box-shadow .2s ease, transform .2s ease;}
+  .btn-white:hover{box-shadow:0 10px 24px rgba(13,58,82,0.25); transform:translateY(-2px);}
+  .btn-white:active{transform:translateY(0);}
 
   .why{padding:0 0 90px;}
   .why-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
@@ -103,7 +102,8 @@
   .contact-bar{background:var(--grey); padding:50px 0; text-align:center;}
   .contact-bar .phone{font-size:26px; font-weight:800; color:var(--ink); margin-bottom:36px;}
   .socials{display:flex; justify-content:center; gap:16px;}
-  .socials a{width:44px; height:44px; border-radius:50%; background:var(--pink); display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px;}
+  .socials a{width:44px; height:44px; border-radius:50%; background:var(--sky); display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; transition:background-color .2s ease, box-shadow .2s ease, transform .2s ease;}
+  .socials a:hover{background:#3d87b8; box-shadow:0 10px 20px rgba(79,163,214,0.4); transform:translateY(-3px);}
 
   .foot-note{text-align:center; padding:24px; font-size:11px; color:#9a9a9a;}
 
@@ -221,12 +221,6 @@
     <h2>Йога-ретриты</h2>
     <p>Погружение в практику в самых красивых уголках природы — отдых на природе, активность, полезная еда, телесные практики, дыхание и ещё много инструментов для перезагрузки ума и тела.</p>
     <a href="#" class="btn-white">Подробнее</a>
-
-    <div class="demo-variants">
-      <div><span class="var-label">Вариант 1: голубой→белый</span><a href="#" class="var-1">Подробнее</a></div>
-      <div><span class="var-label">Вариант 2: белый→голубой</span><a href="#" class="var-2">Подробнее</a></div>
-      <div><span class="var-label">Вариант 3: диагональ стекло-голубой</span><a href="#" class="var-3">Подробнее</a></div>
-    </div>
   </div>
 </div>
 
