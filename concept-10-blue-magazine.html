@@ -59,14 +59,19 @@
   .burger{display:none; flex-direction:column; gap:5px; cursor:pointer;}
   .burger span{width:24px; height:2px; background:var(--ink);}
 
-  /* ---------- hero: one big static photo, no headline ---------- */
-  .hero{height:92vh; min-height:560px; position:relative;}
-  .hero img{width:100%; height:100%; object-fit:cover; object-position:center 66%;}
-  .hero::after{content:""; position:absolute; inset:auto 0 0 0; height:40%; background:linear-gradient(to top, rgba(43,60,66,.35), transparent);}
-  .hero-cap{position:absolute; left:0; right:0; bottom:44px; z-index:2;}
+  /* ---------- hero: 3 big photos, switch by dots (no auto-rotate) ---------- */
+  .hero{height:92vh; min-height:560px; position:relative; overflow:hidden;}
+  .hero-slide{position:absolute; inset:0; opacity:0; transition:opacity .9s ease;}
+  .hero-slide.on{opacity:1;}
+  .hero-slide img{width:100%; height:100%; object-fit:cover;}
+  .hero::after{content:""; position:absolute; inset:auto 0 0 0; height:40%; background:linear-gradient(to top, rgba(43,60,66,.35), transparent); z-index:1;}
+  .hero-cap{position:absolute; left:0; right:0; bottom:64px; z-index:3;}
   .hero-cap .wrap{display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap;}
   .hero-cap .hand{color:#fff; font-size:32px;}
   .hero-cap .meta{color:rgba(255,255,255,.9); font-size:13px; letter-spacing:.16em; text-transform:uppercase;}
+  .hero-dots{position:absolute; left:0; right:0; bottom:30px; z-index:3; display:flex; gap:12px; justify-content:center;}
+  .hero-dots button{width:9px; height:9px; border-radius:50%; border:1px solid rgba(255,255,255,.8); background:transparent; cursor:pointer; padding:0; transition:background-color .3s ease;}
+  .hero-dots button.on{background:#fff;}
 
   /* ---------- spread: photo + text ---------- */
   .spread .wrap{display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center;}
@@ -212,13 +217,16 @@
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <img src="img-real/embankment-blue.jpg" alt="Екатерина на набережной в асане">
+  <div class="hero-slide on"><img src="img-real/embankment-blue.jpg" alt="Екатерина в асане на набережной" style="object-position:center 66%;"></div>
+  <div class="hero-slide"><img src="img-real/meditation-bw.jpg" alt="Екатерина в медитации" style="object-position:center 58%;"></div>
+  <div class="hero-slide"><img src="img-real/group-stretch-color.jpg" alt="Екатерина в асане в студии" style="object-position:center 40%;"></div>
   <div class="hero-cap">
     <div class="wrap">
       <span class="hand">йога с Екатериной</span>
       <span class="meta">хатха-йога · Санкт-Петербург</span>
     </div>
   </div>
+  <div class="hero-dots" id="heroDots"></div>
 </section>
 
 <!-- ABOUT + WHAT I DO (merged) -->
@@ -428,6 +436,22 @@
     }, {threshold:0.14});
     els.forEach(function(el){ obs.observe(el); });
   } else { els.forEach(function(el){ el.classList.add('vis'); }); }
+
+  /* hero: 3 photos, switch only by dot click (no auto-rotate) */
+  var hs = [].slice.call(document.querySelectorAll('.hero-slide'));
+  var hd = document.getElementById('heroDots');
+  if(hd && hs.length){
+    hs.forEach(function(_, i){
+      var b = document.createElement('button');
+      if(i===0) b.className = 'on';
+      b.setAttribute('aria-label', 'Фото ' + (i+1));
+      b.addEventListener('click', function(){
+        hs.forEach(function(s,j){ s.classList.toggle('on', j===i); });
+        [].slice.call(hd.children).forEach(function(d,j){ d.classList.toggle('on', j===i); });
+      });
+      hd.appendChild(b);
+    });
+  }
 
   /* reviews: quiet fade rotation + dots */
   var rs = [].slice.call(document.querySelectorAll('.review-slide'));
