@@ -110,8 +110,13 @@
   .tst-item .meta{font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);}
 
   /* ---------- cta ---------- */
-  .cta{padding:160px 0; text-align:center; background:var(--bg-deep);}
-  .cta h2{font-size:clamp(56px,9vw,150px); color:var(--gold);}
+  .cta{padding:140px 0; background:var(--bg-deep);}
+  .cta .wrap{display:grid; grid-template-columns:0.85fr 1.15fr; gap:80px; align-items:center;}
+  .cta .cta-photo{overflow:hidden;}
+  .cta .cta-photo img{width:100%; height:640px; object-fit:cover; display:block;
+    transform:scale(1.02); transition:transform 1.4s cubic-bezier(.16,1,.3,1);}
+  .cta .cta-photo:hover img{transform:scale(1.08);}
+  .cta h2{font-size:clamp(56px,9vw,150px); color:var(--gold); line-height:.98;}
   .cta a{display:inline-block; margin-top:44px; background:var(--gold); color:var(--ink); padding:20px 54px; border-radius:40px; font-size:14px; letter-spacing:.16em; text-transform:uppercase; transition:transform .3s ease, background-color .3s ease;}
   .cta a:hover{transform:translateY(-3px); background:#fff;}
 
@@ -128,6 +133,8 @@
     .wrap{padding:0 24px;}
     .bio .wrap{grid-template-columns:1fr; gap:34px;}
     .bio .portrait img{height:380px;}
+    .cta .wrap{grid-template-columns:1fr; gap:44px;}
+    .cta .cta-photo img{height:440px;}
     .glow-label{top:96px;}
     .glow-block{min-height:78vh;}
     .glow-inner{padding:0 24px;}
@@ -265,8 +272,11 @@
 <!-- ---------- CTA ---------- -->
 <section class="cta" id="contact">
   <div class="wrap">
-    <h2 data-reveal>Давайте начнём</h2><br>
-    <a href="#" data-reveal>Записаться</a>
+    <div class="cta-photo" data-reveal><img src="img-real/embankment-blue.jpg" alt="Екатерина на набережной" style="object-position:center 40%;"></div>
+    <div>
+      <h2 data-reveal>Давайте<br>начнём</h2>
+      <a href="#" data-reveal>Записаться</a>
+    </div>
   </div>
 </section>
 
