@@ -9,9 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@300;400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#ffffff; --ink:#2b3c42; --ink-soft:#6b7f86;
-    --blue:#6ba8bf; --blue-deep:#3d7185; --blue-tint:#eef5f7;
-    --powder:#d8bdb6; --powder-deep:#b98f85; --powder-tint:#f7efec;
+    --bg:#ffffff; --ink:#2f4148; --ink-soft:#6e838a;
+    --blue:#82bccb; --blue-deep:#4a7f92; --blue-tint:#f0f7f9;
+    --powder:#a7c3cb; --powder-deep:#5d8795; --powder-tint:#eef4f6;
     --line:#e6ecee;
     --serif:'Cormorant Garamond',Georgia,serif;
     --sans:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
@@ -107,16 +107,15 @@
   .fmt-card p{font-size:14px;}
   .fmt-card .price{margin-top:14px; font-family:var(--serif); font-size:22px; color:var(--ink);}
 
-  /* ---------- reviews: big single quote ---------- */
+  /* ---------- reviews: big phrase-heading, three in a row ---------- */
   .reviews{text-align:center;}
-  .reviews .hand{margin-bottom:14px;}
-  .review{max-width:860px; margin:0 auto;}
-  .review q{display:block; font-family:var(--serif); font-size:clamp(26px,3.4vw,40px); line-height:1.32; color:var(--ink); quotes:"«" "»";}
-  .review .who{margin-top:28px; font-size:15px; color:var(--ink);}
-  .review .role{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--blue-deep); margin-top:2px;}
-  .review-nav{display:flex; gap:10px; justify-content:center; margin-top:44px;}
-  .review-nav button{width:9px; height:9px; border-radius:50%; border:none; background:var(--line); cursor:pointer; padding:0; transition:background-color .3s ease;}
-  .review-nav button.on{background:var(--blue);}
+  .reviews .hand{margin-bottom:44px;}
+  .reviews-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:40px; text-align:left;}
+  .review-item{border-top:2px solid var(--blue); padding-top:26px;}
+  .review-item .phrase{display:block; font-family:var(--serif); font-size:clamp(23px,1.9vw,28px); line-height:1.28; color:var(--ink); quotes:"«" "»";}
+  .review-item p{margin-top:16px; font-size:15px;}
+  .review-item .who{margin-top:20px; font-size:15px; color:var(--ink);}
+  .review-item .role{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--blue-deep); margin-top:2px;}
 
   /* ---------- course ---------- */
   .course .wrap{display:grid; grid-template-columns:1fr 1.1fr; gap:70px; align-items:center;}
@@ -177,7 +176,7 @@
     nav{display:none;} .burger{display:flex;}
     .spread .wrap,.course .wrap,.start .wrap{grid-template-columns:1fr; gap:36px;}
     .spread.flip .media{order:0;}
-    .why-grid,.fmt-grid,.price-grid{grid-template-columns:1fr;}
+    .why-grid,.fmt-grid,.price-grid,.reviews-grid{grid-template-columns:1fr;}
     .foot-grid{grid-template-columns:1fr 1fr;}
     .section{padding:84px 0;}
     .hero{height:76vh;}
@@ -298,20 +297,22 @@
 <section class="section reviews tint-powder" id="reviews">
   <div class="wrap">
     <span class="hand" data-reveal>отзывы</span>
-    <div class="review" data-reveal>
-      <div class="review-slide on">
-        <q>Впервые почувствовала тело, а не просто позы. После занятия — тихо в голове</q>
+    <div class="reviews-grid">
+      <div class="review-item" data-reveal>
+        <span class="phrase">«Впервые почувствовала тело, а не просто позы»</span>
+        <p>Пришла на первое занятие случайно, а ушла с улыбкой. После практики — тихо в голове.</p>
         <div class="who">Мария</div><div class="role">группа в Zoom</div>
       </div>
-      <div class="review-slide" hidden>
-        <q>Практикую давно, и именно с Екатериной вернулось ощущение баланса и опоры</q>
+      <div class="review-item" data-reveal>
+        <span class="phrase">«Вернулось ощущение баланса и опоры»</span>
+        <p>Практикую давно, но именно с Екатериной появилась глубокая связь с телом и его потребностями.</p>
         <div class="who">Роман</div><div class="role">индивидуальные занятия</div>
       </div>
-      <div class="review-slide" hidden>
-        <q>Бережная подача, никакого сравнения с другими. Хожу с удовольствием каждую неделю</q>
+      <div class="review-item" data-reveal>
+        <span class="phrase">«Бережная подача, без сравнения с другими»</span>
+        <p>Спокойный голос, понятные объяснения. Хожу с удовольствием каждую неделю.</p>
         <div class="who">Полина</div><div class="role">группа в Zoom</div>
       </div>
-      <div class="review-nav" id="revNav"></div>
     </div>
   </div>
 </section>
@@ -453,24 +454,6 @@
     });
   }
 
-  /* reviews: quiet fade rotation + dots */
-  var rs = [].slice.call(document.querySelectorAll('.review-slide'));
-  var nav = document.getElementById('revNav');
-  var ri = 0, rt;
-  rs.forEach(function(_, i){
-    var b = document.createElement('button');
-    if(i===0) b.className = 'on';
-    b.addEventListener('click', function(){ show(i); rest(); });
-    nav.appendChild(b);
-  });
-  var dots = [].slice.call(nav.children);
-  function show(n){
-    ri = (n + rs.length) % rs.length;
-    rs.forEach(function(s,i){ if(i===ri){ s.hidden=false; s.classList.add('on'); } else { s.hidden=true; s.classList.remove('on'); } });
-    dots.forEach(function(d,i){ d.classList.toggle('on', i===ri); });
-  }
-  function rest(){ clearInterval(rt); rt = setInterval(function(){ show(ri+1); }, 7000); }
-  rest();
 })();
 </script>
 </body>
