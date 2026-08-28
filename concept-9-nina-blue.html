@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoga with Kate — Концепт 9: голубая палитра, вёрстка Yoga by Nina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#e8f0f3; --bg-deep:#12303a; --ink:#16323b; --ink-soft:#5f7d84;
+    --gold:#2c6d82; --gold-deep:#1f5768; --line:#cfe0e5;
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Jost',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--ink); font-family:var(--sans); font-weight:300; line-height:1.8; font-size:17px; overflow-x:hidden;}
+  .wrap{max-width:1280px; margin:0 auto; padding:0 48px;}
+  h1,h2,h3{font-family:var(--serif); font-weight:400; line-height:1.02;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  p{color:var(--ink-soft);}
+  .ph-note{position:fixed; bottom:14px; right:14px; z-index:999; background:var(--ink); color:var(--bg); font-size:11px; padding:8px 12px; border-radius:20px;}
+
+  .eyebrow{font-size:14px; letter-spacing:.28em; text-transform:uppercase; color:var(--gold-deep); display:block;}
+
+  /* ---------- nav ---------- */
+  header{position:fixed; inset:0 0 auto 0; z-index:210; padding:34px 0;}
+  body.menu-open{overflow:hidden;}
+  header .wrap{display:flex; align-items:flex-start; justify-content:space-between;}
+  .crest{width:78px; height:78px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; transition:transform .4s ease;}
+  .crest:hover{transform:rotate(40deg);}
+  .crest svg{width:44px; height:44px;}
+  .menu-btn{display:flex; flex-direction:column; gap:7px; cursor:pointer; background:none; border:none; padding:14px 0 0;}
+  .menu-btn span{width:34px; height:1.5px; background:var(--ink); transition:transform .3s ease, opacity .3s ease;}
+  body.menu-open .menu-btn span:nth-child(1){transform:translateY(8.5px) rotate(45deg);}
+  body.menu-open .menu-btn span:nth-child(2){opacity:0;}
+  body.menu-open .menu-btn span:nth-child(3){transform:translateY(-8.5px) rotate(-45deg);}
+  body.menu-open .menu-btn span{background:var(--bg);}
+
+  .overlay{position:fixed; inset:0; z-index:200; background:var(--bg-deep); display:flex; flex-direction:column; justify-content:center; padding:0 48px; opacity:0; visibility:hidden; transition:opacity .5s ease, visibility .5s;}
+  body.menu-open .overlay{opacity:1; visibility:visible;}
+  .overlay nav{display:flex; flex-direction:column; gap:6px; max-width:1280px; margin:0 auto; width:100%;}
+  .overlay nav a{font-family:var(--serif); font-size:clamp(52px,9vw,120px); color:var(--gold); line-height:1.08; transition:color .3s ease, padding-left .3s ease;}
+  .overlay nav a:hover{color:#fff; padding-left:20px;}
+  .overlay .sub{max-width:1280px; margin:48px auto 0; width:100%; display:flex; gap:34px; flex-wrap:wrap;}
+  .overlay .sub a{font-family:var(--sans); font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.55);}
+  .overlay .sub a:hover{color:#fff;}
+  .overlay .book{position:absolute; top:34px; right:48px; background:var(--gold); color:var(--ink); padding:16px 40px; border-radius:40px; font-size:14px; letter-spacing:.14em; text-transform:uppercase;}
+
+  /* ---------- hero ---------- */
+  .hero{min-height:100vh; display:flex; align-items:center; position:relative;}
+  .hero h1{font-size:clamp(84px,20vw,260px); color:var(--ink); letter-spacing:-.01em;}
+  .hero .down{position:absolute; right:48px; bottom:56px; font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-soft); display:flex; flex-direction:column; align-items:center; gap:14px;}
+  .hero .down .line{width:1px; height:60px; background:var(--ink); animation:drop 2s ease-in-out infinite;}
+  @keyframes drop{0%,100%{transform:scaleY(.4); transform-origin:top;}50%{transform:scaleY(1); transform-origin:top;}}
+
+  /* ---------- bio ---------- */
+  .bio{padding:120px 0 160px;}
+  .bio .wrap{display:grid; grid-template-columns:0.9fr 1.6fr; gap:60px; align-items:start;}
+  .bio .lead{font-family:var(--serif); font-size:clamp(26px,3vw,40px); line-height:1.35; color:var(--ink);}
+  .bio .lead .accent{color:var(--gold-deep); font-style:italic;}
+  .bio .more{margin-top:36px; display:inline-block; font-size:14px; letter-spacing:.18em; text-transform:uppercase; border-bottom:1px solid var(--ink); padding-bottom:6px;}
+  .bio .portrait{margin-top:70px; overflow:hidden;}
+  .bio .portrait img{width:100%; height:560px; object-fit:cover;}
+
+  /* ---------- classes ---------- */
+  .classes{padding:60px 0 40px;}
+  .class-row{padding:90px 0; border-top:1px solid var(--line);}
+  .class-row .wrap{display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center;}
+  .class-row:nth-child(even) .media{order:-1;}
+  .class-row .eyebrow{margin-bottom:26px;}
+  .class-row h2{font-size:clamp(52px,7vw,104px); color:var(--gold-deep);}
+  .class-row h2 .thin{color:var(--ink);}
+  .class-row p{margin:28px 0 34px; max-width:420px; font-size:18px;}
+  .class-row .explore{font-size:14px; letter-spacing:.18em; text-transform:uppercase; border-bottom:1px solid var(--ink); padding-bottom:6px;}
+  .class-row .media{overflow:hidden;}
+  .class-row .media img{width:100%; height:540px; object-fit:cover; transition:transform 1.2s cubic-bezier(.16,1,.3,1);}
+  .class-row .media:hover img{transform:scale(1.05);}
+
+  /* ---------- testimonials ---------- */
+  .tst{padding:150px 0; border-top:1px solid var(--line);}
+  .tst .eyebrow{margin-bottom:70px;}
+  .tst-item{max-width:900px; margin:0 auto 100px;}
+  .tst-item:last-child{margin-bottom:0;}
+  .tst-item h3{font-size:clamp(30px,3.6vw,52px); color:var(--ink); margin-bottom:34px; line-height:1.2;}
+  .tst-item p{font-size:18px; margin-bottom:14px;}
+  .tst-item .who{margin-top:30px; font-family:var(--serif); font-size:24px; color:var(--gold-deep);}
+  .tst-item .meta{font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);}
+
+  /* ---------- cta ---------- */
+  .cta{padding:160px 0; text-align:center; background:var(--bg-deep);}
+  .cta h2{font-size:clamp(56px,9vw,150px); color:var(--gold);}
+  .cta a{display:inline-block; margin-top:44px; background:var(--gold); color:var(--ink); padding:20px 54px; border-radius:40px; font-size:14px; letter-spacing:.16em; text-transform:uppercase; transition:transform .3s ease, background-color .3s ease;}
+  .cta a:hover{transform:translateY(-3px); background:#fff;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--bg-deep); color:rgba(255,255,255,.6); padding:70px 0;}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; font-size:13px; letter-spacing:.1em; text-transform:uppercase;}
+  footer a:hover{color:#fff;}
+
+  [data-reveal]{opacity:0; transform:translateY(34px); transition:opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1);}
+  [data-reveal].is-visible{opacity:1; transform:none;}
+  [data-reveal].d1{transition-delay:.1s;} [data-reveal].d2{transition-delay:.2s;}
+
+  @media(max-width:900px){
+    .wrap{padding:0 24px;}
+    .bio .wrap,.class-row .wrap{grid-template-columns:1fr; gap:34px;}
+    .class-row:nth-child(even) .media{order:0;}
+    .bio .portrait img,.class-row .media img{height:380px;}
+    .overlay .book{position:static; align-self:flex-start; margin:0 auto 30px; max-width:1280px; width:100%;}
+    .hero .down{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    [data-reveal]{opacity:1; transform:none; transition:none;}
+    .hero .down .line{animation:none;}
+  }
+</style>
+</head>
+<body>
+<div class="ph-note">Концепт 9 · голубая палитра · реальные фото</div>
+
+<header>
+  <div class="wrap">
+    <a href="#" class="crest" aria-label="На главную">
+      <svg viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="1.1">
+        <circle cx="22" cy="22" r="6"/>
+        <g>
+          <ellipse cx="22" cy="9" rx="4.5" ry="7"/>
+          <ellipse cx="22" cy="35" rx="4.5" ry="7"/>
+          <ellipse cx="9" cy="22" rx="7" ry="4.5"/>
+          <ellipse cx="35" cy="22" rx="7" ry="4.5"/>
+          <ellipse cx="13" cy="13" rx="6" ry="4.5" transform="rotate(45 13 13)"/>
+          <ellipse cx="31" cy="31" rx="6" ry="4.5" transform="rotate(45 31 31)"/>
+          <ellipse cx="31" cy="13" rx="6" ry="4.5" transform="rotate(-45 31 13)"/>
+          <ellipse cx="13" cy="31" rx="6" ry="4.5" transform="rotate(-45 13 31)"/>
+        </g>
+      </svg>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="overlay" id="overlay">
+  <a href="#contact" class="book">Записаться</a>
+  <nav>
+    <a href="#bio">Обо мне</a>
+    <a href="#classes">Занятия</a>
+    <a href="#contact">Контакты</a>
+  </nav>
+  <div class="sub">
+    <a href="#">Условия</a>
+    <a href="#">Конфиденциальность</a>
+    <a href="#bio">Биография</a>
+    <a href="#">Телеграм-канал</a>
+  </div>
+</div>
+
+<!-- ---------- HERO ---------- -->
+<section class="hero">
+  <div class="wrap"><h1>Обо мне</h1></div>
+  <div class="down"><span>прокрутите</span><span class="line"></span></div>
+</section>
+
+<!-- ---------- BIO ---------- -->
+<section class="bio" id="bio">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Обо мне</span>
+    <div>
+      <p class="lead" data-reveal>
+        Меня зовут <span class="accent">Екатерина</span>. Я преподаю хатха-йогу и хочу, чтобы практика
+        была доступной для всех. 8 лет на коврике и 3 года преподавания сложились в спокойный,
+        внимательный подход: от мягкого восстановления до динамичного потока — всегда без давления
+        и сравнения с другими.
+      </p>
+      <a href="#classes" class="more" data-reveal>Читать дальше</a>
+      <div class="portrait" data-reveal><img src="img-real/denim-cafe-portrait.jpg" alt="Екатерина Благодацкая"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- CLASSES ---------- -->
+<div class="classes" id="classes">
+  <div class="class-row">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" data-reveal>Занятия</span>
+        <h2 data-reveal>Живая<br><span class="thin">практика</span></h2>
+        <p data-reveal>Занятия в реальном времени, где мы разбираем асаны и дыхание вместе. Спокойный темп,
+          подходит практикующим любого уровня — на них безопасно и никогда не скучно.</p>
+        <a href="#contact" class="explore" data-reveal>Смотреть занятия</a>
+      </div>
+      <div class="media" data-reveal><img src="img-real/tree-pose-beach.jpg" alt="Асана на берегу" style="object-position:center 22%;"></div>
+    </div>
+  </div>
+  <div class="class-row">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" data-reveal>Занятия</span>
+        <h2 data-reveal>Мягкий<br><span class="thin">поток</span></h2>
+        <p data-reveal>Плавная последовательность движений под дыхание. Помогает вернуть телу лёгкость,
+          а голове — тишину. Хороший вечерний формат, чтобы снять напряжение дня.</p>
+        <a href="#contact" class="explore" data-reveal>Смотреть занятия</a>
+      </div>
+      <div class="media" data-reveal><img src="img-real/meditation-bw.jpg" alt="Практика в медитации"></div>
+    </div>
+  </div>
+  <div class="class-row">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" data-reveal>Занятия</span>
+        <h2 data-reveal>Фокус<br><span class="thin">на теле</span></h2>
+        <p data-reveal>Серия для проработки конкретных зон — по одной группе мышц за раз. Хорошее дополнение,
+          если хочется укрепить спину, раскрыть тазобедренные суставы или разобраться с осанкой.</p>
+        <a href="#contact" class="explore" data-reveal>Смотреть занятия</a>
+      </div>
+      <div class="media" data-reveal><img src="img-real/feet-mat.jpg" alt="Стопы на коврике"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ---------- TESTIMONIALS ---------- -->
+<section class="tst">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Отзывы</span>
+    <div class="tst-item" data-reveal>
+      <h3>«С Екатериной я снова влюбилась в йогу»</h3>
+      <p>Пришла на первое занятие случайно, а ушла с улыбкой. Тело будто ожило, в голове стало тихо —
+        и так после каждой практики. Понятные объяснения, спокойный голос, подобранная под настроение
+        последовательность. Это как глоток воздуха посреди рабочей недели.</p>
+      <div class="who">Мария</div>
+      <div class="meta">Санкт-Петербург · 30 лет · группа в Zoom</div>
+    </div>
+    <div class="tst-item" data-reveal>
+      <h3>«Появилось новое ощущение баланса и опоры»</h3>
+      <p>Йога в моей жизни давно, но именно с Екатериной пришло чувство устойчивости. Она познакомила
+        меня с мягкими восстановительными практиками, которые быстро стали любимыми. Появилась более
+        глубокая связь с телом и его потребностями. Я благодарна за аккуратные подсказки, которые
+        делают практику осмысленнее.</p>
+      <div class="who">Роман</div>
+      <div class="meta">Москва · 45 лет · индивидуальные занятия</div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- CTA ---------- -->
+<section class="cta" id="contact">
+  <div class="wrap">
+    <h2 data-reveal>Давайте начнём</h2><br>
+    <a href="#" data-reveal>Записаться</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Екатерина Благодацкая</span>
+    <span><a href="#">Telegram</a> · <a href="#">WhatsApp</a> · <a href="#">Канал «Благие мысли»</a></span>
+    <span>Концепт 9 · голубая палитра · по мотивам Yoga by Nina</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn = document.getElementById('menuBtn');
+  btn.addEventListener('click', function(){ document.body.classList.toggle('menu-open'); });
+  document.querySelectorAll('#overlay a').forEach(function(a){
+    a.addEventListener('click', function(){ document.body.classList.remove('menu-open'); });
+  });
+  var els = document.querySelectorAll('[data-reveal]');
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+    }, {threshold:0.15});
+    els.forEach(function(el){ obs.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('is-visible'); }); }
+})();
+</script>
+</body>
+</html>

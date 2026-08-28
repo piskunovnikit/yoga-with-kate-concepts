@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoga with Kate — Клон E: вёрстка Yoga 128</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --ink:#0e0e0e; --ink-2:#212121; --ink-soft:#6f6f6f;
+    --coral:#f2695c; --coral-soft:#ffb9b0; --teal:#16c79a; --teal-dark:#0fa982;
+    --pink:#ffebe9; --pink-2:#fff5f4; --line:#ececec;
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Lato',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--ink); font-family:var(--sans); font-weight:400; line-height:1.75; font-size:16px; overflow-x:hidden;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 40px;}
+  h1,h2,h3,h4{font-family:var(--serif); font-weight:500; line-height:1.12; color:var(--ink-2);}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  p{color:var(--ink-soft);}
+  .ph-note{position:fixed; bottom:14px; right:14px; z-index:999; background:var(--ink); color:#fff; font-size:11px; padding:8px 12px; border-radius:20px; letter-spacing:.02em;}
+
+  .eyebrow{font-family:var(--serif); font-style:italic; font-size:24px; color:var(--coral); display:block; margin-bottom:10px;}
+  .section{padding:130px 0;}
+
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:16px 34px; border-radius:40px; font-size:13px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s ease, background-color .25s ease, color .25s ease, border-color .25s ease;}
+  .btn-coral{background:var(--coral); color:#fff;}
+  .btn-coral:hover{background:#e8564a; box-shadow:0 14px 30px rgba(242,105,92,.4); transform:translateY(-2px);}
+  .btn-teal{background:var(--teal); color:#fff;}
+  .btn-teal:hover{background:var(--teal-dark); box-shadow:0 14px 30px rgba(22,199,154,.4); transform:translateY(-2px);}
+  .btn-ghost{background:transparent; border:1px solid rgba(255,255,255,.6); color:#fff;}
+  .btn-ghost:hover{background:rgba(255,255,255,.14); border-color:#fff; transform:translateY(-2px);}
+  .btn-ghost-dark{background:transparent; border:1px solid var(--line); color:var(--ink-2);}
+  .btn-ghost-dark:hover{border-color:var(--coral); color:var(--coral); transform:translateY(-2px);}
+  .btn:active{transform:translateY(0) scale(.98);}
+
+  /* ---------- header ---------- */
+  header{position:fixed; top:0; left:0; right:0; z-index:100; padding:26px 0; transition:padding .3s ease, background-color .3s ease, box-shadow .3s ease;}
+  header.scrolled{padding:14px 0; background:#fff; box-shadow:0 6px 24px rgba(0,0,0,.06);}
+  header .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:var(--serif); font-size:30px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--coral);}
+  nav{display:flex; gap:36px;}
+  nav a{font-size:15px; color:var(--ink-2); position:relative; padding:4px 0;}
+  nav a::after{content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--coral); transition:width .3s ease;}
+  nav a:hover::after{width:100%;}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer;}
+  .burger span{width:26px; height:2px; background:var(--ink-2);}
+
+  /* ---------- hero slider ---------- */
+  .hero{position:relative; height:100vh; min-height:640px; overflow:hidden;}
+  .slides{height:100%;}
+  .slide{position:absolute; inset:0; opacity:0; transition:opacity 1.1s ease; display:flex; align-items:center;}
+  .slide.active{opacity:1;}
+  .slide-bg{position:absolute; inset:0;}
+  .slide-bg img{width:100%; height:100%; object-fit:cover;}
+  .slide-bg::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(20,20,20,.55) 0%,rgba(20,20,20,.15) 55%,rgba(20,20,20,0) 100%);}
+  .slide-inner{position:relative; z-index:2; max-width:640px; padding-left:40px; margin:0 auto; width:100%; max-width:1200px;}
+  .slide-inner .box{max-width:600px; transform:translateY(24px); opacity:0; transition:transform 1s cubic-bezier(.16,1,.3,1) .25s, opacity 1s ease .25s;}
+  .slide.active .slide-inner .box{transform:translateY(0); opacity:1;}
+  .hero h1{font-size:clamp(44px,6.4vw,74px); color:#fff; margin-bottom:22px;}
+  .hero h1 em{font-style:italic; color:var(--coral-soft);}
+  .hero p{color:rgba(255,255,255,.9); font-size:17px; max-width:440px; margin-bottom:34px;}
+  .hero-btns{display:flex; gap:16px; flex-wrap:wrap;}
+  .dots{position:absolute; left:0; right:0; bottom:40px; z-index:5; display:flex; gap:12px; justify-content:center;}
+  .dots button{width:12px; height:12px; border-radius:50%; border:1px solid var(--coral); background:transparent; cursor:pointer; padding:0; transition:background-color .3s ease;}
+  .dots button.active{background:var(--coral);}
+  .slide-peek{position:absolute; top:0; right:-8%; width:32%; height:100%; z-index:1; opacity:.55;}
+  .slide-peek img{width:100%; height:100%; object-fit:cover;}
+
+  /* ---------- why yoga ---------- */
+  .why{text-align:center;}
+  .why h2{font-size:clamp(34px,4.4vw,50px); margin-bottom:18px;}
+  .why > .wrap > p{max-width:560px; margin:0 auto 70px;}
+  .why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:46px; text-align:center;}
+  .why-item .n{font-family:var(--serif); font-style:italic; font-size:22px; color:var(--coral); margin-bottom:14px;}
+  .why-item h3{font-size:26px; margin-bottom:10px;}
+  .why-item p{font-size:15px;}
+
+  /* ---------- programs split ---------- */
+  .programs{background:var(--pink-2);}
+  .programs .wrap{display:grid; grid-template-columns:1.05fr 1fr; gap:70px; align-items:center;}
+  .programs h2{font-size:clamp(34px,4.6vw,52px); margin-bottom:24px;}
+  .programs h2 em{font-style:italic; color:var(--coral);}
+  .programs p{margin-bottom:20px; max-width:440px;}
+  .programs .media{border-radius:6px; overflow:hidden; height:520px;}
+  .programs .media img{width:100%; height:100%; object-fit:cover;}
+
+  /* ---------- classes numbered ---------- */
+  .classes{text-align:center;}
+  .classes h2{font-size:clamp(34px,4.4vw,50px); margin-bottom:16px;}
+  .classes > .wrap > p{max-width:600px; margin:0 auto 64px;}
+  .class-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .class-card{background:#fff; border:1px solid var(--line); border-radius:10px; padding:38px 26px; text-align:left; transition:transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s ease, border-color .3s ease;}
+  .class-card:hover{transform:translateY(-6px); box-shadow:0 22px 44px rgba(0,0,0,.09); border-color:transparent;}
+  .class-card .num{font-family:var(--serif); font-size:44px; color:var(--coral-soft); line-height:1; margin-bottom:20px;}
+  .class-card h3{font-size:22px; margin-bottom:8px;}
+  .class-card p{font-size:14px;}
+
+  /* ---------- marquee ---------- */
+  .marquee{background:var(--pink); padding:70px 0; overflow:hidden;}
+  .marquee-row{display:flex; white-space:nowrap; will-change:transform;}
+  .marquee-row span{font-family:var(--serif); font-size:clamp(30px,5vw,56px); color:var(--coral); text-transform:uppercase; letter-spacing:.02em; padding:0 40px;}
+  .marquee-row.a{animation:march 26s linear infinite;}
+  .marquee-row.b{animation:march-rev 30s linear infinite; opacity:.55;}
+  @keyframes march{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes march-rev{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+  /* ---------- featured class ---------- */
+  .featured{background:var(--pink); padding-top:0;}
+  .featured .card{background:#fff; border-radius:14px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; box-shadow:0 30px 70px rgba(0,0,0,.08);}
+  .featured .txt{padding:64px 56px; display:flex; flex-direction:column; justify-content:center;}
+  .featured h3{font-size:clamp(28px,3vw,38px); margin-bottom:16px;}
+  .featured .txt p{margin-bottom:24px; max-width:360px;}
+  .featured .who{font-family:var(--serif); font-style:italic; font-size:22px; color:var(--coral); margin-bottom:2px;}
+  .featured .when{font-size:14px; margin-bottom:28px;}
+  .featured .img img{width:100%; height:100%; object-fit:cover; min-height:440px;}
+
+  /* ---------- cta band ---------- */
+  .cta-band{background:var(--ink-2); text-align:center;}
+  .cta-band h2{color:#fff; font-size:clamp(28px,3.6vw,44px); margin-bottom:30px; max-width:720px; margin-left:auto; margin-right:auto;}
+
+  /* ---------- approach (team-slot) ---------- */
+  .approach{text-align:center;}
+  .approach h2{font-size:clamp(34px,4.4vw,50px); margin-bottom:16px;}
+  .approach > .wrap > p{max-width:540px; margin:0 auto 64px;}
+  .app-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:34px;}
+  .app-card{text-align:center;}
+  .app-card .ph{width:200px; height:200px; border-radius:50%; overflow:hidden; margin:0 auto 22px;}
+  .app-card .ph img{width:100%; height:100%; object-fit:cover;}
+  .app-card h3{font-size:24px; margin-bottom:4px;}
+  .app-card .role{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--coral);}
+
+  /* ---------- formats tabs ---------- */
+  .fmt{background:var(--pink-2); text-align:center;}
+  .fmt h2{font-size:clamp(34px,4.4vw,50px); margin-bottom:42px;}
+  .fmt-tabs{display:flex; gap:14px; justify-content:center; margin-bottom:46px; flex-wrap:wrap;}
+  .fmt-tabs button{font-family:var(--serif); font-size:24px; color:var(--ink-soft); background:none; border:none; cursor:pointer; padding:8px 20px; border-bottom:2px solid transparent; transition:color .25s ease, border-color .25s ease;}
+  .fmt-tabs button.active{color:var(--coral); border-color:var(--coral);}
+  .fmt-panel{display:none; grid-template-columns:1fr 1fr; gap:60px; align-items:center; text-align:left;}
+  .fmt-panel.active{display:grid;}
+  .fmt-panel .media{border-radius:8px; overflow:hidden; height:420px;}
+  .fmt-panel .media img{width:100%; height:100%; object-fit:cover;}
+  .fmt-panel h3{font-size:32px; margin-bottom:14px;}
+  .fmt-panel p{margin-bottom:22px;}
+
+  /* ---------- testimonials ---------- */
+  .tst{text-align:center;}
+  .tst h2{font-size:clamp(30px,4vw,46px); margin:0 auto 64px; max-width:760px;}
+  .tst-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .tst-card{border:1px solid var(--line); border-radius:12px; padding:40px 30px; text-align:left; transition:transform .3s ease, box-shadow .3s ease;}
+  .tst-card:hover{transform:translateY(-5px); box-shadow:0 20px 40px rgba(0,0,0,.07);}
+  .tst-card p{font-family:var(--serif); font-style:italic; font-size:20px; color:var(--ink-2); line-height:1.5; margin-bottom:22px;}
+  .tst-card .nm{font-size:16px; color:var(--ink-2);}
+  .tst-card .rl{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--coral);}
+
+  /* ---------- shop / course ---------- */
+  .shop{background:var(--pink-2);}
+  .shop .wrap{display:grid; grid-template-columns:1fr 1.05fr; gap:70px; align-items:center;}
+  .shop .media{border-radius:6px; overflow:hidden; height:500px; position:relative;}
+  .shop .media img{width:100%; height:100%; object-fit:cover;}
+  .badge{position:absolute; background:#fff; border-radius:40px; padding:10px 20px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; box-shadow:0 12px 30px rgba(0,0,0,.12);}
+  .badge.b1{top:24px; left:24px;} .badge.b2{bottom:24px; right:24px;}
+  .shop h2{font-size:clamp(34px,4.4vw,50px); margin-bottom:22px;}
+  .shop p{margin-bottom:28px; max-width:460px;}
+
+  /* ---------- newsletter ---------- */
+  .news{text-align:center;}
+  .news h2{font-size:clamp(30px,4vw,44px); margin-bottom:30px;}
+  .news form{display:flex; gap:12px; max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center;}
+  .news input{flex:1; min-width:220px; border:1px solid var(--line); border-radius:40px; padding:15px 24px; font-family:var(--sans); font-size:15px;}
+  .news input:focus{outline:none; border-color:var(--coral);}
+
+  /* ---------- footer ---------- */
+  footer{background:#fff; border-top:1px solid var(--line); padding:80px 0 40px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; margin-bottom:56px;}
+  .foot-grid .logo{margin-bottom:16px;}
+  footer h4{font-size:20px; margin-bottom:16px; color:var(--ink-2);}
+  footer ul{list-style:none;}
+  footer li{padding:5px 0; font-size:14px; color:var(--ink-soft);}
+  footer li a:hover{color:var(--coral);}
+  .foot-bottom{border-top:1px solid var(--line); padding-top:26px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; color:#a5a5a5;}
+
+  /* ---------- reveal ---------- */
+  [data-reveal]{opacity:0; transform:translateY(26px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);}
+  [data-reveal].is-visible{opacity:1; transform:translateY(0);}
+
+  @media(max-width:960px){
+    .wrap{padding:0 22px;}
+    nav{display:none;} .burger{display:flex;}
+    .programs .wrap,.shop .wrap,.fmt-panel,.featured .card{grid-template-columns:1fr; gap:34px;}
+    .why-grid{grid-template-columns:1fr; gap:40px;}
+    .class-grid{grid-template-columns:1fr 1fr;}
+    .app-grid,.tst-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .slide-peek{display:none;}
+    .featured .txt{padding:40px 28px;}
+    .section{padding:88px 0;}
+  }
+  @media(max-width:560px){
+    .class-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    [data-reveal]{opacity:1; transform:none; transition:none;}
+    .marquee-row{animation:none;}
+    .slide{transition:opacity .2s ease;}
+  }
+</style>
+</head>
+<body>
+<div class="ph-note">Клон E · вёрстка Yoga 128 · реальные фото</div>
+
+<header id="hdr">
+  <div class="wrap">
+    <a href="#" class="logo">Екатерина</a>
+    <nav>
+      <a href="#why">Почему йога</a>
+      <a href="#classes">Занятия</a>
+      <a href="#formats">Форматы</a>
+      <a href="#tst">Отзывы</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <a href="#contact" class="btn btn-teal" style="padding:12px 26px;">Записаться</a>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<!-- ---------- HERO SLIDER ---------- -->
+<section class="hero" id="top">
+  <div class="slides" id="slides">
+    <div class="slide active">
+      <div class="slide-bg"><img src="img-real/embankment-blue.jpg" alt="Екатерина на набережной" style="object-position:center 55%;"></div>
+      <div class="slide-inner"><div class="box">
+        <h1>Верните телу <em>лёгкость</em>, а голове — тишину</h1>
+        <p>Мягкая хатха-йога для тех, кто хочет чувствовать своё тело, а не просто повторять позы.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn btn-coral">Записаться</a>
+          <a href="#classes" class="btn btn-ghost">Занятия</a>
+        </div>
+      </div></div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg"><img src="img-real/tree-pose-beach.jpg" alt="Екатерина в асане на берегу" style="object-position:center 40%;"></div>
+      <div class="slide-inner"><div class="box">
+        <h1>Йога — это про <em>состояние</em>, а не про гибкость</h1>
+        <p>8 лет практики и 3 года преподавания. Занятия проходят бережно и никогда не бывают скучными.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn btn-coral">Записаться</a>
+          <a href="#classes" class="btn btn-ghost">Занятия</a>
+        </div>
+      </div></div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg"><img src="img-real/split-mat-color.jpg" alt="Екатерина на коврике" style="object-position:center 40%;"></div>
+      <div class="slide-inner"><div class="box">
+        <h1>Практикуйте <em>каждый день</em> — понемногу</h1>
+        <p>Регулярная практика в сочетании со спокойным образом жизни возвращает энергию и здоровый сон.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn btn-coral">Записаться</a>
+          <a href="#classes" class="btn btn-ghost">Занятия</a>
+        </div>
+      </div></div>
+    </div>
+  </div>
+  <div class="slide-peek"><img src="img-real/meditation-bw.jpg" alt=""></div>
+  <div class="dots" id="dots"></div>
+</section>
+
+<!-- ---------- WHY YOGA ---------- -->
+<section class="section why" id="why">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Зачем это нужно</span>
+    <h2 data-reveal>Почему стоит заняться йогой</h2>
+    <p data-reveal>Йога, медитация и осознанность — мощный инструмент для здоровья. Ниже — три опоры, на которых держится практика.</p>
+    <div class="why-grid">
+      <div class="why-item" data-reveal><div class="n">01</div><h3>Тело</h3><p>Улучшается баланс, сила и гибкость. Тело перестаёт болеть от сидячей работы.</p></div>
+      <div class="why-item" data-reveal><div class="n">02</div><h3>Ум</h3><p>Дыхание и медленный темп учат замечать мысли и не залипать в них.</p></div>
+      <div class="why-item" data-reveal><div class="n">03</div><h3>Психика</h3><p>Практика помогает восстанавливаться после стресса и возвращать себе спокойствие.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- PROGRAMS ---------- -->
+<section class="section programs">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-reveal>Что я веду</span>
+      <h2 data-reveal>Программы <em>занятий</em>, которые я предлагаю</h2>
+      <p data-reveal>Начать практику бывает страшно, но становится легче, когда заранее понимаешь, что тебя ждёт на занятии.</p>
+      <p data-reveal>Я подбираю нагрузку под ваш уровень и особенности тела — от мягкого восстановления до динамичного потока.</p>
+      <a href="#classes" class="btn btn-ghost-dark" data-reveal>Подробнее</a>
+    </div>
+    <div class="media" data-reveal><img src="img-real/group-stretch-color.jpg" alt="Групповое занятие"></div>
+  </div>
+</section>
+
+<!-- ---------- CLASSES NUMBERED ---------- -->
+<section class="section classes" id="classes">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Расписание</span>
+    <h2 data-reveal>Какие занятия у меня есть</h2>
+    <p data-reveal>Начать можно с любого формата — ниже коротко о каждом, чтобы понять, что подойдёт именно вам.</p>
+    <div class="class-grid">
+      <div class="class-card" data-reveal><div class="num">1</div><h3>Мягкая практика</h3><p>Спокойный темп, разбор асан, дыхание. Для начинающих.</p></div>
+      <div class="class-card" data-reveal><div class="num">2</div><h3>Хатха-поток</h3><p>Базовые движения в связках, для практикующих любого уровня.</p></div>
+      <div class="class-card" data-reveal><div class="num">3</div><h3>Работа с телом</h3><p>Укрепление и раскрытие — по группам мышц, аккуратно.</p></div>
+      <div class="class-card" data-reveal><div class="num">4</div><h3>Восстановление</h3><p>Расслабляющая практика вечером, чтобы снять напряжение.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- MARQUEE ---------- -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-row a"><span>Это полезно для тела и головы</span><span>·</span><span>Это полезно для тела и головы</span><span>·</span><span>Это полезно для тела и головы</span><span>·</span></div>
+  <div class="marquee-row b"><span>Вы почувствуете лёгкость и спокойствие</span><span>·</span><span>Вы почувствуете лёгкость и спокойствие</span><span>·</span><span>Вы почувствуете лёгкость и спокойствие</span><span>·</span></div>
+</div>
+
+<!-- ---------- FEATURED CLASS ---------- -->
+<section class="section featured">
+  <div class="wrap">
+    <div class="card">
+      <div class="txt" data-reveal>
+        <h3>Йога для начинающих</h3>
+        <p>Начать йогу бывает волнительно. На этом занятии я подробно объясняю, чего ждать и с чего начать.</p>
+        <div class="who">Екатерина Благодацкая</div>
+        <div class="when">Каждый понедельник и пятница · онлайн в Zoom</div>
+        <a href="#contact" class="btn btn-teal">Все занятия</a>
+      </div>
+      <div class="img" data-reveal><img src="img-real/meditation-bw.jpg" alt="Медитация"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- CTA BAND ---------- -->
+<section class="section cta-band">
+  <div class="wrap">
+    <h2 data-reveal>Присоединяйтесь к онлайн-курсу из 8 уроков в записи</h2>
+    <a href="#contact" class="btn btn-coral" data-reveal>Записаться на курс</a>
+  </div>
+</section>
+
+<!-- ---------- APPROACH ---------- -->
+<section class="section approach" id="about">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Как я работаю</span>
+    <h2 data-reveal>Три принципа моих занятий</h2>
+    <p data-reveal>Йога — отличный способ привести себя в форму и оставаться здоровой без изнуряющих нагрузок.</p>
+    <div class="app-grid">
+      <div class="app-card" data-reveal><div class="ph"><img src="img-real/portrait-car.jpg" alt="Екатерина"></div><h3>Без сравнения</h3><div class="role">безопасно</div></div>
+      <div class="app-card" data-reveal><div class="ph"><img src="img-real/denim-portrait.jpg" alt="Екатерина"></div><h3>По уровню</h3><div class="role">индивидуально</div></div>
+      <div class="app-card" data-reveal><div class="ph"><img src="img-real/mirror-selfie.jpg" alt="Екатерина"></div><h3>С вниманием</h3><div class="role">бережно</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- FORMATS TABS ---------- -->
+<section class="section fmt" id="formats">
+  <div class="wrap">
+    <h2 data-reveal>Выберите удобный формат занятий</h2>
+    <div class="fmt-tabs" data-reveal>
+      <button class="active" data-tab="0">Группа в Zoom</button>
+      <button data-tab="1">Индивидуально</button>
+    </div>
+    <div class="fmt-panel active" data-panel="0">
+      <div class="media"><img src="img-real/group-stretch-color.jpg" alt="Группа в Zoom"></div>
+      <div>
+        <h3>Группа в реальном времени</h3>
+        <p>Занятия 3 раза в неделю по 1,5 часа. Вы видите меня, я вижу вас и поправляю асаны прямо на занятии.</p>
+        <a href="#contact" class="btn btn-ghost-dark">Подробнее</a>
+      </div>
+    </div>
+    <div class="fmt-panel" data-panel="1">
+      <div class="media"><img src="img-real/feet-mat.jpg" alt="Индивидуально"></div>
+      <div>
+        <h3>Индивидуальные занятия</h3>
+        <p>Программа под ваши цели и особенности тела, гибкий график. Идеально, если есть ограничения или хочется быстрее разобраться.</p>
+        <a href="#contact" class="btn btn-ghost-dark">Подробнее</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- TESTIMONIALS ---------- -->
+<section class="section tst" id="tst">
+  <div class="wrap">
+    <h2 data-reveal>Мы спросили учеников, что им нравится в занятиях</h2>
+    <div class="tst-grid">
+      <div class="tst-card" data-reveal><p>«Впервые почувствовала тело, а не просто позы. Хожу с удовольствием».</p><div class="nm">Мария</div><div class="rl">ученица</div></div>
+      <div class="tst-card" data-reveal><p>«Практикую давно, и именно с Екатериной вернулось ощущение баланса».</p><div class="nm">Роман</div><div class="rl">ученик</div></div>
+      <div class="tst-card" data-reveal><p>«Бережная подача, никакого сравнения с другими. После занятия — тихо в голове».</p><div class="nm">Полина</div><div class="rl">ученица</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- COURSE / SHOP ---------- -->
+<section class="section shop">
+  <div class="wrap">
+    <div class="media" data-reveal>
+      <img src="img-real/curtain-art.jpg" alt="Онлайн-курс">
+      <span class="badge b1">Для любого уровня</span>
+      <span class="badge b2">Доступ навсегда</span>
+    </div>
+    <div>
+      <span class="eyebrow" data-reveal>Онлайн-курс</span>
+      <h2 data-reveal>8 уроков в записи</h2>
+      <p data-reveal>Практика, которую можно проходить в своём темпе. Каждый урок — 1,5–2 часа, с разбором асан и дыхания. Подходит, даже если вы никогда не занимались.</p>
+      <a href="#contact" class="btn btn-coral" data-reveal>Получить доступ</a>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- NEWSLETTER ---------- -->
+<section class="section news">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Телеграм-канал</span>
+    <h2 data-reveal>Подпишитесь на канал «Благие мысли»</h2>
+    <form data-reveal onsubmit="return false;">
+      <input type="email" placeholder="Ваш e-mail" aria-label="e-mail">
+      <button class="btn btn-teal" type="submit">Подписаться</button>
+    </form>
+  </div>
+</section>
+
+<!-- ---------- FOOTER ---------- -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#" class="logo">Екатерина</a>
+        <p style="font-size:14px;">Хатха-йога в Санкт-Петербурге. Онлайн и офлайн, группы и индивидуальные занятия.</p>
+      </div>
+      <div>
+        <h4>Занятия</h4>
+        <ul>
+          <li><a href="#classes">Мягкая практика</a></li>
+          <li><a href="#classes">Хатха-поток</a></li>
+          <li><a href="#formats">Индивидуально</a></li>
+          <li><a href="#">Онлайн-курс</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <ul>
+          <li><a href="#about">Обо мне</a></li>
+          <li><a href="#tst">Отзывы</a></li>
+          <li><a href="#why">Почему йога</a></li>
+          <li><a href="#">Канал «Благие мысли»</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li>Санкт-Петербург</li>
+          <li><a href="#">Telegram</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">@blagie.mysli</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Екатерина Благодацкая. Концепт-макет.</span>
+      <span>Вёрстка по мотивам шаблона Yoga 128</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* sticky header */
+  var hdr = document.getElementById('hdr');
+  var onScroll = function(){ hdr.classList.toggle('scrolled', window.scrollY > 40); };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* burger -> reveal nav inline */
+  var burger = document.getElementById('burger');
+  burger && burger.addEventListener('click', function(){
+    var nav = document.querySelector('nav');
+    var open = nav.style.display === 'flex';
+    nav.style.display = open ? 'none' : 'flex';
+    nav.style.position='absolute'; nav.style.top='100%'; nav.style.left='0'; nav.style.right='0';
+    nav.style.flexDirection='column'; nav.style.background='#fff'; nav.style.padding='20px 22px'; nav.style.gap='16px';
+    nav.style.boxShadow='0 20px 40px rgba(0,0,0,.1)';
+  });
+
+  /* hero slider */
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dotsWrap = document.getElementById('dots');
+  var idx = 0, timer;
+  slides.forEach(function(_, i){
+    var b = document.createElement('button');
+    if(i===0) b.className = 'active';
+    b.addEventListener('click', function(){ go(i); reset(); });
+    dotsWrap.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+  function go(n){
+    idx = (n + slides.length) % slides.length;
+    slides.forEach(function(s,i){ s.classList.toggle('active', i===idx); });
+    dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+  }
+  function next(){ go(idx+1); }
+  function reset(){ clearInterval(timer); timer = setInterval(next, 6000); }
+  reset();
+
+  /* scroll reveal */
+  var els = document.querySelectorAll('[data-reveal]');
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+    }, {threshold:0.12});
+    els.forEach(function(el){ obs.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* format tabs */
+  document.querySelectorAll('.fmt-tabs button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var t = btn.getAttribute('data-tab');
+      document.querySelectorAll('.fmt-tabs button').forEach(function(b){ b.classList.toggle('active', b===btn); });
+      document.querySelectorAll('.fmt-panel').forEach(function(p){ p.classList.toggle('active', p.getAttribute('data-panel')===t); });
+    });
+  });
+})();
+</script>
+</body>
+</html>
