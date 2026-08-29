@@ -142,7 +142,8 @@
   .review-item .role{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--blue-deep); margin-top:2px;}
 
   /* ---------- course ---------- */
-  .course .wrap{display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:center;}
+  .course .wrap{display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:start;}
+  .course .wrap>div:not(.media){padding-top:8px;}
   .course .media{border-radius:8px; overflow:hidden; aspect-ratio:4/5; position:relative;}
   .course .media img{width:100%; height:100%; object-fit:cover;}
   .course .tag{position:absolute; left:20px; top:20px; background:#fff; border-radius:999px; padding:8px 18px; font-size:12px; letter-spacing:.08em; text-transform:uppercase;}
