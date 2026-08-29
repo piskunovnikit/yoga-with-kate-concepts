@@ -127,6 +127,8 @@
   .review-item{border-top:2px solid var(--blue); padding-top:26px;}
   .review-item .phrase{display:block; font-family:var(--serif); font-size:clamp(23px,1.9vw,28px); line-height:1.28; color:var(--ink); quotes:"«" "»";}
   .review-item p{margin-top:16px; font-size:15px;}
+  .review-item p::before{content:"«";}
+  .review-item p::after{content:"»";}
   .review-item .who{margin-top:20px; font-size:15px; color:var(--ink);}
   .review-item .role{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--blue-deep); margin-top:2px;}
 
