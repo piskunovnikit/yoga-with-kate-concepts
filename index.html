@@ -8,61 +8,27 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Piazzolla:ital,wght@0,500;1,400&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#f4f8f9; --ink:#16323b; --ink-soft:#5f7d84; --accent:#2c6d82; --line:#dceaed; --new:#c9764f;}
+  :root{--bg:#f4f8f9; --ink:#16323b; --ink-soft:#5f7d84; --accent:#2c6d82; --line:#dceaed;}
   *{box-sizing:border-box; margin:0; padding:0;}
   body{background:var(--bg); color:var(--ink); font-family:'Work Sans',sans-serif; font-weight:300; line-height:1.6; padding:80px 24px;}
-  .wrap{max-width:880px; margin:0 auto;}
-  h1{font-family:'Piazzolla',serif; font-weight:500; font-size:clamp(30px,5vw,48px); margin-bottom:10px;}
-  .sub{color:var(--ink-soft); margin-bottom:56px; font-size:16px;}
-  .card{display:flex; align-items:center; justify-content:space-between; gap:20px; padding:24px 28px; border:1px solid var(--line); border-radius:14px; margin-bottom:16px; background:#fff; transition:transform .2s ease, border-color .2s ease;}
+  .wrap{max-width:760px; margin:0 auto;}
+  h1{font-family:'Piazzolla',serif; font-weight:500; font-size:clamp(30px,5vw,46px); margin-bottom:12px;}
+  .sub{color:var(--ink-soft); margin-bottom:48px; font-size:16px; max-width:52ch;}
+  .card{padding:26px 28px; border:1px solid var(--line); border-radius:14px; margin-bottom:16px; background:#fff; transition:transform .2s ease, border-color .2s ease;}
   .card:hover{border-color:var(--accent); transform:translateY(-2px);}
-  .card a{color:inherit; text-decoration:none; display:flex; align-items:center; justify-content:space-between; width:100%;}
-  .name{font-family:'Piazzolla',serif; font-size:22px;}
-  .tag{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-soft);}
-  .arrow{color:var(--accent); font-size:20px; flex-shrink:0; margin-left:16px;}
-  .status{font-size:12px; margin-top:6px; display:block;}
-  .status.new{color:var(--new); font-weight:500;}
-  .status.old{color:#9fb0b4;}
-  .status.hidden{color:#b0783f;}
-  .card.is-hidden{opacity:.72; border-style:dashed;}
-  .card.is-hidden:hover{opacity:1;}
-  .divider{margin-top:56px; padding-top:8px; border-top:1px solid var(--line);}
+  .card a{color:inherit; text-decoration:none; display:flex; align-items:center; justify-content:space-between; gap:16px; width:100%;}
+  .name{font-family:'Piazzolla',serif; font-size:23px; display:block; margin-bottom:4px;}
+  .tag{font-size:14px; color:var(--ink-soft);}
+  .arrow{color:var(--accent); font-size:20px; flex-shrink:0;}
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>Yoga with Kate</h1>
-  <p class="sub">Концепты сайта для Екатерины Благодацкой — отобранные варианты после обсуждения фидбэка. Реальные фото.</p>
+  <p class="sub">Два варианта сайта для Екатерины Благодацкой — одинаковое наполнение, разный характер и палитра. Фото и тексты настоящие.</p>
 
-  <p class="sub" style="margin-top:0; margin-bottom:16px;">Собрано по брифу Кати</p>
-  <div class="card"><a href="concept-10-blue-magazine.html"><span><span class="name">10. Небесно-голубой журнал</span><br><span class="tag">3 больших фото с точками · видимое меню · журнальные развороты · нежный небесно-голубой · рукописный акцент · деликатная анимация</span><span class="status new">Изменено: отзывы — крупная фраза-заголовок × 3 в ряд; палитра нежная небесно-голубая</span></span><span class="arrow">→</span></a></div>
-  <div class="card"><a href="concept-11-blue-landing.html"><span><span class="name">11. Персиковый лендинг</span><br><span class="tag">То же по брифу, но плотнее: нумерованные занятия, форматы, блок ценностей · нежный персиковый</span><span class="status new">Изменено: тот же контент, что в концепте 10, но нежная персиковая палитра; отзывы × 3 в ряд</span></span><span class="arrow">→</span></a></div>
-
-  <p class="sub" style="margin-top:40px; margin-bottom:16px;">Мои концепты — тот же контент, другой характер (предлагаю рядом с 10 и 11)</p>
-  <div class="card"><a href="concept-12-quiet.html"><span><span class="name">12. Тихий разворот</span><br><span class="tag">Почти монохром, тёплый белый · тонкие линии-разделители вместо карточек · лёгкий светлый шрифт заголовков · один сдержанный тёмно-бирюзовый акцент · кнопки-ссылки со стрелкой · отзывы — вертикальный список крупных фраз · анимация только прозрачностью</span><span class="status new">Новое: галерейный минимализм — максимум воздуха, ничего лишнего, фото сами держат страницу</span></span><span class="arrow">→</span></a></div>
-  <div class="card"><a href="concept-13-diary.html"><span><span class="name">13. Дневник практики</span><br><span class="tag">Тёплый кремовый фон · рукописный шрифт Caveat крупно в акцентах и заголовках-подписях · фото в белой рамке с лёгким наклоном, как приклеенные снимки · терракотовый акцент · округлые мягкие карточки · уютные отступы</span><span class="status new">Новое: тёплый «домашний» характер — практика как личный дневник, бережно и по-человечески</span></span><span class="arrow">→</span></a></div>
-
-  <p class="sub" style="margin-top:40px; margin-bottom:16px;">Клоны референсов</p>
-  <div class="card"><a href="clone-a-ros.html"><span><span class="name">Клон A — Yoga with Ros</span><br><span class="tag">1:1 копия структуры и цвета</span><span class="status old">Без изменений с последнего показа</span></span><span class="arrow">→</span></a></div>
-  <div class="card"><a href="clone-e-yoga128.html"><span><span class="name">Клон E — Yoga 128</span><br><span class="tag">Вёрстка home-1: слайдер, карточки, форматы, тарифы</span><span class="status old">Без изменений с последнего показа</span></span><span class="arrow">→</span></a></div>
-
-  <p class="sub" style="margin-top:40px; margin-bottom:16px;">Авторские концепты</p>
-  <div class="card"><a href="concept-1-ros-copy-blue.html"><span><span class="name">1. Копия Ros в голубом</span><br><span class="tag">Точная вёрстка референса, её выбор</span><span class="status old">Без изменений с последнего показа</span></span><span class="arrow">→</span></a></div>
-  <div class="card"><a href="concept-5-scrapbook.html"><span><span class="name">5. Тёплый скрапбук</span><br><span class="tag">Полароиды под углом, рукописный акцент</span><span class="status old">Без изменений с последнего показа</span></span><span class="arrow">→</span></a></div>
-  <div class="card"><a href="concept-8-airy-light-blue.html"><span><span class="name">8. Воздушный светлый голубой</span><br><span class="tag">Белый + бирюза, мягкая карточная сетка</span><span class="status old">Без изменений с последнего показа</span></span><span class="arrow">→</span></a></div>
-
-  <p class="sub divider" style="margin-bottom:8px;">Скрытые ранее — вернул для повторного взгляда</p>
-  <p class="sub" style="margin-top:0; margin-bottom:16px; font-size:14px;">Катя эти варианты отклонила при первом показе. Помечены пунктиром + причина отказа. Если что-то из них снова зацепит — скажи, вернём в работу.</p>
-
-  <div class="card is-hidden"><a href="clone-b-valeria.html"><span><span class="name">Клон B — Taplink Валерии Андреевой</span><br><span class="tag">Ссылки-плитки в столбик</span><span class="status hidden">Отклонён: «формат больше под резюме, чем сайт», не цепляет</span></span><span class="arrow">→</span></a></div>
-  <div class="card is-hidden"><a href="clone-c-asya.html"><span><span class="name">Клон C — Yoga with Asya</span><br><span class="tag">Журнальный формат, простой понятный визуал</span><span class="status hidden">Отклонён: «с середины становится скучно, заголовки не цепляют»</span></span><span class="arrow">→</span></a></div>
-  <div class="card is-hidden"><a href="clone-d-nina.html"><span><span class="name">Клон D — Yoga by Nina</span><br><span class="tag">Тёмная тема, крупные фразы-отзывы, цветочек-меню</span><span class="status hidden">Отклонён: «ОБО МНЕ кричит», почти-чёрный фон, резкий переход. Взяли из него: отзывы-заголовки, «давайте начнём», цветочек</span></span><span class="arrow">→</span></a></div>
-  <div class="card is-hidden"><a href="concept-2-editorial.html"><span><span class="name">2. Журнальный разворот</span><br><span class="tag">Крупная типографика, развороты фото + текст</span><span class="status hidden">Отклонён по кик-листу (нравился, но без деталей)</span></span><span class="arrow">→</span></a></div>
-  <div class="card is-hidden"><a href="concept-3-photo-essay.html"><span><span class="name">3. Фото-эссе</span><br><span class="tag">Крупные фото на весь экран, минимум текста</span><span class="status hidden">Отклонён: «вообще нет, больше как галерея фото»</span></span><span class="arrow">→</span></a></div>
-  <div class="card is-hidden"><a href="concept-4-poster-bw.html"><span><span class="name">4. Типографический постер (ч/б)</span><br><span class="tag">Ч/б + пудровый, крупное фото</span><span class="status hidden">Отклонён: бегущая строка — «это для акций/новостей». Плюс: цепляло фото + «ч/б + пудровый»</span></span><span class="arrow">→</span></a></div>
-  <div class="card is-hidden"><a href="concept-6-bento-mosaic.html"><span><span class="name">6. Бенто-мозаика</span><br><span class="tag">Плитки разного размера на первом экране</span><span class="status hidden">Отклонён: «шум, очень много сразу инфы на первом экране»</span></span><span class="arrow">→</span></a></div>
-  <div class="card is-hidden"><a href="concept-7-filmstrip.html"><span><span class="name">7. Киноплёнка</span><br><span class="tag">Горизонтальная лента кадров</span><span class="status hidden">Отклонён: «не цепляет»</span></span><span class="arrow">→</span></a></div>
-  <div class="card is-hidden"><a href="concept-9-nina-blue.html"><span><span class="name">9. Yoga by Nina в голубом</span><br><span class="tag">Вёрстка Nina, но голубая палитра, цветочек слева</span><span class="status hidden">Отклонён: «огромное начало кричит», «столько переходов и анимаций». Плюс: цвета и цветочек-меню</span></span><span class="arrow">→</span></a></div>
+  <div class="card"><a href="concept-10-blue-magazine.html"><span><span class="name">Небесно-голубой</span><span class="tag">Спокойная небесно-голубая палитра, журнальные развороты фото + текст, видимое меню, отзывы крупными фразами.</span></span><span class="arrow">→</span></a></div>
+  <div class="card"><a href="concept-11-blue-landing.html"><span><span class="name">Тёплый персиковый</span><span class="tag">То же наполнение в тёплой персиковой гамме, чуть плотнее по вёрстке.</span></span><span class="arrow">→</span></a></div>
 </div>
 </body>
 </html>
