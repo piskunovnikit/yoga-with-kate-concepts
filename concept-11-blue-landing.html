@@ -39,6 +39,8 @@
   @media(max-width:700px){ .flower-home{left:14px; bottom:14px; width:46px; height:46px;} .flower-home svg{width:26px; height:26px;} }
 
   .hand{font-family:var(--serif); font-style:italic; font-size:25px; color:var(--powder-deep); display:inline-block; line-height:1.12; letter-spacing:.005em;}
+  .hand.tg-label{display:inline-flex; align-items:center; gap:8px; font-style:normal;}
+  .hand.tg-label svg{width:22px; height:22px; flex-shrink:0;}
   .section{padding:60px 0;}
   .section.tint-blue{background:linear-gradient(to bottom, transparent, var(--blue-tint) 90px, var(--blue-tint) calc(100% - 90px), transparent);}
   .section.tint-powder{background:linear-gradient(to bottom, transparent, var(--powder-tint) 90px, var(--powder-tint) calc(100% - 90px), transparent);}
@@ -434,7 +436,7 @@
 <!-- TELEGRAM -->
 <section class="section news" id="telegram">
   <div class="wrap">
-    <span class="hand" data-reveal>телеграм</span>
+    <span class="hand tg-label" data-reveal><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>Telegram</span>
     <h2 data-reveal>Канал и бот</h2>
     <p data-reveal>Полезные посты о практике — в канале. Запись на занятия, расписание и напоминания — в боте.</p>
     <div class="tg-grid">
