@@ -45,14 +45,14 @@
   .section{padding:60px 0;}
   .section.tint-blue{background:linear-gradient(to bottom, transparent, var(--blue-tint) 90px, var(--blue-tint) calc(100% - 90px), transparent);}
   .section.tint-powder{background:linear-gradient(to bottom, transparent, var(--powder-tint) 90px, var(--powder-tint) calc(100% - 90px), transparent);}
-  /* диагональная волнистая подложка для белых секций (вариант B — пятна) */
-  .section.flow{position:relative;}
-  .section.flow::before{content:""; position:absolute; inset:-40px; z-index:0; pointer-events:none;
-    background:
-      radial-gradient(38% 46% at 12% 14%, var(--blue-tint), transparent 72%),
-      radial-gradient(44% 52% at 46% 54%, var(--powder-tint), transparent 72%),
-      radial-gradient(40% 48% at 85% 88%, var(--blue-tint), transparent 72%);
-    filter:blur(36px);}
+  /* волнистое диагональное деление для белых секций — закрашенная сторона зеркалится через секцию */
+  .section.flow{position:relative; overflow:hidden;}
+  .section.flow::before{content:""; position:absolute; inset:-12%; z-index:0; pointer-events:none;
+    background:var(--blue-tint);
+    -webkit-mask:radial-gradient(145% 125% at 4% -6%, #000 40%, rgba(0,0,0,0) 66%);
+            mask:radial-gradient(145% 125% at 4% -6%, #000 40%, rgba(0,0,0,0) 66%);
+    filter:blur(34px);}
+  .section.flow.rev::before{background:var(--powder-tint); transform:scaleX(-1);}
   .section.flow>.wrap{position:relative; z-index:1;}
 
   .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:15px 34px; border-radius:40px;
@@ -329,7 +329,7 @@
 </section>
 
 <!-- SPREAD 2 -->
-<section class="section spread flip flow">
+<section class="section spread flip flow rev">
   <div class="wrap">
     <div class="media" data-reveal><img loading="lazy" src="img-real/denim-portrait.jpg" alt="Екатерина"></div>
     <div>
@@ -389,7 +389,7 @@
 </section>
 
 <!-- COURSE -->
-<section class="section course flow">
+<section class="section course flow rev">
   <div class="wrap">
     <div class="media" data-reveal>
       <img loading="lazy" src="img-real/hands-bw.jpg" alt="Практика">
