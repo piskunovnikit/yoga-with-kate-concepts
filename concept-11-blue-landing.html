@@ -126,18 +126,20 @@
   .about .wrap{display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:center;}
   .about .media{border-radius:8px; overflow:hidden; aspect-ratio:4/5; max-height:470px;}
   .about .media img{width:100%; height:100%; object-fit:cover;}
+  .about .media.photo-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; aspect-ratio:auto; max-height:none; border-radius:0; overflow:visible;}
+  .about .media.photo-grid img{width:100%; height:236px; object-fit:cover; border-radius:8px;}
   .about h2{font-size:clamp(30px,3.8vw,44px); margin:10px 0 18px;}
   .about p{margin:0 auto 14px; max-width:460px;}
   .about .btn{margin-top:14px;}
   .about .wrap>div:not(.media){text-align:center;}
 
-  /* steps: как проходят занятия */
+  /* steps: как проходят занятия (заголовок + описание, волосяные линии) */
   .steps{text-align:center;}
-  .step-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:32px; text-align:left; margin-bottom:28px;}
-  .step-item .n{font-family:var(--serif); font-style:italic; font-size:24px; color:var(--blue-deep); margin-bottom:10px;}
-  .step-item h3{font-size:19px; margin-bottom:6px;}
-  .step-item p{font-size:14px;}
-  .steps-note{max-width:560px; margin:0 auto; font-size:15px;}
+  .steps-lead{max-width:600px; margin:-18px auto 44px; font-size:15px;}
+  .step-grid{display:grid; grid-template-columns:1fr 1fr; gap:34px 56px; text-align:left; max-width:900px; margin:0 auto;}
+  .step-item{border-top:1px solid rgba(51,49,58,.15); padding-top:18px;}
+  .step-item h3{font-size:18px; margin-bottom:6px;}
+  .step-item p{font-size:14px; max-width:42ch;}
 
   /* why: 3 points */
   .why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px; text-align:center;}
@@ -214,12 +216,19 @@
   .price-card ul{list-style:none; margin-bottom:24px;}
   .price-card li{font-size:14px; color:var(--ink-soft); padding:7px 0; border-top:1px solid var(--line);}
 
-  /* FAQ */
+  /* FAQ (аккордеон) */
   .faq-list{max-width:760px; margin:0 auto; text-align:left;}
-  .faq-item{border-top:1px solid var(--line); padding:24px 2px;}
-  .faq-item:last-child{border-bottom:1px solid var(--line);}
-  .faq-item h3{font-size:20px; margin-bottom:8px; color:var(--ink);}
-  .faq-item p{font-size:15px; max-width:64ch;}
+  .faq-item{border-top:1px solid rgba(51,49,58,.15);}
+  .faq-item:last-child{border-bottom:1px solid rgba(51,49,58,.15);}
+  .faq-item summary{list-style:none; cursor:pointer; position:relative; padding:22px 44px 22px 2px;
+    font-family:var(--serif); font-size:20px; line-height:1.3; color:var(--ink); transition:color .25s ease;}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:"+"; position:absolute; right:8px; top:50%; transform:translateY(-50%);
+    font-family:var(--sans); font-weight:300; font-size:24px; color:var(--blue-deep); transition:transform .3s cubic-bezier(.16,1,.3,1);}
+  .faq-item[open] summary::after{transform:translateY(-50%) rotate(45deg);}
+  .faq-item summary:hover{color:var(--blue-deep);}
+  .faq-item .a{padding:0 44px 24px 2px;}
+  .faq-item .a p{font-size:15px; max-width:64ch;}
 
   /* extra: корпоративная йога + ретриты */
   .extra{text-align:center;}
@@ -246,12 +255,13 @@
   .tg-card .btn{margin-top:auto;}
   .tg-card .tg-qr{width:150px; height:150px; border-radius:8px; margin-bottom:18px; image-rendering:pixelated;}
 
-  /* final cta — одна колонка по центру, фото сверху */
+  /* final cta — фото слева, текст справа */
   .start{background:linear-gradient(to bottom, transparent, var(--blue-tint) 90px, var(--blue-tint) calc(100% - 90px), transparent);}
-  .start .wrap{max-width:760px; margin:0 auto; text-align:center;}
-  .start .media{border-radius:10px; overflow:hidden; aspect-ratio:16/10; max-width:620px; margin:0 auto 40px;}
-  .start .media img{width:100%; height:100%; object-fit:cover; object-position:center 42%;}
-  .start h2{font-size:clamp(40px,6vw,72px); line-height:1.04; margin-bottom:6px;}
+  .start .wrap{display:grid; grid-template-columns:0.8fr 1.2fr; gap:70px; align-items:center;}
+  .start .media{border-radius:8px; overflow:hidden; aspect-ratio:3/4; max-height:520px;}
+  .start .media img{width:100%; height:100%; object-fit:cover; object-position:center 35%;}
+  .start .hand{font-size:30px; margin-bottom:8px;}
+  .start h2{font-size:clamp(44px,7vw,88px); line-height:1; margin-bottom:12px;}
   .start .btn{margin-top:26px;}
   .start .wrap>div:not(.media){text-align:center;}
 
@@ -343,7 +353,12 @@
 <!-- ABOUT + WHAT I DO -->
 <section class="section about" id="about">
   <div class="wrap">
-    <div class="media" data-reveal><img loading="lazy" width="1200" height="1500" src="img-real/denim-cafe-portrait.jpg" alt="Екатерина Благодацкая"></div>
+    <div class="media photo-grid" data-reveal>
+      <img loading="lazy" width="1200" height="1500" src="img-real/denim-cafe-portrait.jpg" alt="Екатерина Благодацкая">
+      <img loading="lazy" width="1200" height="1500" src="img-real/portrait-car.jpg" alt="Екатерина">
+      <img loading="lazy" width="1200" height="1500" src="img-real/arms-beach-bw.jpg" alt="Практика на берегу">
+      <img loading="lazy" width="1200" height="1500" src="img-real/split-mat-color.jpg" alt="Растяжка на коврике">
+    </div>
     <div>
       <span class="hand" data-reveal>Привет, я Екатерина Благодацкая</span>
       <h2 data-reveal>веду мягкую хатха-йогу — бережно и по уровню</h2>
@@ -358,19 +373,19 @@
 </section>
 
 <!-- HOW A CLASS GOES: steps -->
-<section class="section steps">
+<section class="section steps tint-powder">
   <div class="wrap">
     <div class="head-c">
       <span class="hand" data-reveal>Как проходят занятия</span>
       <h2 data-reveal>спокойный темп, разбор асан, дыхание</h2>
     </div>
+    <p class="steps-lead" data-reveal>Нагрузку подбираю под ваш уровень — новичку так же комфортно, как практикующему. Каждое занятие идёт по спокойному ритму.</p>
     <div class="step-grid">
-      <div class="step-item" data-reveal><div class="n">01</div><h3>Разминка</h3><p>Суставная гимнастика и дыхание — тело мягко просыпается.</p></div>
-      <div class="step-item" data-reveal><div class="n">02</div><h3>Разбор асан</h3><p>Каждую позу показываю и объясняю, поправляю прямо на занятии.</p></div>
-      <div class="step-item" data-reveal><div class="n">03</div><h3>Практика</h3><p>Связки в спокойном темпе — по вашим силам, без гонки.</p></div>
-      <div class="step-item" data-reveal><div class="n">04</div><h3>Шавасана</h3><p>5–10 минут глубокого расслабления в конце.</p></div>
+      <div class="step-item" data-reveal><h3>Разминка</h3><p>Суставная гимнастика и дыхание — тело мягко просыпается.</p></div>
+      <div class="step-item" data-reveal><h3>Разбор асан</h3><p>Каждую позу показываю и объясняю, поправляю прямо на занятии.</p></div>
+      <div class="step-item" data-reveal><h3>Практика</h3><p>Связки в спокойном темпе — по вашим силам, без гонки.</p></div>
+      <div class="step-item" data-reveal><h3>Шавасана</h3><p>5–10 минут глубокого расслабления в конце.</p></div>
     </div>
-    <p class="steps-note" data-reveal>Нагрузку подбираю под ваш уровень — новичку так же комфортно, как практикующему.</p>
   </div>
 </section>
 
@@ -421,7 +436,7 @@
 </section>
 
 <!-- FORMATS -->
-<section class="section" id="formats">
+<section class="section tint-blue" id="formats">
   <div class="wrap">
     <div class="head-c">
       <span class="hand" data-reveal>Варианты занятий</span>
@@ -445,7 +460,7 @@
 </section>
 
 <!-- EXTRA: корпоративная йога + ретриты -->
-<section class="section extra" id="extra">
+<section class="section extra tint-powder" id="extra">
   <div class="wrap">
     <span class="hand" data-reveal>Ещё веду</span>
     <h2 data-reveal>корпоративная йога и ретриты</h2>
@@ -521,44 +536,8 @@
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="section faq" id="faq">
-  <div class="wrap">
-    <div class="head-c">
-      <span class="hand" data-reveal>Коротко о важном</span>
-      <h2 data-reveal>частые вопросы</h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item" data-reveal>
-        <h3>Я никогда не занималась йогой — мне подойдёт?</h3>
-        <p>Да. Веду с самого начала: показываю каждую позу, объясняю дыхание, поправляю. Нагрузку подбираю под вас — в группе новичок занимается рядом с практикующим, и никто никого не догоняет.</p>
-      </div>
-      <div class="faq-item" data-reveal>
-        <h3>Что нужно для занятия дома?</h3>
-        <p>Коврик, удобная одежда и 2–3 метра свободного места. Для групп в Zoom — камера, чтобы я вас видела и корректировала. Блоки и ремень не обязательны — подскажу, чем заменить.</p>
-      </div>
-      <div class="faq-item" data-reveal>
-        <h3>У меня болит спина или есть ограничения. Можно заниматься?</h3>
-        <p>Обычно да, но напишите заранее — разберём, что беспокоит, и я адаптирую практику. При острых состояниях и в некоторых случаях во время беременности сначала стоит посоветоваться с врачом.</p>
-      </div>
-      <div class="faq-item" data-reveal>
-        <h3>Что если я пропущу занятие в группе?</h3>
-        <p>Присылаю запись — можно повторить дома. Пропуски по абонементу переносятся в разумных пределах, обсудим индивидуально.</p>
-      </div>
-      <div class="faq-item" data-reveal>
-        <h3>Как проходит оплата?</h3>
-        <p>Разовое занятие или абонемент — перевод по номеру телефона или через бота. Онлайн-курс оплачивается один раз, доступ остаётся навсегда.</p>
-      </div>
-      <div class="faq-item" data-reveal>
-        <h3>Онлайн — это правда работает?</h3>
-        <p>Да. В Zoom я вижу вас и поправляю не хуже, чем в зале, а заниматься можно из дома в удобное время. Многие остаются онлайн, даже когда есть возможность ходить очно.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- TELEGRAM -->
-<section class="section news" id="telegram">
+<section class="section news tint-blue" id="telegram">
   <div class="wrap">
     <span class="hand tg-label" data-reveal><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>Telegram</span>
     <h2 data-reveal>познакомимся? мой канал и бот</h2>
@@ -582,12 +561,51 @@
   </div>
 </section>
 
+<!-- FAQ (аккордеон, под блоком Telegram) -->
+<section class="section faq tint-powder" id="faq">
+  <div class="wrap">
+    <div class="head-c">
+      <span class="hand" data-reveal>Коротко о важном</span>
+      <h2 data-reveal>частые вопросы</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" data-reveal>
+        <summary>Я никогда не занималась йогой — мне подойдёт?</summary>
+        <div class="a"><p>Да. Веду с самого начала: показываю каждую позу, объясняю дыхание, поправляю. Нагрузку подбираю под вас — в группе новичок занимается рядом с практикующим, и никто никого не догоняет.</p></div>
+      </details>
+      <details class="faq-item" data-reveal>
+        <summary>Что нужно для занятия дома?</summary>
+        <div class="a"><p>Коврик, удобная одежда и 2–3 метра свободного места. Для групп в Zoom — камера, чтобы я вас видела и корректировала. Блоки и ремень не обязательны — подскажу, чем заменить.</p></div>
+      </details>
+      <details class="faq-item" data-reveal>
+        <summary>У меня болит спина или есть ограничения. Можно заниматься?</summary>
+        <div class="a"><p>Обычно да, но напишите заранее — разберём, что беспокоит, и я адаптирую практику. При острых состояниях и в некоторых случаях во время беременности сначала стоит посоветоваться с врачом.</p></div>
+      </details>
+      <details class="faq-item" data-reveal>
+        <summary>Что если я пропущу занятие в группе?</summary>
+        <div class="a"><p>Присылаю запись — можно повторить дома. Пропуски по абонементу переносятся в разумных пределах, обсудим индивидуально.</p></div>
+      </details>
+      <details class="faq-item" data-reveal>
+        <summary>Как проходит оплата?</summary>
+        <div class="a"><p>Разовое занятие или абонемент — перевод по номеру телефона или через бота. Онлайн-курс оплачивается один раз, доступ остаётся навсегда.</p></div>
+      </details>
+      <details class="faq-item" data-reveal>
+        <summary>Онлайн — это правда работает?</summary>
+        <div class="a"><p>Да. В Zoom я вижу вас и поправляю не хуже, чем в зале, а заниматься можно из дома в удобное время. Многие остаются онлайн, даже когда есть возможность ходить очно.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- FINAL CTA -->
 <section class="section start" id="start">
   <div class="wrap">
-    <div class="media" data-reveal><img loading="lazy" width="1400" height="880" src="img-real/embankment-blue.jpg" alt="Екатерина в асане на берегу"></div>
-    <h2 data-reveal>давайте начнём</h2>
-    <a href="https://t.me/YogaKate94bot" target="_blank" rel="noopener" class="btn btn-blue" data-reveal>Записаться на занятие</a>
+    <div class="media" data-reveal><img loading="lazy" width="1200" height="1500" src="img-real/tree-pose-beach.jpg" alt="Екатерина в асане на берегу" style="object-position:center 12%;"></div>
+    <div>
+      <span class="hand" data-reveal>первый шаг — самый простой</span>
+      <h2 data-reveal>Давайте<br>начнём</h2>
+      <a href="https://t.me/YogaKate94bot" target="_blank" rel="noopener" class="btn btn-blue" data-reveal>Записаться на занятие</a>
+    </div>
   </div>
 </section>
 
@@ -609,7 +627,7 @@
           <li><a href="#classes">Хатха-поток</a></li>
           <li><a href="#formats">Индивидуально</a></li>
           <li><a href="#formats">Онлайн-курс</a></li>
-          <li><a href="#extra">Корпоративам и ретриты</a></li>
+          <li><a href="#extra">Корпоративы и ретриты</a></li>
         </ul>
       </div>
       <div>
