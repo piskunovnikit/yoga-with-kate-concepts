@@ -100,7 +100,8 @@
 
   /* why: 3 points */
   .why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px; text-align:left;}
-  .why-item .no{font-family:var(--serif); font-style:italic; font-size:22px; color:var(--blue-deep); margin-bottom:12px;}
+  .why-item .ic{display:block; width:44px; height:44px; margin-bottom:14px; background:var(--blue-deep);
+    -webkit-mask:var(--ic) center/contain no-repeat; mask:var(--ic) center/contain no-repeat;}
   .why-item h3{font-size:24px; margin-bottom:8px;}
   .why-item p{font-size:15px;}
 
@@ -321,9 +322,9 @@
       <h2 data-reveal>Почему стоит заняться йогой</h2>
     </div>
     <div class="why-grid">
-      <div class="why-item" data-reveal><div class="no">01</div><h3>Тело</h3><p>Возвращаются баланс, сила и подвижность. Спина перестаёт болеть от сидячей работы.</p></div>
-      <div class="why-item" data-reveal><div class="no">02</div><h3>Ум</h3><p>Дыхание и медленный темп учат замечать мысли и не залипать в них.</p></div>
-      <div class="why-item" data-reveal><div class="no">03</div><h3>Состояние</h3><p>Практика помогает восстанавливаться после стресса и возвращать спокойствие.</p></div>
+      <div class="why-item" data-reveal><span class="ic" style="--ic:url(img-real/free-icon-yoga-pose-2689030.png)"></span><h3>Тело</h3><p>Возвращаются баланс, сила и подвижность. Спина перестаёт болеть от сидячей работы.</p></div>
+      <div class="why-item" data-reveal><span class="ic" style="--ic:url(img-real/free-icon-lotus-2982214.png)"></span><h3>Ум</h3><p>Дыхание и медленный темп учат замечать мысли и не залипать в них.</p></div>
+      <div class="why-item" data-reveal><span class="ic" style="--ic:url(img-real/free-icon-yoga-mat-4930783.png)"></span><h3>Состояние</h3><p>Практика помогает восстанавливаться после стресса и возвращать спокойствие.</p></div>
     </div>
   </div>
 </section>
