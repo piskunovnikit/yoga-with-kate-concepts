@@ -103,8 +103,8 @@
   .why{text-align:center;}
   .why .hand{margin-bottom:10px;}
   .why h2{font-size:clamp(30px,3.8vw,44px); margin-bottom:40px;}
-  .why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px; text-align:left;}
-  .why-item .ic{display:block; width:44px; height:44px; margin-bottom:14px; background:var(--blue-deep);
+  .why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px; text-align:center;}
+  .why-item .ic{display:block; width:48px; height:48px; margin:0 auto 14px; background:var(--blue-deep);
     -webkit-mask:var(--ic) center/contain no-repeat; mask:var(--ic) center/contain no-repeat;}
   .why-item h3{font-size:25px; margin-bottom:8px;}
   .why-item p{font-size:15px;}
@@ -186,11 +186,13 @@
   /* ---------- final CTA with photo ---------- */
   .start{background:linear-gradient(to bottom, transparent, var(--blue-tint) 90px, var(--blue-tint) calc(100% - 90px), transparent);}
   .start .wrap{display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:center;}
+  .start .wrap>div:not(.media){text-align:center;}
   .start .media{border-radius:8px; overflow:hidden; aspect-ratio:3/4;}
   .start .media img{width:100%; height:100%; object-fit:cover; object-position:center 35%;}
   .start h2{font-size:clamp(44px,7vw,88px); line-height:1; margin-bottom:12px;}
   .start .hand{font-size:30px; margin-bottom:8px;}
-  .start .btn{margin-top:26px;}
+  .start .btn{margin-top:26px; box-shadow:0 16px 40px -12px rgba(69,122,141,.42), 0 4px 12px rgba(69,122,141,.18);}
+  .start .btn:hover{box-shadow:0 22px 52px -12px rgba(69,122,141,.5), 0 6px 16px rgba(69,122,141,.22);}
 
   /* ---------- footer ---------- */
   footer{background:#fff; border-top:1px solid var(--line); padding:70px 0 40px;}
@@ -289,9 +291,9 @@
     <span class="hand" data-reveal>зачем это нужно</span>
     <h2 data-reveal>Три опоры практики</h2>
     <div class="why-grid">
-      <div class="why-item" data-reveal><span class="ic" style="--ic:url(img-real/free-icon-yoga-pose-2689030.png)"></span><h3>Тело</h3><p>Возвращаются баланс, сила и подвижность. Спина перестаёт болеть от сидячей работы.</p></div>
-      <div class="why-item" data-reveal><span class="ic" style="--ic:url(img-real/free-icon-lotus-2982214.png)"></span><h3>Ум</h3><p>Дыхание и медленный темп учат замечать мысли и не залипать в них.</p></div>
-      <div class="why-item" data-reveal><span class="ic" style="--ic:url(img-real/free-icon-yoga-mat-4930783.png)"></span><h3>Состояние</h3><p>Практика помогает восстанавливаться после стресса и возвращать себе спокойствие.</p></div>
+      <div class="why-item" data-reveal><span class="ic" style="--ic:url(img-real/free-icon-meditation-17677715.png)"></span><h3>Тело</h3><p>Возвращаются баланс, сила и подвижность. Спина перестаёт болеть от сидячей работы.</p></div>
+      <div class="why-item" data-reveal><span class="ic" style="--ic:url(img-real/free-icon-yoga-3696347.png)"></span><h3>Ум</h3><p>Дыхание и медленный темп учат замечать мысли и не залипать в них.</p></div>
+      <div class="why-item" data-reveal><span class="ic" style="--ic:url(img-real/free-icon-harmony-17277865.png)"></span><h3>Состояние</h3><p>Практика помогает восстанавливаться после стресса и возвращать себе спокойствие.</p></div>
     </div>
   </div>
 </section>
@@ -318,7 +320,7 @@
     <div class="fmt-grid">
       <div class="fmt-card" data-reveal>
         <div class="img"><img loading="lazy" src="img-real/group-stretch-color.jpg" alt="Группа в Zoom"></div>
-        <div class="cap"><span class="ic" style="--ic:url(img-real/free-icon-yoga-11465915.png)"></span><div class="lbl">Группа в Zoom</div><h3>Занятия 3 раза в неделю</h3><p>В реальном времени, 1,5 часа. Я вижу вас и поправляю асаны прямо на занятии.</p><div class="price">от 700 ₽</div></div>
+        <div class="cap"><span class="ic" style="--ic:url(img-real/free-icon-yoga-pose-2689123.png)"></span><div class="lbl">Группа в Zoom</div><h3>Занятия 3 раза в неделю</h3><p>В реальном времени, 1,5 часа. Я вижу вас и поправляю асаны прямо на занятии.</p><div class="price">от 700 ₽</div></div>
       </div>
       <div class="fmt-card" data-reveal>
         <div class="img"><img loading="lazy" src="img-real/feet-mat.jpg" alt="Индивидуально"></div>
