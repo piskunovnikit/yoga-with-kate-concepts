@@ -150,6 +150,11 @@
   .course p{margin-bottom:24px; max-width:440px;}
   .course ul{list-style:none; margin-bottom:28px;}
   .course li{padding:8px 0; border-top:1px solid var(--line); font-size:15px; color:var(--ink-soft);}
+  /* split-секции фото+текст — текстовая колонка по центру */
+  .spread .wrap>div:not(.media),
+  .course .wrap>div:not(.media){text-align:center;}
+  .spread p,.course p{margin-left:auto; margin-right:auto;}
+  .course ul{display:inline-block; text-align:left;}
 
   /* ---------- pricing ---------- */
   .pricing{text-align:center;}
