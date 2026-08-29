@@ -123,9 +123,6 @@
   .spread.flip .media{order:2;}
   .spread .media{border-radius:8px; overflow:hidden; aspect-ratio:4/5; max-height:470px;}
   .spread .media img{width:100%; height:100%; object-fit:cover;}
-  /* коллаж из 4 фото вместо одного портрета */
-  .spread .media.photo-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; aspect-ratio:auto; max-height:none; border-radius:0; overflow:visible;}
-  .spread .media.photo-grid img{width:100%; height:236px; object-fit:cover; border-radius:8px;}
   .spread h2{font-size:clamp(30px,3.8vw,44px); margin:12px 0 20px;}
   .spread p{margin-bottom:16px; max-width:460px;}
   .spread .btn{margin-top:14px;}
@@ -254,24 +251,23 @@
   .tg-card .btn{margin-top:auto;}
   .tg-card .tg-qr{width:150px; height:150px; border-radius:8px; margin-bottom:18px; image-rendering:pixelated;}
 
-  /* ---------- final CTA — фото слева, текст справа ---------- */
-  .start{background:linear-gradient(to bottom, transparent, var(--blue-tint) 90px, var(--blue-tint) calc(100% - 90px), transparent);}
-  .start .wrap{display:grid; grid-template-columns:0.8fr 1.2fr; gap:70px; align-items:center;}
-  .start .media{border-radius:8px; overflow:hidden; aspect-ratio:3/4; max-height:520px;}
-  .start .media img{width:100%; height:100%; object-fit:cover; object-position:center 35%;}
+  /* ---------- final CTA — коллаж из 4 фото слева, текст справа ---------- */
+  .start .wrap{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  .start .media{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .start .media img{width:100%; height:232px; object-fit:cover; border-radius:8px;}
   .start .hand{font-size:30px; margin-bottom:8px;}
-  .start h2{font-size:clamp(44px,7vw,88px); line-height:1; margin-bottom:12px;}
+  .start h2{font-size:clamp(40px,6vw,76px); line-height:1.05; margin-bottom:12px;}
   .start .btn{margin-top:26px;}
 
   /* ---------- footer ---------- */
   footer{background:#fff; border-top:1px solid var(--line); padding:70px 0 40px;}
-  .foot-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:40px; margin-bottom:48px;}
-  footer h4{font-size:14px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); margin-bottom:14px;}
+  .foot-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:36px; margin-bottom:46px;}
+  footer h4{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); margin-bottom:14px;}
   footer .crest{margin-bottom:14px; color:#6b7f86;}
   footer ul{list-style:none;}
   footer li{padding:5px 0; font-size:14px; color:var(--ink-soft);}
   footer li a:hover{color:var(--blue-deep);}
-  .foot-bottom{border-top:1px solid var(--line); padding-top:24px; font-size:13px; color:#7c8b8f;}
+  .foot-bottom{border-top:1px solid var(--line); padding-top:24px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; color:#7c8b8f;}
   .foot-lead{font-size:14px; max-width:280px;}
 
   /* ---------- reveal (gentle) ---------- */
@@ -349,12 +345,7 @@
 <!-- ABOUT + WHAT I DO (merged) -->
 <section class="section spread" id="about">
   <div class="wrap">
-    <div class="media photo-grid" data-reveal>
-      <img loading="lazy" width="1200" height="1500" src="img-real/denim-cafe-portrait.jpg" alt="Екатерина Благодацкая">
-      <img loading="lazy" width="1200" height="1500" src="img-real/portrait-car.jpg" alt="Екатерина">
-      <img loading="lazy" width="1200" height="1500" src="img-real/arms-beach-bw.jpg" alt="Практика на берегу">
-      <img loading="lazy" width="1200" height="1500" src="img-real/split-mat-color.jpg" alt="Растяжка на коврике">
-    </div>
+    <div class="media" data-reveal><img loading="lazy" width="1200" height="1500" src="img-real/denim-cafe-portrait.jpg" alt="Екатерина Благодацкая"></div>
     <div>
       <span class="hand" data-reveal>Привет, я Екатерина Благодацкая</span>
       <h2 data-reveal>учу чувствовать тело, а не просто повторять позы</h2>
@@ -382,7 +373,7 @@
 </section>
 
 <!-- HOW A CLASS GOES: steps -->
-<section class="section steps tint-powder">
+<section class="section steps">
   <div class="wrap">
     <span class="hand" data-reveal>Как проходят занятия</span>
     <h2 data-reveal>спокойный темп, разбор асан, дыхание</h2>
@@ -397,7 +388,7 @@
 </section>
 
 <!-- FORMATS -->
-<section class="section formats" id="formats">
+<section class="section formats tint-powder" id="formats">
   <div class="wrap">
     <span class="hand" data-reveal>Варианты занятий</span>
     <h2 data-reveal>выберите удобный формат</h2>
@@ -419,7 +410,7 @@
 </section>
 
 <!-- EXTRA: корпоративная йога + ретриты -->
-<section class="section extra tint-blue" id="extra">
+<section class="section extra" id="extra">
   <div class="wrap">
     <span class="hand" data-reveal>Ещё веду</span>
     <h2 data-reveal>корпоративная йога и ретриты</h2>
@@ -438,7 +429,7 @@
 </section>
 
 <!-- REVIEWS -->
-<section class="section reviews tint-powder" id="reviews">
+<section class="section reviews tint-blue" id="reviews">
   <div class="wrap">
     <h2 class="hand" data-reveal>Отзывы</h2>
     <div class="reviews-grid">
@@ -483,7 +474,7 @@
 </section>
 
 <!-- PRICING -->
-<section class="section pricing tint-blue" id="pricing">
+<section class="section pricing tint-powder" id="pricing">
   <div class="wrap">
     <h2 data-reveal>тарифы</h2>
     <div class="price-grid">
@@ -495,7 +486,7 @@
 </section>
 
 <!-- TELEGRAM -->
-<section class="section news tint-powder" id="telegram">
+<section class="section news" id="telegram">
   <div class="wrap">
     <span class="hand tg-label" data-reveal><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>Telegram</span>
     <h2 data-reveal>познакомимся? мой канал и бот</h2>
@@ -556,10 +547,15 @@
 <!-- FINAL CTA -->
 <section class="section start" id="start">
   <div class="wrap">
-    <div class="media" data-reveal><img loading="lazy" width="1200" height="1500" src="img-real/tree-pose-beach.jpg" alt="Екатерина в асане на берегу" style="object-position:center 12%;"></div>
+    <div class="media" data-reveal>
+      <img loading="lazy" width="1200" height="1500" src="img-real/tree-pose-beach.jpg" alt="Екатерина в асане на берегу">
+      <img loading="lazy" width="1200" height="1500" src="img-real/portrait-car.jpg" alt="Екатерина">
+      <img loading="lazy" width="1200" height="1500" src="img-real/arms-beach-bw.jpg" alt="Практика на берегу">
+      <img loading="lazy" width="1200" height="1500" src="img-real/split-mat-color.jpg" alt="Растяжка на коврике">
+    </div>
     <div>
       <span class="hand" data-reveal>первый шаг — самый простой</span>
-      <h2 data-reveal>Давайте<br>начнём</h2>
+      <h2 data-reveal>Давайте начнём</h2>
       <a href="https://t.me/YogaKate94bot" target="_blank" rel="noopener" class="btn btn-blue" data-reveal>Записаться на занятие</a>
     </div>
   </div>
@@ -577,22 +573,31 @@
         <p class="foot-lead">Хатха-йога с Екатериной Благодацкой. Санкт-Петербург, онлайн и очно.</p>
       </div>
       <div>
-        <h4>Разделы</h4>
+        <h4>Занятия</h4>
         <ul>
-          <li><a href="#about">Обо мне</a></li>
-          <li><a href="#why">Ценности</a></li>
-          <li><a href="#formats">Занятия</a></li>
-          <li><a href="#pricing">Тарифы</a></li>
-          <li><a href="#faq">Вопросы</a></li>
+          <li><a href="#formats">Группа в Zoom</a></li>
+          <li><a href="#formats">Онлайн-курс</a></li>
+          <li><a href="#formats">Индивидуально</a></li>
           <li><a href="#extra">Корпоративы и ретриты</a></li>
         </ul>
       </div>
       <div>
-        <h4>Связаться</h4>
+        <h4>Разделы</h4>
         <ul>
+          <li><a href="#about">Обо мне</a></li>
+          <li><a href="#why">Ценности</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#pricing">Тарифы</a></li>
+          <li><a href="#faq">Вопросы</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li>Санкт-Петербург</li>
           <li><a href="https://t.me/blazhka3710" target="_blank" rel="noopener">Написать в Telegram</a></li>
-          <li><a href="https://t.me/blagorhythm" target="_blank" rel="noopener">Канал @blagorhythm</a></li>
-          <li><a href="https://t.me/YogaKate94bot" target="_blank" rel="noopener">Бот @YogaKate94bot</a></li>
+          <li><a href="https://t.me/blagorhythm" target="_blank" rel="noopener">@blagorhythm</a></li>
+          <li><a href="https://t.me/YogaKate94bot" target="_blank" rel="noopener">@YogaKate94bot</a></li>
           <li>8 913 038 79**</li>
         </ul>
       </div>

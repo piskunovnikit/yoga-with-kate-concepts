@@ -126,8 +126,6 @@
   .about .wrap{display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:center;}
   .about .media{border-radius:8px; overflow:hidden; aspect-ratio:4/5; max-height:470px;}
   .about .media img{width:100%; height:100%; object-fit:cover;}
-  .about .media.photo-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; aspect-ratio:auto; max-height:none; border-radius:0; overflow:visible;}
-  .about .media.photo-grid img{width:100%; height:236px; object-fit:cover; border-radius:8px;}
   .about h2{font-size:clamp(30px,3.8vw,44px); margin:10px 0 18px;}
   .about p{margin:0 auto 14px; max-width:460px;}
   .about .btn{margin-top:14px;}
@@ -255,13 +253,12 @@
   .tg-card .btn{margin-top:auto;}
   .tg-card .tg-qr{width:150px; height:150px; border-radius:8px; margin-bottom:18px; image-rendering:pixelated;}
 
-  /* final cta — фото слева, текст справа */
-  .start{background:linear-gradient(to bottom, transparent, var(--blue-tint) 90px, var(--blue-tint) calc(100% - 90px), transparent);}
-  .start .wrap{display:grid; grid-template-columns:0.8fr 1.2fr; gap:70px; align-items:center;}
-  .start .media{border-radius:8px; overflow:hidden; aspect-ratio:3/4; max-height:520px;}
-  .start .media img{width:100%; height:100%; object-fit:cover; object-position:center 35%;}
+  /* final cta — коллаж из 4 фото слева, текст справа */
+  .start .wrap{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;}
+  .start .media{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .start .media img{width:100%; height:232px; object-fit:cover; border-radius:8px;}
   .start .hand{font-size:30px; margin-bottom:8px;}
-  .start h2{font-size:clamp(44px,7vw,88px); line-height:1; margin-bottom:12px;}
+  .start h2{font-size:clamp(40px,6vw,76px); line-height:1.05; margin-bottom:12px;}
   .start .btn{margin-top:26px;}
   .start .wrap>div:not(.media){text-align:center;}
 
@@ -353,12 +350,7 @@
 <!-- ABOUT + WHAT I DO -->
 <section class="section about" id="about">
   <div class="wrap">
-    <div class="media photo-grid" data-reveal>
-      <img loading="lazy" width="1200" height="1500" src="img-real/denim-cafe-portrait.jpg" alt="Екатерина Благодацкая">
-      <img loading="lazy" width="1200" height="1500" src="img-real/portrait-car.jpg" alt="Екатерина">
-      <img loading="lazy" width="1200" height="1500" src="img-real/arms-beach-bw.jpg" alt="Практика на берегу">
-      <img loading="lazy" width="1200" height="1500" src="img-real/split-mat-color.jpg" alt="Растяжка на коврике">
-    </div>
+    <div class="media" data-reveal><img loading="lazy" width="1200" height="1500" src="img-real/denim-cafe-portrait.jpg" alt="Екатерина Благодацкая"></div>
     <div>
       <span class="hand" data-reveal>Привет, я Екатерина Благодацкая</span>
       <h2 data-reveal>веду мягкую хатха-йогу — бережно и по уровню</h2>
@@ -373,7 +365,7 @@
 </section>
 
 <!-- HOW A CLASS GOES: steps -->
-<section class="section steps tint-powder">
+<section class="section steps tint-blue">
   <div class="wrap">
     <div class="head-c">
       <span class="hand" data-reveal>Как проходят занятия</span>
@@ -390,7 +382,7 @@
 </section>
 
 <!-- WHY YOGA -->
-<section class="section tint-blue" id="why">
+<section class="section" id="why">
   <div class="wrap">
     <div class="head-c">
       <span class="hand" data-reveal>Зачем это нужно</span>
@@ -405,7 +397,7 @@
 </section>
 
 <!-- CLASSES NUMBERED -->
-<section class="section" id="classes">
+<section class="section tint-powder" id="classes">
   <div class="wrap">
     <div class="head-c">
       <span class="hand" data-reveal>Что я веду</span>
@@ -421,7 +413,7 @@
 </section>
 
 <!-- VALUES -->
-<section class="section tint-powder" id="values">
+<section class="section" id="values">
   <div class="wrap">
     <div class="head-c">
       <span class="hand" data-reveal>Как я работаю</span>
@@ -460,7 +452,7 @@
 </section>
 
 <!-- EXTRA: корпоративная йога + ретриты -->
-<section class="section extra tint-powder" id="extra">
+<section class="section extra" id="extra">
   <div class="wrap">
     <span class="hand" data-reveal>Ещё веду</span>
     <h2 data-reveal>корпоративная йога и ретриты</h2>
@@ -479,7 +471,7 @@
 </section>
 
 <!-- REVIEWS -->
-<section class="section tint-blue" id="reviews">
+<section class="section tint-powder" id="reviews">
   <div class="wrap">
     <h2 class="hand rev-h" data-reveal>Отзывы</h2>
     <div class="reviews-grid">
@@ -523,7 +515,7 @@
 </section>
 
 <!-- PRICING -->
-<section class="section tint-powder" id="pricing">
+<section class="section tint-blue" id="pricing">
   <div class="wrap">
     <div class="head-c">
       <h2 data-reveal>тарифы</h2>
@@ -537,7 +529,7 @@
 </section>
 
 <!-- TELEGRAM -->
-<section class="section news tint-blue" id="telegram">
+<section class="section news" id="telegram">
   <div class="wrap">
     <span class="hand tg-label" data-reveal><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>Telegram</span>
     <h2 data-reveal>познакомимся? мой канал и бот</h2>
@@ -600,10 +592,15 @@
 <!-- FINAL CTA -->
 <section class="section start" id="start">
   <div class="wrap">
-    <div class="media" data-reveal><img loading="lazy" width="1200" height="1500" src="img-real/tree-pose-beach.jpg" alt="Екатерина в асане на берегу" style="object-position:center 12%;"></div>
+    <div class="media" data-reveal>
+      <img loading="lazy" width="1200" height="1500" src="img-real/tree-pose-beach.jpg" alt="Екатерина в асане на берегу">
+      <img loading="lazy" width="1200" height="1500" src="img-real/portrait-car.jpg" alt="Екатерина">
+      <img loading="lazy" width="1200" height="1500" src="img-real/arms-beach-bw.jpg" alt="Практика на берегу">
+      <img loading="lazy" width="1200" height="1500" src="img-real/split-mat-color.jpg" alt="Растяжка на коврике">
+    </div>
     <div>
       <span class="hand" data-reveal>первый шаг — самый простой</span>
-      <h2 data-reveal>Давайте<br>начнём</h2>
+      <h2 data-reveal>Давайте начнём</h2>
       <a href="https://t.me/YogaKate94bot" target="_blank" rel="noopener" class="btn btn-blue" data-reveal>Записаться на занятие</a>
     </div>
   </div>
