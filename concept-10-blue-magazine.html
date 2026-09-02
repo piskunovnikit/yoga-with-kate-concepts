@@ -113,6 +113,12 @@
   .hero-dots{position:absolute; left:0; right:0; bottom:30px; z-index:3; display:flex; gap:12px; justify-content:center;}
   .hero-dots button{width:9px; height:9px; border-radius:50%; border:1px solid rgba(255,255,255,.8); background:transparent; cursor:pointer; padding:0; transition:background-color .3s ease;}
   .hero-dots button.on{background:#fff;}
+  .hero-nav{position:absolute; top:0; bottom:0; width:26%; z-index:2; border:0; padding:0 18px; background:transparent; cursor:pointer; display:flex; align-items:center; -webkit-tap-highlight-color:transparent;}
+  .hero-nav.prev{left:0; justify-content:flex-start;}
+  .hero-nav.next{right:0; justify-content:flex-end;}
+  .hero-nav span{display:grid; place-items:center; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.2); color:#fff; font-family:var(--sans); font-size:24px; line-height:1; backdrop-filter:blur(2px); opacity:0; transform:scale(.9); transition:opacity .25s ease, transform .25s ease;}
+  .hero:hover .hero-nav span,.hero-nav:focus-visible span{opacity:1; transform:scale(1);}
+  @media(hover:none){ .hero-nav span{opacity:.5;} }
 
   /* ---------- spread: photo + text ---------- */
   .spread .wrap{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
@@ -347,6 +353,8 @@
       <span class="hand">Йога с Екатериной Благодацкой</span>
     </div>
   </div>
+  <button class="hero-nav prev" id="heroPrev" aria-label="Предыдущее фото"><span aria-hidden="true">‹</span></button>
+  <button class="hero-nav next" id="heroNext" aria-label="Следующее фото"><span aria-hidden="true">›</span></button>
   <div class="hero-dots" id="heroDots"></div>
 </section>
 
@@ -662,22 +670,26 @@
     els.forEach(function(el){ obs.observe(el); });
   } else { els.forEach(function(el){ el.classList.add('vis'); }); }
 
-  /* hero: 3 photos, switch only by dot click (no auto-rotate) */
+  /* hero: 3 photos — switch by dot click or tap on left/right edge (no auto-rotate) */
   var hs = [].slice.call(document.querySelectorAll('.hero-slide'));
   var hd = document.getElementById('heroDots');
-  var startIdx = (window.matchMedia && window.matchMedia('(max-width:700px)').matches) ? 1 : 0;
-  if(startIdx) hs.forEach(function(s, j){ s.classList.toggle('on', j === startIdx); });
+  var idx = (window.matchMedia && window.matchMedia('(max-width:700px)').matches) ? 1 : 0;
+  function heroGo(i){
+    idx = (i + hs.length) % hs.length;
+    hs.forEach(function(s,j){ s.classList.toggle('on', j===idx); });
+    if(hd) [].slice.call(hd.children).forEach(function(d,j){ d.classList.toggle('on', j===idx); });
+  }
   if(hd && hs.length){
     hs.forEach(function(_, i){
       var b = document.createElement('button');
-      if(i===startIdx) b.className = 'on';
       b.setAttribute('aria-label', 'Фото ' + (i+1));
-      b.addEventListener('click', function(){
-        hs.forEach(function(s,j){ s.classList.toggle('on', j===i); });
-        [].slice.call(hd.children).forEach(function(d,j){ d.classList.toggle('on', j===i); });
-      });
+      b.addEventListener('click', function(){ heroGo(i); });
       hd.appendChild(b);
     });
+    var hp = document.getElementById('heroPrev'), hn = document.getElementById('heroNext');
+    hp && hp.addEventListener('click', function(){ heroGo(idx-1); });
+    hn && hn.addEventListener('click', function(){ heroGo(idx+1); });
+    heroGo(idx);
   }
 
 })();
