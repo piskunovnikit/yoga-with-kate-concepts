@@ -102,15 +102,20 @@
   .burger span{width:24px; height:2px; background:var(--ink); transition:background-color .3s ease;}
 
   /* ---------- hero: 3 big photos, switch by dots (no auto-rotate) ---------- */
-  .hero{position:relative;}
-  .hero-row{display:grid; grid-template-columns:repeat(3,1fr); gap:6px;}
-  .hero-cell{aspect-ratio:3/4; overflow:hidden; background:var(--blue-tint);}
-  .hero-cell img{width:100%; height:100%; object-fit:cover; display:block;}
-  .hero-cell:first-child{position:relative;}
-  .hero-cell:first-child::after{content:""; position:absolute; inset:auto 0 0 0; height:55%; background:linear-gradient(to top, rgba(28,40,44,.62), transparent); pointer-events:none;}
-  .hero-cap{position:absolute; left:0; bottom:32px; width:33.333%; z-index:3;}
-  .hero-cap .wrap{display:flex; flex-direction:column; align-items:flex-start; gap:8px; max-width:none; padding:0 24px;}
-  .hero-cap .hand{color:#fff; font-size:clamp(21px,2.3vw,30px); text-shadow:0 2px 14px rgba(20,30,34,.55);}
+  .hero{height:84dvh; min-height:540px; position:relative; overflow:hidden;}
+  .hero-slide{position:absolute; inset:0; opacity:0; transition:opacity .6s ease;}
+  .hero-slide.on{opacity:1;}
+  .hero-slide img{width:100%; height:100%; object-fit:cover;}
+  .hero::after{content:""; position:absolute; inset:auto 0 0 0; height:40%; background:linear-gradient(to top, rgba(43,60,66,.35), transparent); z-index:1;}
+  .hero-cap{position:absolute; left:0; right:0; bottom:64px; z-index:3;}
+  .hero-cap .wrap{display:flex; flex-direction:column; align-items:flex-start; gap:8px;}
+  .hero-cap .hand{color:#fff; font-size:32px; text-shadow:0 2px 14px rgba(20,30,34,.5);}
+  .hero-dots{position:absolute; left:0; right:0; bottom:30px; z-index:3; display:flex; gap:12px; justify-content:center;}
+  .hero-dots button{width:9px; height:9px; border-radius:50%; border:1px solid rgba(255,255,255,.8); background:transparent; cursor:pointer; padding:0; transition:background-color .3s ease;}
+  .hero-dots button.on{background:#fff;}
+  .hero-nav{position:absolute; top:0; bottom:0; width:30%; z-index:2; border:0; padding:0; margin:0; background:transparent; cursor:pointer; -webkit-tap-highlight-color:transparent;}
+  .hero-nav.prev{left:0;}
+  .hero-nav.next{right:0;}
 
   /* ---------- spread: photo + text ---------- */
   .spread .wrap{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
@@ -303,13 +308,11 @@
     .foot-grid>div:first-child{grid-column:1 / -1;}
     .foot-grid>div:nth-child(3){justify-self:end; text-align:left;}
     .section{padding:44px 0;}
-    .hero-cell{aspect-ratio:1/2;}
-    .hero-cap{position:static; width:auto; margin-top:16px;}
-    .hero-cap .hand{color:var(--ink); text-shadow:none; font-size:24px;}
-    .hero-cell:first-child::after{display:none;}
+    .hero{height:76dvh;}
   }
   @media (prefers-reduced-motion: reduce){
     [data-reveal]{opacity:1; transform:none;}
+    .hero-slide{transition:none;}
     *,*::before,*::after{animation-duration:.01ms !important; transition-duration:.01ms !important;}
   }
 </style>
@@ -345,16 +348,17 @@
 <!-- HERO -->
 <section class="hero" id="top">
   <h1 class="sr-only">Хатха-йога с Екатериной Благодацкой — Санкт-Петербург, онлайн и очно</h1>
-  <div class="hero-row">
-    <div class="hero-cell"><img fetchpriority="high" width="1179" height="786" src="img-real/group-stretch-color.jpg" alt="Екатерина в асане в студии" style="object-position:center 40%;"></div>
-    <div class="hero-cell"><img loading="lazy" width="1305" height="2284" src="img-real/embankment-blue.jpg" alt="Екатерина в асане на набережной" style="object-position:center 60%;"></div>
-    <div class="hero-cell"><img loading="lazy" width="872" height="1280" src="img-real/meditation-bw.jpg" alt="Екатерина в медитации" style="object-position:center 45%;"></div>
-  </div>
+  <div class="hero-slide on"><img loading="lazy" fetchpriority="high" width="1600" height="1100" src="img-real/group-stretch-color.jpg" alt="Екатерина в асане в студии" style="object-position:center 40%;"></div>
+  <div class="hero-slide"><img loading="lazy" width="1200" height="1500" src="img-real/embankment-blue.jpg" alt="Екатерина в асане на набережной" style="object-position:center 66%;"></div>
+  <div class="hero-slide"><img loading="lazy" width="1200" height="1500" src="img-real/meditation-bw.jpg" alt="Екатерина в медитации" style="object-position:center 58%;"></div>
   <div class="hero-cap">
     <div class="wrap">
       <span class="hand">Йога с Екатериной Благодацкой</span>
     </div>
   </div>
+  <button class="hero-nav prev" id="heroPrev" aria-label="Предыдущее фото"></button>
+  <button class="hero-nav next" id="heroNext" aria-label="Следующее фото"></button>
+  <div class="hero-dots" id="heroDots"></div>
 </section>
 
 <!-- ABOUT + WHAT I DO (merged) -->
@@ -670,6 +674,28 @@
     }, {threshold:0, rootMargin:'0px 0px 14% 0px'});
     els.forEach(function(el){ obs.observe(el); });
   } else { els.forEach(function(el){ el.classList.add('vis'); }); }
+
+  /* hero: 3 photos — switch by dot click or tap on left/right edge (no auto-rotate) */
+  var hs = [].slice.call(document.querySelectorAll('.hero-slide'));
+  var hd = document.getElementById('heroDots');
+  var idx = (window.matchMedia && window.matchMedia('(max-width:700px)').matches) ? 1 : 0;
+  function heroGo(i){
+    idx = (i + hs.length) % hs.length;
+    hs.forEach(function(s,j){ s.classList.toggle('on', j===idx); });
+    if(hd) [].slice.call(hd.children).forEach(function(d,j){ d.classList.toggle('on', j===idx); });
+  }
+  if(hd && hs.length){
+    hs.forEach(function(_, i){
+      var b = document.createElement('button');
+      b.setAttribute('aria-label', 'Фото ' + (i+1));
+      b.addEventListener('click', function(){ heroGo(i); });
+      hd.appendChild(b);
+    });
+    var hp = document.getElementById('heroPrev'), hn = document.getElementById('heroNext');
+    hp && hp.addEventListener('click', function(){ heroGo(idx-1); });
+    hn && hn.addEventListener('click', function(){ heroGo(idx+1); });
+    heroGo(idx);
+  }
 
 })();
 </script>
