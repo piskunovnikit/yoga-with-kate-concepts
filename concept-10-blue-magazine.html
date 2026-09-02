@@ -214,6 +214,14 @@
   .price-card .amt{font-family:var(--serif); font-size:36px; color:var(--blue-deep); margin:16px 0; font-variant-numeric:tabular-nums;}
   .price-card ul{list-style:none; margin-bottom:26px;}
   .price-card li{font-size:14px; color:var(--ink-soft); padding:7px 0; border-top:1px solid var(--line);}
+  .price-grid.price-grid-5{display:flex; flex-wrap:wrap; justify-content:center;}
+  .price-grid-5>.price-card{width:calc((100% - 44px)/3); flex:none;}
+  .price-card.soon{background:var(--powder-tint); box-shadow:none; display:flex; flex-direction:column; justify-content:center; gap:8px;}
+  .price-card.soon h3{color:var(--ink-soft); margin-bottom:0;}
+  .price-card.soon .amt{font-size:24px; margin:0; color:var(--powder-deep);}
+  .price-card.soon:hover{transform:none; box-shadow:none;}
+  @media(max-width:900px){.price-grid-5>.price-card{width:calc((100% - 22px)/2);}}
+  @media(max-width:600px){.price-grid-5>.price-card{width:100%;}}
 
   /* ---------- FAQ (аккордеон) ---------- */
   .faq{text-align:center;}
@@ -466,10 +474,12 @@
 <section class="section pricing tint-powder" id="pricing">
   <div class="wrap">
     <h2 data-reveal>Тарифы</h2>
-    <div class="price-grid">
-      <div class="price-card" data-reveal><h3>Группа в Zoom</h3><div class="amt">от 700 ₽</div><ul><li>1 занятие</li><li>3 раза в неделю</li><li>Абонемент — выгоднее</li></ul><a href="#start" class="btn btn-line">Записаться</a></div>
-      <div class="price-card feature" data-reveal><h3>Онлайн-курс</h3><div class="amt">5 000 ₽</div><ul><li>8 уроков в записи</li><li>Доступ навсегда</li><li>Для любого уровня</li></ul><a href="#start" class="btn btn-blue">Записаться</a></div>
-      <div class="price-card" data-reveal><h3>Индивидуально</h3><div class="amt">от 3 500 ₽</div><ul><li>Персональная программа</li><li>Гибкий график</li><li>Онлайн или очно</li></ul><a href="#start" class="btn btn-line">Записаться</a></div>
+    <div class="price-grid price-grid-5">
+      <div class="price-card" data-reveal><h3>Живые занятия в группе</h3><div class="amt">от 700 ₽</div><ul><li>Первое занятие — 700 ₽</li><li>Разовое — 1000 ₽</li><li>Абонемент — от 800 ₽ за занятие</li></ul><a href="#start" class="btn btn-line">Записаться</a></div>
+      <div class="price-card feature" data-reveal><h3>Индивидуально</h3><div class="amt">от 2 000 ₽</div><ul><li>Онлайн — 2 000 ₽</li><li>Офлайн — 3 000 ₽</li><li>Персональная программа</li></ul><a href="#start" class="btn btn-blue">Записаться</a></div>
+      <div class="price-card" data-reveal><h3>Корпоративная йога</h3><div class="amt">от 3 500 ₽</div><ul><li>Занятие для команды</li><li>На вашей территории</li><li>Разово или регулярно</li></ul><a href="#start" class="btn btn-line">Обсудить</a></div>
+      <div class="price-card soon" data-reveal><h3>Живые классы + online</h3><div class="amt">Скоро будет</div></div>
+      <div class="price-card soon" data-reveal><h3>Йога + баня</h3><div class="amt">Скоро будет</div></div>
     </div>
   </div>
 </section>
