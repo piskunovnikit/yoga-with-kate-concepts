@@ -212,8 +212,9 @@
   .price-card .amt{font-family:var(--serif); font-size:36px; color:var(--blue-deep); margin:16px 0; font-variant-numeric:tabular-nums;}
   .price-card ul{list-style:none; margin-bottom:26px;}
   .price-card li{font-size:16px; color:var(--ink-soft); padding:9px 0; border-top:1px solid rgba(69,122,141,.3);}
-  .price-card p.lined{line-height:32px; padding-bottom:3px; margin-bottom:26px;
-    background:repeating-linear-gradient(to bottom, transparent 0 24px, rgba(69,122,141,.38) 24px 25.5px, transparent 25.5px 32px);}
+  .price-card p.lined{line-height:32px; padding-bottom:2px; margin-bottom:26px;
+    background-image:linear-gradient(to bottom, transparent 0 25px, rgba(69,122,141,.4) 25px 26px, transparent 26px 32px);
+    background-size:100% 32px; background-repeat:repeat-y; background-position:0 0;}
   .price-grid.price-grid-5{display:flex; flex-wrap:wrap; justify-content:center;}
   .price-grid-5>.price-card{width:calc((100% - 44px)/3); flex:none;}
   .price-grid-5>.price-card:not(.soon){display:flex; flex-direction:column;}
