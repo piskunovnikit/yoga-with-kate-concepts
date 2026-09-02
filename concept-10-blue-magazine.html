@@ -274,7 +274,9 @@
 
   /* ---------- footer ---------- */
   footer{background:#fff; border-top:1px solid var(--line); padding:70px 0 40px;}
-  .foot-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:32px; margin-bottom:46px;}
+  .foot-grid{margin-bottom:46px;}
+  .foot-brand{margin-bottom:44px; max-width:340px;}
+  .foot-cols{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
   footer h4{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); margin-bottom:14px;}
   footer .crest{margin-bottom:14px; color:#6b7f86;}
   footer ul{list-style:none;}
@@ -304,9 +306,8 @@
     .start .media{order:2;}
     .start .media img{height:170px;}
     .why-grid,.fmt-grid,.price-grid,.reviews-grid,.tg-grid,.step-grid{grid-template-columns:1fr;}
-    .foot-grid{grid-template-columns:1fr 1fr; gap:30px 24px;}
-    .foot-grid>div:nth-child(1){grid-column:1 / -1;}
-    .foot-grid>div:last-child{display:none;}
+    .foot-brand{margin-bottom:30px; max-width:none;}
+    .foot-cols{grid-template-columns:1fr 1fr; gap:28px 24px;}
     .section{padding:44px 0;}
     .hero{height:76dvh;}
   }
@@ -576,12 +577,13 @@
 <footer id="contact">
   <div class="wrap">
     <div class="foot-grid">
-      <div>
+      <div class="foot-brand">
         <div class="crest">
           <span class="lotus" aria-hidden="true"></span>
         </div>
         <p class="foot-lead">Хатха-йога с Екатериной Благодацкой. Санкт-Петербург, онлайн и очно.</p>
       </div>
+      <div class="foot-cols">
       <div>
         <h4>Занятия</h4>
         <ul>
@@ -612,7 +614,7 @@
           <li>8 913 038 79**</li>
         </ul>
       </div>
-      <div aria-hidden="true"></div>
+      </div>
     </div>
     <div class="foot-bottom">
       <span>© 2026 Екатерина Благодацкая</span>
