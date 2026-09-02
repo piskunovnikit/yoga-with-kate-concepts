@@ -157,14 +157,11 @@
   .fmt-card:hover{transform:translateY(-3px); box-shadow:0 18px 44px -14px rgba(69,122,141,.3), 0 6px 16px rgba(69,122,141,.12);}
   .fmt-card .img{aspect-ratio:3/2; overflow:hidden;}
   .fmt-card .img img{width:100%; height:100%; object-fit:cover;}
-  .fmt-card .cap{padding:26px 24px 30px;}
-  .fmt-card .ic{position:absolute; right:18px; bottom:18px; width:38px; height:38px; background:var(--blue-deep); opacity:.9;
+  .fmt-card .cap{position:relative; padding:26px 24px 30px;}
+  .fmt-card .ic{position:absolute; top:24px; right:22px; width:38px; height:38px; background:var(--blue-deep); opacity:.9;
     -webkit-mask:var(--ic) center/contain no-repeat; mask:var(--ic) center/contain no-repeat;}
-  .fmt-card h3{font-size:22px; margin-bottom:8px;}
+  .fmt-card h3{font-size:22px; margin-bottom:8px; padding-right:46px;}
   .fmt-card p{font-size:15px;}
-  .fmt-card.fmt-card--sm p{font-size:15px;}
-  .fmt-card.fmt-card--sm .cap{position:relative;}
-  .fmt-card.fmt-card--sm .ic{position:absolute; top:24px; right:22px; bottom:auto;}
   .fmt-grid.fmt-grid-5{display:flex; flex-wrap:wrap; justify-content:center;}
   .fmt-grid-5>.fmt-card{width:calc((100% - 48px)/3); flex:none;}
   @media(max-width:900px){.fmt-grid-5>.fmt-card{width:calc((100% - 24px)/2);}}
@@ -412,7 +409,7 @@
         <div class="img"><img loading="lazy" width="1200" height="800" src="img-real/group-stretch-color.jpg" alt="Групповые занятия"></div>
         <div class="cap"><span class="ic" aria-hidden="true" style="--ic:url(img-real/free-icon-yoga-pose-2689123.png)"></span><h3>Живые групповые классы в студии</h3><p>Небольшая группа, с заботой к каждому ученику — комфортно для любого уровня.</p></div>
       </div>
-      <div class="fmt-card fmt-card--sm" data-reveal>
+      <div class="fmt-card" data-reveal>
         <div class="img"><img loading="lazy" width="1200" height="800" src="img-real/feet-mat.jpg" alt="Индивидуальные занятия"></div>
         <div class="cap"><span class="ic" aria-hidden="true" style="--ic:url(img-real/free-icon-yoga-pose-8105784.png)"></span><h3>Индивидуально (онлайн или офлайн)</h3><p>Практику составляем под ваш запрос и особенности тела. С вниманием, правками, удобным для вас расписанием.</p></div>
       </div>
