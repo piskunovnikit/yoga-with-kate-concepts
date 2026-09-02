@@ -137,8 +137,8 @@
   .steps-lead{max-width:600px; margin:0 auto 52px; font-size:15px;}
   .step-grid{display:grid; grid-template-columns:1fr 1fr; gap:34px 56px; text-align:left; max-width:900px; margin:0 auto;}
   .step-item{border-top:1px solid rgba(47,65,72,.16); padding-top:18px;}
-  .step-item h3{font-size:18px; margin-bottom:6px;}
-  .step-item p{font-size:15px; max-width:42ch;}
+  .step-item h3{font-size:20px; margin-bottom:6px;}
+  .step-item p{font-size:16px; max-width:42ch;}
 
   /* ---------- why: 3 points ---------- */
   .why{text-align:center;}
@@ -164,7 +164,6 @@
   .fmt-card .cap{padding:26px 24px 30px;}
   .fmt-card .ic{position:absolute; right:18px; bottom:18px; width:38px; height:38px; background:var(--blue-deep); opacity:.9;
     -webkit-mask:var(--ic) center/contain no-repeat; mask:var(--ic) center/contain no-repeat;}
-  .fmt-card .lbl{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--blue-deep); margin-bottom:8px;}
   .fmt-card h3{font-size:22px; margin-bottom:8px;}
   .fmt-card p{font-size:15px;}
   .fmt-grid.fmt-grid-5{display:flex; flex-wrap:wrap; justify-content:center;}
@@ -217,6 +216,8 @@
   .price-card li{font-size:16px; color:var(--ink-soft); padding:9px 0; border-top:1px solid var(--line);}
   .price-grid.price-grid-5{display:flex; flex-wrap:wrap; justify-content:center;}
   .price-grid-5>.price-card{width:calc((100% - 44px)/3); flex:none;}
+  .price-grid-5>.price-card:not(.soon){display:flex; flex-direction:column;}
+  .price-grid-5>.price-card:not(.soon) .btn{margin-top:auto; align-self:center;}
   .price-card>p{font-size:16px; color:var(--ink-soft); margin:6px 0 26px;}
   .price-card.soon{background:transparent; box-shadow:none; border:1.5px dashed var(--blue);
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;}
