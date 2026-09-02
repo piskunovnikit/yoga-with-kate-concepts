@@ -273,8 +273,7 @@
 
   /* ---------- footer ---------- */
   footer{background:#fff; border-top:1px solid var(--line); padding:70px 0 40px;}
-  .foot-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:36px; margin-bottom:46px;}
-  .foot-grid>div:nth-child(3){text-align:center;}
+  .foot-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:32px; margin-bottom:46px;}
   footer h4{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); margin-bottom:14px;}
   footer .crest{margin-bottom:14px; color:#6b7f86;}
   footer ul{list-style:none;}
@@ -305,7 +304,8 @@
     .start .media img{height:170px;}
     .why-grid,.fmt-grid,.price-grid,.reviews-grid,.tg-grid,.step-grid{grid-template-columns:1fr;}
     .foot-grid{grid-template-columns:1fr 1fr; gap:30px 24px;}
-    .foot-grid>div:nth-child(1),.foot-grid>div:nth-child(2){grid-column:1 / -1;}
+    .foot-grid>div:nth-child(1){grid-column:1 / -1;}
+    .foot-grid>div:last-child{display:none;}
     .section{padding:44px 0;}
     .hero{height:76dvh;}
   }
@@ -611,6 +611,7 @@
           <li>8 913 038 79**</li>
         </ul>
       </div>
+      <div aria-hidden="true"></div>
     </div>
     <div class="foot-bottom">
       <span>© 2026 Екатерина Благодацкая</span>
