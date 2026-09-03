@@ -736,7 +736,7 @@
     }
     var items = data.items || [];
     if(!items.length){
-      status.querySelector('p').textContent = 'Пока нет запланированных занятий — актуальное расписание можно узнать в боте.';
+      hideScheduleEverywhere();
       return;
     }
     status.remove();
@@ -769,7 +769,7 @@
       grid.appendChild(card);
     });
   }).catch(function(){
-    status.querySelector('p').textContent = 'Не удалось загрузить расписание — актуальное можно узнать в боте.';
+    hideScheduleEverywhere();
   });
 })();
 </script>
