@@ -336,6 +336,7 @@
       <a href="#why">Ценности</a>
       <a href="#formats">Занятия</a>
       <a href="#pricing">Тарифы</a>
+      <a href="#schedule">Расписание</a>
       <a href="#contact">Контакты</a>
     </nav>
     <a href="#start" class="nav-cta">Записаться</a>
@@ -496,6 +497,16 @@
   </div>
 </section>
 
+<!-- РАСПИСАНИЕ (schedule.json подтягивается ботом при добавлении/удалении занятия) -->
+<section class="section schedule" id="schedule">
+  <div class="wrap">
+    <h2 data-reveal>Расписание</h2>
+    <div class="price-grid price-grid-5" id="scheduleGrid">
+      <p id="scheduleStatus" style="grid-column:1/-1">Загружаем расписание…</p>
+    </div>
+  </div>
+</section>
+
 <!-- TELEGRAM -->
 <section class="section news" id="telegram">
   <div class="wrap">
@@ -599,6 +610,7 @@
           <li><a href="#why">Ценности</a></li>
           <li><a href="#reviews">Отзывы</a></li>
           <li><a href="#pricing">Тарифы</a></li>
+          <li><a href="#schedule">Расписание</a></li>
           <li><a href="#faq">Вопросы</a></li>
         </ul>
       </div>
@@ -697,6 +709,50 @@
     heroGo(idx);
   }
 
+})();
+</script>
+<script>
+(function(){
+  var grid = document.getElementById('scheduleGrid');
+  var status = document.getElementById('scheduleStatus');
+  if(!grid) return;
+  fetch('schedule.json', {cache:'no-store'}).then(function(r){ return r.json(); }).then(function(items){
+    if(!items || !items.length){
+      status.textContent = 'Пока нет запланированных занятий — актуальное расписание можно узнать в боте.';
+      return;
+    }
+    status.remove();
+    items.forEach(function(it){
+      var card = document.createElement('div');
+      card.className = 'price-card';
+      var h3 = document.createElement('h3');
+      var d = new Date(it.date + 'T00:00:00');
+      h3.textContent = d.toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit'}) + ', ' + it.time;
+      card.appendChild(h3);
+      if(it.label){
+        var pLabel = document.createElement('p');
+        pLabel.className = 'lined';
+        pLabel.textContent = it.label;
+        card.appendChild(pLabel);
+      }
+      if(it.location){
+        var pLoc = document.createElement('p');
+        pLoc.className = 'lined';
+        pLoc.textContent = '📍 ' + it.location;
+        card.appendChild(pLoc);
+      }
+      var a = document.createElement('a');
+      a.href = it.book_url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.className = 'btn btn-blue';
+      a.textContent = 'Записаться';
+      card.appendChild(a);
+      grid.appendChild(card);
+    });
+  }).catch(function(){
+    status.textContent = 'Не удалось загрузить расписание — актуальное можно узнать в боте.';
+  });
 })();
 </script>
 </body>
