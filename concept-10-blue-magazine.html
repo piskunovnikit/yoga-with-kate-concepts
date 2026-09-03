@@ -232,9 +232,16 @@
   .schedule{text-align:center;}
   .schedule h2{font-size:clamp(30px,3.8vw,44px); margin-bottom:40px;}
   .schedule-grid{display:grid; grid-template-columns:1fr 1fr; gap:34px 56px; text-align:left; max-width:900px; margin:0 auto;}
-  .schedule-item{border-top:1px solid rgba(47,65,72,.16); padding-top:18px;}
-  .schedule-item h3{font-size:20px; margin-bottom:6px;}
-  .schedule-item p{font-size:16px; max-width:42ch; color:var(--ink-soft); margin-bottom:16px;}
+  .schedule-item{display:flex; gap:18px; align-items:flex-start; border-top:1px solid rgba(47,65,72,.16); padding-top:18px;}
+  .cal-leaf{flex:none; width:62px; border:1px solid rgba(47,65,72,.22); border-radius:8px; overflow:hidden; background:#fff; text-align:center;}
+  .cal-leaf span{display:block;}
+  .cal-leaf .cal-month{background:var(--blue-deep); color:#fff; font-size:10px; letter-spacing:.07em; padding:4px 0; text-transform:uppercase;}
+  .cal-leaf .cal-day{font-family:var(--serif); font-size:26px; line-height:1.1; padding:5px 0 1px; color:var(--ink);}
+  .cal-leaf .cal-dow{font-size:10px; letter-spacing:.05em; color:var(--ink-soft); padding-bottom:5px; text-transform:uppercase;}
+  .schedule-item .schedule-body{min-width:0;}
+  .schedule-item h3{font-size:18px; margin-bottom:2px;}
+  .schedule-item .schedule-date{font-size:13px; color:var(--ink-soft); margin-bottom:10px;}
+  .schedule-item .schedule-desc{font-size:16px; max-width:38ch; color:var(--ink-soft); margin-bottom:16px;}
   .schedule-empty{grid-column:1/-1; max-width:460px; margin:0 auto; padding:44px 30px;
     text-align:center; border:2.5px dashed var(--blue); border-radius:16px;}
   .schedule-empty p{font-family:var(--serif); font-style:italic; font-size:22px; color:var(--ink-soft);
@@ -744,18 +751,45 @@
       return;
     }
     status.remove();
+    var MONTHS_SHORT = ['ЯНВ','ФЕВ','МАР','АПР','МАЙ','ИЮН','ИЮЛ','АВГ','СЕН','ОКТ','НОЯ','ДЕК'];
+    var DOW_SHORT = ['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ'];
     items.forEach(function(it){
+      var d = new Date(it.date + 'T00:00:00');
       var card = document.createElement('div');
       card.className = 'schedule-item';
+
+      var leaf = document.createElement('div');
+      leaf.className = 'cal-leaf';
+      var month = document.createElement('span');
+      month.className = 'cal-month';
+      month.textContent = MONTHS_SHORT[d.getMonth()];
+      var day = document.createElement('span');
+      day.className = 'cal-day';
+      day.textContent = String(d.getDate()).padStart(2, '0');
+      var dow = document.createElement('span');
+      dow.className = 'cal-dow';
+      dow.textContent = DOW_SHORT[d.getDay()];
+      leaf.appendChild(month); leaf.appendChild(day); leaf.appendChild(dow);
+      card.appendChild(leaf);
+
+      var body = document.createElement('div');
+      body.className = 'schedule-body';
       var h3 = document.createElement('h3');
-      var d = new Date(it.date + 'T00:00:00');
-      h3.textContent = d.toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit'}) + ', ' + it.time;
-      card.appendChild(h3);
-      var desc = [it.label, it.location ? ('📍 ' + it.location) : null].filter(Boolean).join(' — ');
+      h3.textContent = it.time;
+      body.appendChild(h3);
+      var dateLine = document.createElement('p');
+      dateLine.className = 'schedule-date';
+      dateLine.textContent = d.toLocaleDateString('ru-RU', {day:'numeric', month:'long', year:'numeric'})
+        + ' года, ' + d.toLocaleDateString('ru-RU', {weekday:'long'});
+      body.appendChild(dateLine);
+      var isOnline = /онлайн|zoom|скайп|skype/i.test(it.location || '');
+      var locIcon = isOnline ? '💻' : '📍';
+      var desc = [it.label, it.location ? (locIcon + ' ' + it.location) : null].filter(Boolean).join(' — ');
       if(desc){
         var p = document.createElement('p');
+        p.className = 'schedule-desc';
         p.textContent = desc;
-        card.appendChild(p);
+        body.appendChild(p);
       }
       var a = document.createElement('a');
       a.href = it.book_url;
@@ -763,7 +797,9 @@
       a.rel = 'noopener';
       a.className = 'btn btn-line';
       a.textContent = 'Записаться';
-      card.appendChild(a);
+      body.appendChild(a);
+      card.appendChild(body);
+
       grid.appendChild(card);
     });
   }).catch(function(){
