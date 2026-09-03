@@ -779,8 +779,8 @@
       body.appendChild(h3);
       var dateLine = document.createElement('p');
       dateLine.className = 'schedule-date';
-      dateLine.textContent = d.toLocaleDateString('ru-RU', {day:'numeric', month:'long', year:'numeric'})
-        + ' года, ' + d.toLocaleDateString('ru-RU', {weekday:'long'});
+      dateLine.textContent = d.toLocaleDateString('ru-RU', {day:'numeric', month:'long'})
+        + ' ' + d.getFullYear() + ' года, ' + d.toLocaleDateString('ru-RU', {weekday:'long'});
       body.appendChild(dateLine);
       var isOnline = /онлайн|zoom|скайп|skype/i.test(it.location || '');
       var locIcon = isOnline ? '💻' : '📍';
