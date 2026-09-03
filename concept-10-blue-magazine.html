@@ -229,6 +229,12 @@
   @media(max-width:900px){.price-grid-5>.price-card{width:calc((100% - 22px)/2);}}
   @media(max-width:600px){.price-grid-5>.price-card{width:100%;}}
 
+  .schedule-empty{grid-column:1/-1; max-width:460px; margin:0 auto; padding:44px 30px;
+    text-align:center; border:2.5px dashed var(--blue); border-radius:16px;}
+  .schedule-empty .eyebrow{font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--blue-deep);}
+  .schedule-empty p{font-family:var(--serif); font-style:italic; font-size:22px; color:var(--ink-soft);
+    margin:12px 0 0; line-height:1.5;}
+
   /* ---------- FAQ (аккордеон) ---------- */
   .faq{text-align:center;}
   .faq .hand{margin-bottom:10px;}
@@ -502,7 +508,7 @@
   <div class="wrap">
     <h2 data-reveal>Расписание</h2>
     <div class="price-grid price-grid-5" id="scheduleGrid">
-      <p id="scheduleStatus" style="grid-column:1/-1">Загружаем расписание…</p>
+      <div class="schedule-empty" id="scheduleStatus"><span class="eyebrow">Расписание</span><p>Загружаем…</p></div>
     </div>
   </div>
 </section>
@@ -716,9 +722,20 @@
   var grid = document.getElementById('scheduleGrid');
   var status = document.getElementById('scheduleStatus');
   if(!grid) return;
-  fetch('schedule.json', {cache:'no-store'}).then(function(r){ return r.json(); }).then(function(items){
-    if(!items || !items.length){
-      status.textContent = 'Пока нет запланированных занятий — актуальное расписание можно узнать в боте.';
+  var section = document.getElementById('schedule');
+  var navLinks = [].slice.call(document.querySelectorAll('a[href="#schedule"]'));
+  function hideScheduleEverywhere(){
+    section && section.remove();
+    navLinks.forEach(function(a){ a.remove(); });
+  }
+  fetch('schedule.json', {cache:'no-store'}).then(function(r){ return r.json(); }).then(function(data){
+    if(!data || data.visible === false){
+      hideScheduleEverywhere();
+      return;
+    }
+    var items = data.items || [];
+    if(!items.length){
+      status.querySelector('p').textContent = 'Пока нет запланированных занятий — актуальное расписание можно узнать в боте.';
       return;
     }
     status.remove();
@@ -751,7 +768,7 @@
       grid.appendChild(card);
     });
   }).catch(function(){
-    status.textContent = 'Не удалось загрузить расписание — актуальное можно узнать в боте.';
+    status.querySelector('p').textContent = 'Не удалось загрузить расписание — актуальное можно узнать в боте.';
   });
 })();
 </script>
