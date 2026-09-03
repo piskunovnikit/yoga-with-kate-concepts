@@ -238,9 +238,8 @@
     background:#fff; border:1.5px solid rgba(47,65,72,.22);
     border-radius:18px; text-align:center;
     box-shadow:0 10px 26px rgba(69,122,141,.1);}
-  .schedule-item::before,.schedule-item::after{content:''; position:absolute; top:-9px;
-    width:14px; height:14px; border-radius:50%; border:2.5px solid var(--ink);
-    background:transparent; z-index:1;}
+  .schedule-item::before,.schedule-item::after{content:''; position:absolute; top:-10px;
+    width:9px; height:20px; border-radius:5px; background:var(--ink); z-index:1;}
   .schedule-item::before{left:26px;}
   .schedule-item::after{right:26px;}
   .cal-head{background:var(--blue-deep); border-radius:16.5px 16.5px 0 0;
@@ -250,6 +249,10 @@
   .cal-daynum .cal-day{display:block; font-family:var(--serif); font-size:54px; line-height:1; color:var(--ink);}
   .cal-daynum .cal-dow{display:block; font-size:16px; color:var(--ink-soft); margin-top:6px; text-transform:capitalize;}
   .cal-body{flex:1; display:flex; flex-direction:column; padding:20px 22px 28px;}
+  .page-curl{position:absolute; right:2px; bottom:2px; width:0; height:0;
+    border-style:solid; border-width:0 0 24px 24px;
+    border-color:transparent transparent var(--blue-tint) transparent;
+    filter:drop-shadow(-1.5px -1.5px 2.5px rgba(47,65,72,.3));}
   .cal-body h3{font-size:36px; margin-bottom:10px;}
   .cal-body .schedule-desc{font-size:17px; color:var(--ink-soft); margin-bottom:20px; line-height:1.5;}
   .cal-body .btn{font-size:16px; margin-top:auto; align-self:center;}
@@ -816,6 +819,10 @@
       a.textContent = 'Записаться';
       body.appendChild(a);
       card.appendChild(body);
+
+      var curl = document.createElement('div');
+      curl.className = 'page-curl';
+      card.appendChild(curl);
 
       grid.appendChild(card);
     });
