@@ -232,23 +232,24 @@
   .schedule{text-align:center;}
   .schedule h2{font-size:clamp(30px,3.8vw,44px); margin-bottom:8px;}
   .schedule-lead{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--blue-deep); margin-bottom:44px;}
-  .schedule-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:40px 28px; max-width:1000px; margin:0 auto;}
+  .schedule-grid{display:grid; grid-template-columns:repeat(var(--sched-cols,3),1fr); gap:40px 28px; max-width:1000px; margin:0 auto;}
 
-  .schedule-item{position:relative; background:#fff; border:1.5px solid rgba(47,65,72,.22);
+  .schedule-item{position:relative; display:flex; flex-direction:column; height:100%;
+    background:#fff; border:1.5px solid rgba(47,65,72,.22);
     border-radius:18px; padding-top:16px; text-align:center;
     box-shadow:0 10px 26px rgba(69,122,141,.1);}
   .schedule-item::before,.schedule-item::after{content:''; position:absolute; top:-11px;
     width:9px; height:22px; border-radius:5px; background:var(--blue-deep);}
   .schedule-item::before{left:30px;}
   .schedule-item::after{right:30px;}
-  .cal-head{padding:0 16px 14px; border-bottom:1.5px dashed rgba(69,122,141,.35);}
-  .cal-head .cal-month{display:block; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--blue-deep); margin-bottom:2px;}
-  .cal-head .cal-day{display:block; font-family:var(--serif); font-size:44px; line-height:1; color:var(--ink);}
-  .cal-head .cal-dow{display:block; font-size:13px; color:var(--ink-soft); margin-top:4px; text-transform:capitalize;}
-  .cal-body{padding:18px 22px 26px;}
-  .cal-body h3{font-size:20px; margin-bottom:8px;}
-  .cal-body .schedule-desc{font-size:15px; color:var(--ink-soft); margin-bottom:18px; line-height:1.5;}
-  .cal-body .btn{font-size:14px;}
+  .cal-head{padding:0 16px 16px; border-bottom:1.5px dashed rgba(69,122,141,.35);}
+  .cal-head .cal-month{display:block; font-size:14px; letter-spacing:.04em; text-transform:capitalize; color:var(--blue-deep); margin-bottom:4px;}
+  .cal-head .cal-day{display:block; font-family:var(--serif); font-size:54px; line-height:1; color:var(--ink);}
+  .cal-head .cal-dow{display:block; font-size:16px; color:var(--ink-soft); margin-top:6px; text-transform:capitalize;}
+  .cal-body{flex:1; display:flex; flex-direction:column; padding:20px 22px 28px;}
+  .cal-body h3{font-size:24px; margin-bottom:10px;}
+  .cal-body .schedule-desc{font-size:17px; color:var(--ink-soft); margin-bottom:20px; line-height:1.5;}
+  .cal-body .btn{font-size:16px; margin-top:auto; align-self:center;}
 
   .schedule-empty{grid-column:1/-1; max-width:460px; margin:0 auto; padding:44px 30px;
     text-align:center; border:2.5px dashed var(--blue); border-radius:16px;}
@@ -760,7 +761,11 @@
       return;
     }
     status.remove();
-    var MONTHS_SHORT = ['ЯНВ','ФЕВ','МАР','АПР','МАЙ','ИЮН','ИЮЛ','АВГ','СЕН','ОКТ','НОЯ','ДЕК'];
+    // максимум 3 карточки в ряд, но ряды выравниваем поровну, а не «3 и одна сиротка»:
+    // 4 -> 2+2, 5 -> 3+2, 6 -> 3+3, и т.д.
+    var rows = Math.ceil(items.length / 3);
+    var cols = Math.ceil(items.length / rows);
+    grid.style.setProperty('--sched-cols', cols);
     items.forEach(function(it){
       var d = new Date(it.date + 'T00:00:00');
       var card = document.createElement('div');
@@ -770,7 +775,8 @@
       head.className = 'cal-head';
       var month = document.createElement('span');
       month.className = 'cal-month';
-      month.textContent = MONTHS_SHORT[d.getMonth()] + ' ' + d.getFullYear();
+      var monthName = d.toLocaleDateString('ru-RU', {month:'long'});
+      month.textContent = monthName.charAt(0).toUpperCase() + monthName.slice(1) + ' ' + d.getFullYear();
       var day = document.createElement('span');
       day.className = 'cal-day';
       day.textContent = String(d.getDate()).padStart(2, '0');
