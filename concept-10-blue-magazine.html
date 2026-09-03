@@ -772,6 +772,9 @@
       return;
     }
     status.remove();
+    if(items.length % 3 === 1){
+      grid.style.maxWidth = '668px';
+    }
     items.forEach(function(it){
       var d = new Date(it.date + 'T00:00:00');
       var card = document.createElement('div');
