@@ -230,22 +230,22 @@
   @media(max-width:600px){.price-grid-5>.price-card{width:100%;}}
 
   .schedule{text-align:center;}
-  .schedule h2{font-size:clamp(30px,3.8vw,44px); margin-bottom:8px;}
-  .schedule-lead{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--blue-deep); margin-bottom:44px;}
+  .schedule .hand{margin-bottom:10px;}
+  .schedule h2{font-size:clamp(30px,3.8vw,44px); margin-bottom:40px;}
   .schedule-grid{display:grid; grid-template-columns:repeat(var(--sched-cols,3),1fr); gap:40px 28px; max-width:1000px; margin:0 auto;}
 
   .schedule-item{position:relative; display:flex; flex-direction:column; height:100%;
     background:#fff; border:1.5px solid rgba(47,65,72,.22);
-    border-radius:18px; padding-top:16px; text-align:center;
+    border-radius:18px; overflow:hidden; text-align:center;
     box-shadow:0 10px 26px rgba(69,122,141,.1);}
   .schedule-item::before,.schedule-item::after{content:''; position:absolute; top:-11px;
-    width:9px; height:22px; border-radius:5px; background:var(--blue-deep);}
+    width:9px; height:22px; border-radius:5px; background:var(--ink); z-index:1;}
   .schedule-item::before{left:30px;}
   .schedule-item::after{right:30px;}
-  .cal-head{padding:0 16px 16px; border-bottom:1.5px dashed rgba(69,122,141,.35);}
-  .cal-head .cal-month{display:block; font-size:14px; letter-spacing:.04em; text-transform:capitalize; color:var(--blue-deep); margin-bottom:4px;}
-  .cal-head .cal-day{display:block; font-family:var(--serif); font-size:54px; line-height:1; color:var(--ink);}
-  .cal-head .cal-dow{display:block; font-size:16px; color:var(--ink-soft); margin-top:6px; text-transform:capitalize;}
+  .cal-head{background:var(--blue-deep); padding:20px 16px 16px;}
+  .cal-head .cal-month{display:block; font-size:14px; letter-spacing:.04em; text-transform:capitalize; color:#fff; opacity:.85; margin-bottom:4px;}
+  .cal-head .cal-day{display:block; font-family:var(--serif); font-size:54px; line-height:1; color:#fff;}
+  .cal-head .cal-dow{display:block; font-size:16px; color:#fff; opacity:.9; margin-top:6px; text-transform:capitalize;}
   .cal-body{flex:1; display:flex; flex-direction:column; padding:20px 22px 28px;}
   .cal-body h3{font-size:24px; margin-bottom:10px;}
   .cal-body .schedule-desc{font-size:17px; color:var(--ink-soft); margin-bottom:20px; line-height:1.5;}
@@ -525,10 +525,10 @@
 </section>
 
 <!-- РАСПИСАНИЕ (schedule.json подтягивается ботом при добавлении/удалении занятия) -->
-<section class="section schedule" id="schedule">
+<section class="section schedule tint-blue" id="schedule">
   <div class="wrap">
+    <span class="hand" data-reveal>Ближайшие занятия</span>
     <h2 data-reveal>Расписание</h2>
-    <p class="schedule-lead" data-reveal>Ближайшие занятия</p>
     <div class="schedule-grid" id="scheduleGrid">
       <div class="schedule-empty" id="scheduleStatus"><p>Загружаем…</p></div>
     </div>
