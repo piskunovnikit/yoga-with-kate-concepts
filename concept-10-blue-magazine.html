@@ -258,7 +258,7 @@
   .page-curl .curl-line{fill:none; stroke:rgba(69,122,141,.4); stroke-width:1;}
   .cal-body h3{font-size:28px; margin-bottom:6px; font-variant-numeric:tabular-nums lining-nums;}
   .cal-body .schedule-desc{font-size:16px; color:var(--ink-soft); margin-bottom:14px; line-height:1.45;}
-  .metro-icon{color:var(--blue-deep); font-weight:700;}
+  .metro-icon{color:var(--blue-deep); font-weight:700; font-size:1.5em; vertical-align:-0.22em;}
   .cal-body .btn{font-size:16px; margin-top:auto; align-self:center;}
 
   .schedule-empty{grid-column:1/-1; max-width:460px; margin:0 auto; padding:44px 30px;
@@ -821,7 +821,7 @@
           } else {
             var metroIdx = locText.indexOf('м. ');
             if (metroIdx === -1) {
-              p.appendChild(document.createTextNode(locText));
+              p.appendChild(document.createTextNode('📍 ' + locText));
             } else {
               var before = locText.slice(0, metroIdx);
               var station = locText.slice(metroIdx + 3); // после «м. » — само название станции
