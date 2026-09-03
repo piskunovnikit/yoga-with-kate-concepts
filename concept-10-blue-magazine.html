@@ -236,18 +236,21 @@
 
   .schedule-item{position:relative; display:flex; flex-direction:column; height:100%;
     background:#fff; border:1.5px solid rgba(47,65,72,.22);
-    border-radius:18px; overflow:hidden; text-align:center;
+    border-radius:18px; text-align:center;
     box-shadow:0 10px 26px rgba(69,122,141,.1);}
-  .schedule-item::before,.schedule-item::after{content:''; position:absolute; top:-11px;
-    width:9px; height:22px; border-radius:5px; background:var(--ink); z-index:1;}
-  .schedule-item::before{left:30px;}
-  .schedule-item::after{right:30px;}
-  .cal-head{background:var(--blue-deep); padding:20px 16px 16px;}
-  .cal-head .cal-month{display:block; font-size:14px; letter-spacing:.04em; text-transform:capitalize; color:#fff; opacity:.85; margin-bottom:4px;}
-  .cal-head .cal-day{display:block; font-family:var(--serif); font-size:54px; line-height:1; color:#fff;}
-  .cal-head .cal-dow{display:block; font-size:16px; color:#fff; opacity:.9; margin-top:6px; text-transform:capitalize;}
+  .schedule-item::before,.schedule-item::after{content:''; position:absolute; top:-9px;
+    width:14px; height:14px; border-radius:50%; border:2.5px solid var(--ink);
+    background:transparent; z-index:1;}
+  .schedule-item::before{left:26px;}
+  .schedule-item::after{right:26px;}
+  .cal-head{background:var(--blue-deep); border-radius:16.5px 16.5px 0 0;
+    padding:11px 16px; display:flex; align-items:center; justify-content:center;}
+  .cal-head .cal-month{font-size:14px; letter-spacing:.04em; text-transform:capitalize; color:#fff;}
+  .cal-daynum{padding:18px 16px 14px; border-bottom:1.5px dashed rgba(69,122,141,.35);}
+  .cal-daynum .cal-day{display:block; font-family:var(--serif); font-size:54px; line-height:1; color:var(--ink);}
+  .cal-daynum .cal-dow{display:block; font-size:16px; color:var(--ink-soft); margin-top:6px; text-transform:capitalize;}
   .cal-body{flex:1; display:flex; flex-direction:column; padding:20px 22px 28px;}
-  .cal-body h3{font-size:24px; margin-bottom:10px;}
+  .cal-body h3{font-size:36px; margin-bottom:10px;}
   .cal-body .schedule-desc{font-size:17px; color:var(--ink-soft); margin-bottom:20px; line-height:1.5;}
   .cal-body .btn{font-size:16px; margin-top:auto; align-self:center;}
 
@@ -777,14 +780,19 @@
       month.className = 'cal-month';
       var monthName = d.toLocaleDateString('ru-RU', {month:'long'});
       month.textContent = monthName.charAt(0).toUpperCase() + monthName.slice(1) + ' ' + d.getFullYear();
+      head.appendChild(month);
+      card.appendChild(head);
+
+      var daynum = document.createElement('div');
+      daynum.className = 'cal-daynum';
       var day = document.createElement('span');
       day.className = 'cal-day';
       day.textContent = String(d.getDate()).padStart(2, '0');
       var dow = document.createElement('span');
       dow.className = 'cal-dow';
       dow.textContent = d.toLocaleDateString('ru-RU', {weekday:'long'});
-      head.appendChild(month); head.appendChild(day); head.appendChild(dow);
-      card.appendChild(head);
+      daynum.appendChild(day); daynum.appendChild(dow);
+      card.appendChild(daynum);
 
       var body = document.createElement('div');
       body.className = 'cal-body';
