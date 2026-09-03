@@ -1,4 +1,12 @@
 {
   "visible": true,
-  "items": []
+  "items": [
+    {
+      "date": "2026-09-05",
+      "time": "19:00",
+      "label": "Виньяса",
+      "location": "Студия Йога-Хата",
+      "book_url": "https://t.me/YogaKate94bot?start=book_14"
+    }
+  ]
 }
