@@ -823,9 +823,10 @@
             if (metroIdx === -1) {
               p.appendChild(document.createTextNode('📍 ' + locText));
             } else {
-              var before = locText.slice(0, metroIdx);
+              var before = locText.slice(0, metroIdx).replace(/[,\s]+$/, ''); // без висящей запятой/пробела перед переносом
               var station = locText.slice(metroIdx + 3); // после «м. » — само название станции
               if (before) p.appendChild(document.createTextNode(before));
+              p.appendChild(document.createElement('br')); // метро — всегда с новой строки
               var metroIcon = document.createElement('span');
               metroIcon.className = 'metro-icon';
               metroIcon.textContent = 'Ⓜ️';
