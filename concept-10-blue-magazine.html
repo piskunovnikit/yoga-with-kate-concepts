@@ -232,10 +232,11 @@
   .schedule{text-align:center;}
   .schedule .hand{margin-bottom:10px;}
   .schedule h2{font-size:clamp(30px,3.8vw,44px); margin-bottom:40px;}
-  .schedule-grid{display:grid; grid-template-columns:repeat(var(--sched-cols,3),minmax(0,320px));
-    justify-content:center; gap:40px 28px; max-width:1000px; margin:0 auto;}
+  .schedule-grid{display:flex; flex-wrap:wrap; justify-content:center;
+    gap:40px 28px; max-width:1080px; margin:0 auto;}
 
   .schedule-item{position:relative; display:flex; flex-direction:column; height:100%;
+    flex:0 0 320px; max-width:320px;
     background:#fff; border:1.5px solid rgba(47,65,72,.22);
     border-radius:18px; text-align:center;
     box-shadow:0 10px 26px rgba(69,122,141,.1);}
@@ -330,7 +331,6 @@
 
   @media(max-width:1100px){
     .fmt-grid,.price-grid,.reviews-grid,.step-grid{grid-template-columns:1fr 1fr;}
-    .schedule-grid{grid-template-columns:repeat(min(var(--sched-cols,3),2),minmax(0,320px));}
   }
   @media(max-width:920px){
     .wrap{padding:0 22px;}
@@ -342,7 +342,6 @@
     .start .media{order:2;}
     .start .media img{height:170px;}
     .why-grid,.fmt-grid,.price-grid,.reviews-grid,.tg-grid,.step-grid{grid-template-columns:1fr;}
-    .schedule-grid{grid-template-columns:minmax(0,320px);}
     .foot-grid{grid-template-columns:1fr 1fr; gap:30px 24px;}
     .foot-grid>div:first-child{grid-column:1 / -1;}
     .foot-grid>div:nth-child(3){justify-self:end; text-align:left;}
@@ -773,11 +772,6 @@
       return;
     }
     status.remove();
-    // максимум 3 карточки в ряд, но ряды выравниваем поровну, а не «3 и одна сиротка»:
-    // 4 -> 2+2, 5 -> 3+2, 6 -> 3+3, и т.д.
-    var rows = Math.ceil(items.length / 3);
-    var cols = Math.ceil(items.length / rows);
-    grid.style.setProperty('--sched-cols', cols);
     items.forEach(function(it){
       var d = new Date(it.date + 'T00:00:00');
       var card = document.createElement('div');
