@@ -232,8 +232,9 @@
   .schedule{text-align:center;}
   .schedule .hand{margin-bottom:10px;}
   .schedule h2{font-size:clamp(30px,3.8vw,44px); margin-bottom:40px;}
-  .schedule-grid{display:flex; flex-wrap:wrap; justify-content:center;
-    gap:40px 28px; max-width:1080px; margin:0 auto;}
+  .schedule-grid{display:flex; flex-direction:column; align-items:center;
+    gap:40px 0; max-width:1080px; margin:0 auto;}
+  .schedule-row{display:flex; flex-wrap:wrap; justify-content:center; gap:0 28px;}
 
   .schedule-item{position:relative; display:flex; flex-direction:column; height:100%;
     flex:0 0 320px; max-width:320px;
@@ -772,9 +773,20 @@
       return;
     }
     status.remove();
-    if(items.length % 3 === 1){
-      grid.style.maxWidth = '668px';
+    // Разбивка на ряды по 3 карточки; если остаётся «хвост» из одной карточки,
+    // два последних ряда делаются по 2 вместо 3+1 (напр. 4 → 2+2, 7 → 3+2+2).
+    var rowSizes = [];
+    var n = items.length;
+    if (n % 3 === 1 && n > 1) {
+      var fullRows = Math.floor(n / 3) - 1;
+      for (var r = 0; r < fullRows; r++) rowSizes.push(3);
+      rowSizes.push(2, 2);
+    } else {
+      var full = Math.floor(n / 3), rest = n % 3;
+      for (var r2 = 0; r2 < full; r2++) rowSizes.push(3);
+      if (rest) rowSizes.push(rest);
     }
+    var rowEl = null, rowLeft = 0, rowIdx = -1;
     items.forEach(function(it){
       var d = new Date(it.date + 'T00:00:00');
       var card = document.createElement('div');
@@ -852,7 +864,15 @@
         + '</svg>';
       card.appendChild(curl);
 
-      grid.appendChild(card);
+      if (!rowEl || rowLeft === 0) {
+        rowIdx++;
+        rowEl = document.createElement('div');
+        rowEl.className = 'schedule-row';
+        rowLeft = rowSizes[rowIdx];
+        grid.appendChild(rowEl);
+      }
+      rowEl.appendChild(card);
+      rowLeft--;
     });
   }).catch(function(){
     hideScheduleEverywhere();
