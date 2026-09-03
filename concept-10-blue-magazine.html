@@ -231,6 +231,10 @@
 
   .schedule{text-align:center;}
   .schedule h2{font-size:clamp(30px,3.8vw,44px); margin-bottom:40px;}
+  .schedule-grid{display:grid; grid-template-columns:1fr 1fr; gap:34px 56px; text-align:left; max-width:900px; margin:0 auto;}
+  .schedule-item{border-top:1px solid rgba(47,65,72,.16); padding-top:18px;}
+  .schedule-item h3{font-size:20px; margin-bottom:6px;}
+  .schedule-item p{font-size:16px; max-width:42ch; color:var(--ink-soft); margin-bottom:16px;}
   .schedule-empty{grid-column:1/-1; max-width:460px; margin:0 auto; padding:44px 30px;
     text-align:center; border:2.5px dashed var(--blue); border-radius:16px;}
   .schedule-empty p{font-family:var(--serif); font-style:italic; font-size:22px; color:var(--ink-soft);
@@ -299,7 +303,7 @@
   .why-grid>[data-reveal]:nth-child(3),.fmt-grid>[data-reveal]:nth-child(3),.reviews-grid>[data-reveal]:nth-child(3),.price-grid>[data-reveal]:nth-child(3){transition-delay:.16s;}
 
   @media(max-width:1100px){
-    .fmt-grid,.price-grid,.reviews-grid,.step-grid{grid-template-columns:1fr 1fr;}
+    .fmt-grid,.price-grid,.reviews-grid,.step-grid,.schedule-grid{grid-template-columns:1fr 1fr;}
   }
   @media(max-width:920px){
     .wrap{padding:0 22px;}
@@ -310,7 +314,7 @@
     .spread.flip .media{order:0;}
     .start .media{order:2;}
     .start .media img{height:170px;}
-    .why-grid,.fmt-grid,.price-grid,.reviews-grid,.tg-grid,.step-grid{grid-template-columns:1fr;}
+    .why-grid,.fmt-grid,.price-grid,.reviews-grid,.tg-grid,.step-grid,.schedule-grid{grid-template-columns:1fr;}
     .foot-grid{grid-template-columns:1fr 1fr; gap:30px 24px;}
     .foot-grid>div:first-child{grid-column:1 / -1;}
     .foot-grid>div:nth-child(3){justify-self:end; text-align:left;}
@@ -508,7 +512,7 @@
 <section class="section schedule" id="schedule">
   <div class="wrap">
     <h2 data-reveal>Расписание</h2>
-    <div class="price-grid price-grid-5" id="scheduleGrid">
+    <div class="schedule-grid" id="scheduleGrid">
       <div class="schedule-empty" id="scheduleStatus"><p>Загружаем…</p></div>
     </div>
   </div>
@@ -742,28 +746,22 @@
     status.remove();
     items.forEach(function(it){
       var card = document.createElement('div');
-      card.className = 'price-card';
+      card.className = 'schedule-item';
       var h3 = document.createElement('h3');
       var d = new Date(it.date + 'T00:00:00');
       h3.textContent = d.toLocaleDateString('ru-RU', {day:'2-digit', month:'2-digit'}) + ', ' + it.time;
       card.appendChild(h3);
-      if(it.label){
-        var pLabel = document.createElement('p');
-        pLabel.className = 'lined';
-        pLabel.textContent = it.label;
-        card.appendChild(pLabel);
-      }
-      if(it.location){
-        var pLoc = document.createElement('p');
-        pLoc.className = 'lined';
-        pLoc.textContent = '📍 ' + it.location;
-        card.appendChild(pLoc);
+      var desc = [it.label, it.location ? ('📍 ' + it.location) : null].filter(Boolean).join(' — ');
+      if(desc){
+        var p = document.createElement('p');
+        p.textContent = desc;
+        card.appendChild(p);
       }
       var a = document.createElement('a');
       a.href = it.book_url;
       a.target = '_blank';
       a.rel = 'noopener';
-      a.className = 'btn btn-blue';
+      a.className = 'btn btn-line';
       a.textContent = 'Записаться';
       card.appendChild(a);
       grid.appendChild(card);
