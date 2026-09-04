@@ -234,7 +234,7 @@
   .schedule h2{font-size:clamp(30px,3.8vw,44px); margin-bottom:40px;}
   .schedule-grid{display:flex; flex-direction:column; align-items:center;
     gap:40px 0; max-width:1080px; margin:0 auto;}
-  .schedule-row{display:flex; flex-wrap:wrap; justify-content:center; gap:40px 28px;}
+  .schedule-row{display:flex; flex-wrap:wrap; justify-content:center; gap:40px 28px; max-width:100%;}
 
   .schedule-item{position:relative; display:flex; flex-direction:column; height:100%;
     flex:0 0 320px; max-width:320px;
@@ -870,6 +870,10 @@
         rowEl = document.createElement('div');
         rowEl.className = 'schedule-row';
         rowLeft = rowSizes[rowIdx];
+        // Явная ширина ряда — без неё браузер иногда неверно считает доступное
+        // место для flex-контейнера с переносом внутри flex-колонки (баг при
+        // resize/zoom) и разбивает ряд из 2-3 карточек на отдельные строки.
+        rowEl.style.width = (rowLeft * 320 + (rowLeft - 1) * 28) + 'px';
         grid.appendChild(rowEl);
       }
       rowEl.appendChild(card);
