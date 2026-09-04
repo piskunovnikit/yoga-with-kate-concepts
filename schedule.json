@@ -35,6 +35,27 @@
       "label": "Хатха для начинающих",
       "location": "Студия Йога-Хата, проспект Авиаконструкторов, 16 к.1, м. Юго-Западная",
       "book_url": "https://t.me/YogaKate94bot?start=book_25"
+    },
+    {
+      "date": "2026-09-22",
+      "time": "10:00",
+      "label": "Утренняя виньяса",
+      "location": "Студия Йога-Хата, м. Юго-Западная",
+      "book_url": "https://t.me/YogaKate94bot?start=book_26"
+    },
+    {
+      "date": "2026-09-25",
+      "time": "19:30",
+      "label": "Растяжка",
+      "location": "Студия Йога-Хата, м. Юго-Западная",
+      "book_url": "https://t.me/YogaKate94bot?start=book_27"
+    },
+    {
+      "date": "2026-09-27",
+      "time": "18:00",
+      "label": "Хатха",
+      "location": "Онлайн, Zoom",
+      "book_url": "https://t.me/YogaKate94bot?start=book_28"
     }
   ]
 }
