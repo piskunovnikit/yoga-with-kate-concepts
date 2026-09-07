@@ -852,7 +852,8 @@
       a.target = '_blank';
       a.rel = 'noopener';
       a.className = 'btn btn-line';
-      a.textContent = 'Записаться';
+      // онлайн/индивидуальные занятия записываются не через бота, а напрямую у тичера
+      a.textContent = (it.type === 'online' || isOnline) ? 'Записаться у тичера' : 'Записаться';
       body.appendChild(a);
       card.appendChild(body);
 
