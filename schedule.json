@@ -2,6 +2,14 @@
   "visible": false,
   "items": [
     {
+      "date": "2026-09-09",
+      "time": "23:30",
+      "label": "РефандТест",
+      "location": "Студия Тест, м. Тестовая",
+      "type": "group",
+      "book_url": "https://t.me/YogaKate94bot?start=book_31"
+    },
+    {
       "date": "2026-09-10",
       "time": "18:00",
       "label": "Вечерняя практика",
