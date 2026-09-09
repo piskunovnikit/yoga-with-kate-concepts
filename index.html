@@ -131,7 +131,7 @@
   .hero-nav.next{right:0;}
 
   /* ---------- spread: photo + text ---------- */
-  .spread .wrap{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
+  .spread .wrap{display:grid; grid-template-columns:auto 1fr; gap:48px; align-items:center;}
   .spread.flip .media{order:2;}
   .spread .media{border-radius:8px; overflow:hidden; aspect-ratio:4/5; max-height:470px;}
   .spread .media img{width:100%; height:100%; object-fit:cover;}
@@ -208,9 +208,13 @@
   .course p{margin-left:auto; margin-right:auto;}
   .course ul{display:inline-block; text-align:center;}
   .course .btn{display:flex; width:fit-content; margin:4px auto 0;}
-  /* split-секции фото+текст — текстовая колонка по центру */
+  /* split-секции фото+текст — на телефоне текст по центру, на компе прижат к фото */
   .spread .wrap>div:not(.media){text-align:center;}
   .spread p{margin-left:auto; margin-right:auto;}
+  @media(min-width:921px){
+    .spread .wrap>div:not(.media){text-align:left;}
+    .spread p{margin-left:0; margin-right:0;}
+  }
 
   /* ---------- pricing ---------- */
   .pricing{text-align:center;}
@@ -466,7 +470,7 @@
       <h2 data-reveal>Привет!<br><span class="ab-line2">Я Катя Благодацкая&nbsp;— твой учитель йоги</span></h2>
       <p data-reveal>И если ты читаешь это, значит нам суждено встретиться на ковриках)</p>
       <p data-reveal>Моя личная практика продолжается уже 8 лет, а в роли учителя — второй год. И я счастлива, что у меня есть возможность передавать классические знания хатха-йоги школы Патанджали.</p>
-      <p data-reveal>Йога для меня — возможность каждый раз возвращаться к себе, быть настоящим и учиться создавать тишину внутреннюю и внешнюю.</p>
+      <p data-reveal>Йога для меня — возможность каждый раз возвращаться к себе, быть настоящей и учиться создавать тишину внутреннюю и внешнюю.</p>
       <a href="#formats" class="btn btn-line" data-reveal>Взаимодействие со мной</a>
     </div>
   </div>
