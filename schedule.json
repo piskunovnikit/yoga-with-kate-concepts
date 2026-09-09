@@ -16,6 +16,14 @@
       "location": "Студия Йога-Хата, м. Юго-Западная",
       "type": "group",
       "book_url": "https://t.me/YogaKate94bot?start=book_22"
+    },
+    {
+      "date": "2026-12-25",
+      "time": "10:00",
+      "label": "ГлобалпрогонТест",
+      "location": "Студия Тест, м. Тестовая",
+      "type": "group",
+      "book_url": "https://t.me/YogaKate94bot?start=book_29"
     }
   ]
 }
