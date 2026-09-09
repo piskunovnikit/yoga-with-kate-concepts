@@ -281,6 +281,34 @@
   .schedule-empty p{font-family:var(--serif); font-style:italic; font-size:22px; color:var(--ink-soft);
     margin:0; line-height:1.5;}
 
+  /* ---------- Расписание: сворачивание в окно на телефоне (>3 занятий) ---------- */
+  .schedule-collapse{display:none; margin-top:6px;}
+  @media(max-width:900px){
+    .schedule--collapsible .schedule-grid{display:none;}
+    .schedule--collapsible .schedule-collapse{display:flex; justify-content:center;}
+  }
+  .sched-modal{position:fixed; inset:0; z-index:150; display:flex; flex-direction:column;
+    padding:calc(16px + env(safe-area-inset-top)) 16px calc(18px + env(safe-area-inset-bottom));
+    background:rgba(217,235,241,.9); -webkit-backdrop-filter:blur(7px); backdrop-filter:blur(7px);
+    overflow-y:auto; opacity:0; transition:opacity .2s ease;}
+  .sched-modal.open{opacity:1;}
+  .sched-modal[hidden]{display:none;}
+  @media(min-width:901px){ .sched-modal{display:none;} }
+  .sched-modal-head{display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:18px;}
+  .sched-modal-head h3{font-size:26px; margin:0;}
+  .sched-modal-close{width:40px; height:40px; flex-shrink:0; border-radius:50%; border:1px solid rgba(47,65,72,.28);
+    background:#fff; color:var(--ink); font-size:17px; line-height:1; display:grid; place-items:center; cursor:pointer;}
+  .sched-modal-grid{display:grid; grid-template-columns:1fr 1fr; gap:26px 14px; align-content:start;
+    width:100%; max-width:520px; margin:0 auto;}
+  .sched-modal-grid .schedule-item{flex:none; width:100%; max-width:none;}
+  .sched-modal-grid .cal-daynum .cal-day{font-size:34px;}
+  .sched-modal-grid .cal-body{padding:12px 12px 14px;}
+  .sched-modal-grid .cal-body h3{font-size:22px;}
+  .sched-modal-grid .cal-body .schedule-desc{font-size:13px; margin-bottom:12px;}
+  .sched-modal-grid .cal-body .btn{font-size:13px; padding:10px 16px;}
+  .sched-modal-foot{margin:24px auto 0; display:flex; justify-content:center;}
+  body.sched-locked{overflow:hidden;}
+
   /* ---------- FAQ (аккордеон) ---------- */
   .faq{text-align:center;}
   .faq .hand{margin-bottom:10px;}
@@ -807,8 +835,7 @@
       for (var r2 = 0; r2 < full; r2++) rowSizes.push(3);
       if (rest) rowSizes.push(rest);
     }
-    var rowEl = null, rowLeft = 0, rowIdx = -1;
-    items.forEach(function(it){
+    function buildCard(it){
       var d = new Date(it.date + 'T00:00:00');
       var card = document.createElement('div');
       card.className = 'schedule-item';
@@ -886,7 +913,12 @@
         + '<path class="curl-line" d="M30 12 Q30 28 12 30"/>'
         + '</svg>';
       card.appendChild(curl);
+      return card;
+    }
 
+    var rowEl = null, rowLeft = 0, rowIdx = -1;
+    items.forEach(function(it){
+      var card = buildCard(it);
       if (!rowEl || rowLeft === 0) {
         rowIdx++;
         rowEl = document.createElement('div');
@@ -901,6 +933,133 @@
       rowEl.appendChild(card);
       rowLeft--;
     });
+
+    // Телефон (≤900px) + больше 3 занятий: секция сворачивается в кнопку,
+    // по тапу — полноэкранное окно с мини-карточками и «разлётом» из центра.
+    if (items.length > 3) buildCollapsible(items);
+
+    function buildCollapsible(items){
+      var n = items.length;
+      section.classList.add('schedule--collapsible');
+      function plural(k, a, b, c){
+        var m = k % 100; if (m >= 11 && m <= 14) return c;
+        var d = k % 10; if (d === 1) return a; if (d >= 2 && d <= 4) return b; return c;
+      }
+
+      var trig = document.createElement('div');
+      trig.className = 'schedule-collapse';
+      var openBtn = document.createElement('button');
+      openBtn.type = 'button';
+      openBtn.className = 'btn btn-blue';
+      openBtn.textContent = 'Показать расписание · ' + n + ' ' + plural(n, 'занятие', 'занятия', 'занятий');
+      trig.appendChild(openBtn);
+      grid.parentNode.appendChild(trig);
+
+      var modal = document.createElement('div');
+      modal.className = 'sched-modal';
+      modal.hidden = true;
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-label', 'Ближайшие занятия');
+
+      var headEl = document.createElement('div');
+      headEl.className = 'sched-modal-head';
+      var hTitle = document.createElement('h3');
+      hTitle.textContent = 'Ближайшие занятия';
+      var closeX = document.createElement('button');
+      closeX.type = 'button';
+      closeX.className = 'sched-modal-close';
+      closeX.setAttribute('aria-label', 'Закрыть');
+      closeX.textContent = '✕';
+      headEl.appendChild(hTitle); headEl.appendChild(closeX);
+      modal.appendChild(headEl);
+
+      var mGrid = document.createElement('div');
+      mGrid.className = 'sched-modal-grid';
+      items.forEach(function(it){ mGrid.appendChild(buildCard(it)); });
+      modal.appendChild(mGrid);
+
+      var footEl = document.createElement('div');
+      footEl.className = 'sched-modal-foot';
+      var hideBtn = document.createElement('button');
+      hideBtn.type = 'button';
+      hideBtn.className = 'btn btn-line';
+      hideBtn.textContent = 'Скрыть расписание';
+      footEl.appendChild(hideBtn);
+      modal.appendChild(footEl);
+
+      document.body.appendChild(modal);
+
+      var mCards = [].slice.call(mGrid.children);
+      var reduce = matchMedia('(prefers-reduced-motion: reduce)');
+      var animating = false;
+
+      function fly(dir, done){
+        if (reduce.matches){ if (done) done(); return; }
+        var cx = innerWidth / 2, cy = innerHeight / 2, last = null, count = mCards.length;
+        mCards.forEach(function(card, i){
+          var r = card.getBoundingClientRect();
+          var dx = (cx - (r.left + r.width / 2)).toFixed(1);
+          var dy = (cy - (r.top + r.height / 2)).toFixed(1);
+          var rot = (i % 2 ? 3.5 : -3.5);
+          var stacked = 'translate(' + dx + 'px,' + dy + 'px) scale(.6) rotate(' + rot + 'deg)';
+          var home = 'translate(0,0) scale(1) rotate(0)';
+          var kf = dir === 'in'
+            ? [{transform: stacked, opacity: 0}, {transform: home, opacity: 1}]
+            : [{transform: home, opacity: 1}, {transform: stacked, opacity: 0}];
+          var opt = dir === 'in'
+            ? {duration: 520, delay: i * 60, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'backwards'}
+            : {duration: 300, delay: (count - 1 - i) * 40, easing: 'cubic-bezier(.5,0,.75,0)', fill: 'forwards'};
+          var anim = card.animate(kf, opt);
+          if (dir === 'in' ? i === count - 1 : i === 0) last = anim;
+        });
+        if (done){ if (last) last.onfinish = done; else done(); }
+      }
+
+      function onKey(e){ if (e.key === 'Escape') closeModal(); }
+
+      function openModal(){
+        if (animating) return;
+        animating = true;
+        document.body.classList.add('sched-locked');
+        modal.hidden = false;
+        modal.getBoundingClientRect();
+        modal.classList.add('open');
+        document.addEventListener('keydown', onKey);
+        closeX.focus();
+        fly('in', function(){ animating = false; });
+        if (reduce.matches) animating = false;
+      }
+
+      function closeModal(){
+        if (animating) return;
+        animating = true;
+        document.removeEventListener('keydown', onKey);
+        fly('out', function(){
+          modal.classList.remove('open');
+          setTimeout(function(){
+            modal.hidden = true;
+            document.body.classList.remove('sched-locked');
+            animating = false;
+            openBtn.focus();
+          }, 220);
+        });
+      }
+
+      openBtn.addEventListener('click', openModal);
+      closeX.addEventListener('click', closeModal);
+      hideBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
+      matchMedia('(min-width:901px)').addEventListener('change', function(e){
+        if (e.matches && !modal.hidden){
+          document.removeEventListener('keydown', onKey);
+          modal.classList.remove('open');
+          modal.hidden = true;
+          document.body.classList.remove('sched-locked');
+          animating = false;
+        }
+      });
+    }
   }).catch(function(){
     hideScheduleEverywhere();
   });
