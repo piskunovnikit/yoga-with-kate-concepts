@@ -1,29 +1,13 @@
 {
   "visible": true,
   "items": [
-    {
-      "date": "2026-09-08",
-      "time": "19:00",
-      "label": "Виньяса",
-      "location": "Студия Йога-Хата, м. Юго-Западная",
-      "type": "group",
-      "book_url": "https://t.me/YogaKate94bot?start=book_16"
-    },
-    {
-      "date": "2026-09-10",
-      "time": "18:00",
-      "label": "Вечерняя практика",
-      "location": "Онлайн, Zoom",
-      "type": "online",
-      "book_url": "https://t.me/blazhka3710"
-    },
-    {
-      "date": "2026-09-13",
-      "time": "11:00",
-      "label": "Хатха + дыхание",
-      "location": "Студия Йога-Хата, м. Юго-Западная",
-      "type": "group",
-      "book_url": "https://t.me/YogaKate94bot?start=book_22"
-    }
+    { "date": "2026-09-08", "time": "19:00", "label": "Виньяса", "location": "Студия Йога-Хата, м. Юго-Западная", "type": "group", "book_url": "https://t.me/YogaKate94bot?start=book_16" },
+    { "date": "2026-09-10", "time": "18:00", "label": "Вечерняя практика", "location": "Онлайн, Zoom", "type": "online", "book_url": "https://t.me/blazhka3710" },
+    { "date": "2026-09-13", "time": "11:00", "label": "Хатха + дыхание", "location": "Студия Йога-Хата, м. Юго-Западная", "type": "group", "book_url": "https://t.me/YogaKate94bot?start=book_22" },
+    { "date": "2026-09-15", "time": "08:00", "label": "Утренняя практика", "location": "Онлайн, Zoom", "type": "online", "book_url": "https://t.me/blazhka3710" },
+    { "date": "2026-09-17", "time": "19:30", "label": "Виньяса-флоу", "location": "Студия Прана, м. Петроградская", "type": "group", "book_url": "https://t.me/YogaKate94bot?start=book_16" },
+    { "date": "2026-09-20", "time": "12:00", "label": "Йога для спины", "location": "Студия Йога-Хата, м. Юго-Западная", "type": "group", "book_url": "https://t.me/YogaKate94bot?start=book_22" },
+    { "date": "2026-09-22", "time": "18:00", "label": "Восстановление", "location": "Онлайн, Zoom", "type": "online", "book_url": "https://t.me/blazhka3710" },
+    { "date": "2026-09-25", "time": "11:00", "label": "Хатха + медитация", "location": "Студия Прана, м. Петроградская", "type": "group", "book_url": "https://t.me/YogaKate94bot?start=book_16" }
   ]
 }
