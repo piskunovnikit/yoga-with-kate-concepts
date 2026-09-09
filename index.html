@@ -870,8 +870,9 @@
       a.target = '_blank';
       a.rel = 'noopener';
       a.className = 'btn btn-line';
-      // онлайн/индивидуальные занятия записываются не через бота, а напрямую у тичера
-      a.textContent = (it.type === 'online' || isOnline) ? 'Записаться у тичера' : 'Записаться';
+      // онлайн/индивидуальные — ссылка ведёт напрямую к тичеру (book_url из schedule.json),
+      // но подпись кнопки такая же, как у остальных
+      a.textContent = 'Записаться';
       body.appendChild(a);
       card.appendChild(body);
 
