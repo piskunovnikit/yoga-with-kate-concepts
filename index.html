@@ -171,13 +171,11 @@
   .fmt-card:hover{transform:translateY(-3px); box-shadow:0 18px 44px -14px rgba(69,122,141,.3), 0 6px 16px rgba(69,122,141,.12);}
   .fmt-card .img{aspect-ratio:3/2; overflow:hidden;}
   .fmt-card .img img{width:100%; height:100%; object-fit:cover;}
-  .fmt-card .cap{padding:26px 24px 30px;}
-  .fmt-card .ic{position:absolute; right:18px; bottom:18px; width:38px; height:38px; background:var(--blue-deep); opacity:.9;
+  .fmt-card .cap{padding:26px 24px 30px; position:relative;}
+  .fmt-card .ic{position:absolute; top:20px; right:20px; width:34px; height:34px; background:var(--blue-deep); opacity:.9;
     -webkit-mask:var(--ic) center/contain no-repeat; mask:var(--ic) center/contain no-repeat;}
-  .fmt-card h3{font-size:22px; margin-bottom:8px;}
+  .fmt-card h3{font-size:22px; margin-bottom:8px; padding-right:46px;}
   .fmt-card p{font-size:15px;}
-  .fmt-card.fmt-card--sm .cap{position:relative;}
-  .fmt-card.fmt-card--sm .ic{position:absolute; top:24px; right:22px; bottom:auto;}
   .fmt-grid.fmt-grid-5{display:flex; flex-wrap:wrap; justify-content:center;}
   .fmt-grid-5>.fmt-card{width:calc((100% - 48px)/3); flex:none;}
   @media(max-width:900px){.fmt-grid-5>.fmt-card{width:calc((100% - 24px)/2);}}
@@ -463,7 +461,7 @@
   <div class="wrap">
     <div class="media" data-reveal><img loading="lazy" width="1200" height="1500" src="img-real/denim-cafe-portrait.jpg" alt="Екатерина Благодацкая"></div>
     <div>
-      <h2 data-reveal>Привет!<br><span class="ab-line2">Я Катя Благодацкая&nbsp;— твой йога-тичер</span></h2>
+      <h2 data-reveal>Привет!<br><span class="ab-line2">Я Катя Благодацкая&nbsp;— твой учитель йоги</span></h2>
       <p data-reveal>И если ты читаешь это, значит нам суждено встретиться на ковриках)</p>
       <p data-reveal>Моя личная практика продолжается уже 8 лет, а в роли учителя — второй год. И я счастлива, что у меня есть возможность передавать классические знания хатха-йоги школы Патанджали.</p>
       <p data-reveal>Йога для меня — возможность каждый раз возвращаться к себе, быть настоящим и учиться создавать тишину внутреннюю и внешнюю.</p>
@@ -478,7 +476,7 @@
     <h2 data-reveal>Для чего нужна практика?</h2>
     <div class="why-grid">
       <div class="why-item" data-reveal><span class="ic" aria-hidden="true" style="--ic:url(img-real/free-icon-meditation-17677715.png)"></span><h3>Тело</h3><p>Чувствуется сила, подвижность и бодрость. Начинаем дышать полной грудью. Тело поддерживается в тонусе.</p></div>
-      <div class="why-item" data-reveal><span class="ic" aria-hidden="true" style="--ic:url(img-real/free-icon-yoga-3696347.png)"></span><h3>Ум</h3><p>Ум становится спокойным, светлым и чистым.</p></div>
+      <div class="why-item" data-reveal><span class="ic" aria-hidden="true" style="--ic:url(img-real/free-icon-yoga-3696347.png)"></span><h3>Ум</h3><p>Ум становится спокойным, светлым и чистым. Вы будете приятно удивлены, когда услышите тишину.</p></div>
       <div class="why-item" data-reveal><span class="ic" aria-hidden="true" style="--ic:url(img-real/free-icon-harmony-17277865.png)"></span><h3>Состояние</h3><p>Практика помогает чувствовать баланс, восстанавливаться после стресса и никуда не торопиться. После практики всегда лучше, чем до.</p></div>
     </div>
   </div>
@@ -492,7 +490,7 @@
       <div class="step-item" data-reveal><h3>Дыхание</h3><p>Настраиваемся на практику, дышим, мысленно проговариваем намерение.</p></div>
       <div class="step-item" data-reveal><h3>Суставной разогрев</h3><p>Блок упражнений и дыхание, которые бережно подготавливают тело к основной практике.</p></div>
       <div class="step-item" data-reveal><h3>Практика</h3><p>Чёткая последовательность асан, структура и понятный комфортный темп.</p></div>
-      <div class="step-item" data-reveal><h3>Шавасана</h3><p>Глубокое расслабление тела.</p></div>
+      <div class="step-item" data-reveal><h3>Шавасана</h3><p>Глубокое расслабление тела. Сохраняем внутренний покой, оставаясь в осознанном состоянии между сном и бодрствованием.</p></div>
     </div>
   </div>
 </section>
@@ -504,9 +502,9 @@
     <div class="fmt-grid fmt-grid-5">
       <div class="fmt-card" data-reveal>
         <div class="img"><img loading="lazy" width="1200" height="800" src="img-real/group-stretch-color.jpg" alt="Групповые занятия"></div>
-        <div class="cap"><span class="ic" aria-hidden="true" style="--ic:url(img-real/free-icon-yoga-pose-2689123.png)"></span><h3>Живые групповые классы в студии</h3><p>Небольшая группа, с заботой к каждому ученику — комфортно для любого уровня.</p></div>
+        <div class="cap"><span class="ic" aria-hidden="true" style="--ic:url(img-real/free-icon-yoga-pose-2689123.png)"></span><h3>Живые групповые практики в студии</h3><p>Небольшая группа, с заботой к каждому ученику — комфортно для любого уровня.</p></div>
       </div>
-      <div class="fmt-card fmt-card--sm" data-reveal>
+      <div class="fmt-card" data-reveal>
         <div class="img"><img loading="lazy" width="1200" height="800" src="img-real/feet-mat.jpg" alt="Индивидуальные занятия"></div>
         <div class="cap"><span class="ic" aria-hidden="true" style="--ic:url(img-real/free-icon-yoga-pose-8105784.png)"></span><h3>Индивидуально (онлайн или офлайн)</h3><p>Практику составляем под ваш запрос и особенности тела. С вниманием, правками, удобным для вас расписанием.</p></div>
       </div>
@@ -516,7 +514,7 @@
       </div>
       <div class="fmt-card" data-reveal>
         <div class="img"><img loading="lazy" width="1200" height="800" src="img-real/split-mat-color.jpg" alt="Йога и баня"></div>
-        <div class="cap"><span class="ic" aria-hidden="true" style="--ic:url(img-real/free-icon-yoga-6381923.png)"></span><h3>Йога + баня</h3><p>Глубокое погружение в практику, вкусный пар и возможность полностью расслабиться.</p></div>
+        <div class="cap"><span class="ic" aria-hidden="true" style="--ic:url(img-real/free-icon-yoga-6381923.png)"></span><h3>Йога + баня</h3><p>Глубокое погружение в практику, вкусный пар и возможность полностью расслабиться, не уезжая далеко от города.</p></div>
       </div>
       <div class="fmt-card" data-reveal>
         <div class="img"><img loading="lazy" width="1200" height="800" src="img-real/shoulder-namaste-bw.jpg" alt="Корпоративная йога"></div>
@@ -579,7 +577,7 @@
     <h2 data-reveal>Тарифы</h2>
     <div class="price-grid price-grid-5">
       <div class="price-card" data-reveal><h3>Живые занятия в группе</h3><div class="amt">от 700 ₽</div><ul><li>Вы впервые — 700 ₽</li><li>Разовое — 1000 ₽</li><li>Абонемент — от 800 ₽ за занятие</li></ul><a href="#start" class="btn btn-line">Записаться</a></div>
-      <div class="price-card feature" data-reveal><h3>Индивидуально</h3><div class="amt">от 2 000 ₽</div><ul><li>Online — 2 000 ₽</li><li>Offline — 3 000 ₽</li><li>Персональная программа</li></ul><a href="#start" class="btn btn-blue">Записаться</a></div>
+      <div class="price-card feature" data-reveal><h3>Индивидуально</h3><div class="amt">от 2 000 ₽</div><ul><li>Online — 2 000 ₽</li><li>Offline — 3 000 ₽</li><li>Персональная программа</li></ul><a href="https://t.me/blazhka3710" target="_blank" rel="noopener" class="btn btn-blue">Записаться</a></div>
       <div class="price-card" data-reveal><h3>Корпоративная йога</h3><div class="amt">от 3500</div><p class="lined">Занятия для команды на вашей территории — разово или регулярно.</p><a href="#start" class="btn btn-line">Обсудить</a></div>
       <div class="price-card soon" data-reveal><span class="eyebrow">В разработке</span><h3>Живые классы + online</h3><div class="amt">Скоро будет</div></div>
       <div class="price-card soon" data-reveal><span class="eyebrow">В разработке</span><h3>Йога + баня</h3><div class="amt">Скоро будет</div></div>
