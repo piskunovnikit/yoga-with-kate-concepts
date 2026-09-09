@@ -131,7 +131,7 @@
   .hero-nav.next{right:0;}
 
   /* ---------- spread: photo + text ---------- */
-  .spread .wrap{display:grid; grid-template-columns:minmax(0,376px) minmax(0,376px); justify-content:center; gap:56px; align-items:center;}
+  .spread .wrap{display:grid; grid-template-columns:minmax(0,472px) minmax(0,472px); justify-content:center; gap:48px; align-items:center;}
   .spread.flip .media{order:2;}
   .spread .media{border-radius:8px; overflow:hidden; aspect-ratio:4/5; max-height:470px;}
   .spread .media img{width:100%; height:100%; object-fit:cover;}
@@ -214,7 +214,9 @@
   @media(min-width:921px){
     .spread .wrap>div:not(.media){text-align:left;}
     .spread h2{text-align:center;}
-    .spread p{margin-left:0; margin-right:0;}
+    .spread h2 .ab-line2{white-space:nowrap;}
+    .spread p{margin-left:0; margin-right:0; text-align:justify;}
+    .spread .media{justify-self:end;}
   }
 
   /* ---------- pricing ---------- */
