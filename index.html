@@ -995,6 +995,12 @@
       var animating = false;
 
       function fly(dir, done){
+        // Снять анимации от прошлого открытия/закрытия — иначе застрявшая
+        // «выходная» анимация (fill:forwards) после нового «влёта» снова
+        // прячет карточки.
+        mCards.forEach(function(card){
+          card.getAnimations().forEach(function(a){ a.cancel(); });
+        });
         if (reduce.matches){ if (done) done(); return; }
         var cx = innerWidth / 2, cy = innerHeight / 2, last = null, count = mCards.length;
         mCards.forEach(function(card, i){
