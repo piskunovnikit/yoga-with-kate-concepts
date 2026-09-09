@@ -993,64 +993,72 @@
 
       var mCards = [].slice.call(mGrid.children);
       var reduce = matchMedia('(prefers-reduced-motion: reduce)');
-      var animating = false;
 
-      function fly(dir, done){
-        // Снять анимации от прошлого открытия/закрытия — иначе застрявшая
-        // «выходная» анимация (fill:forwards) после нового «влёта» снова
-        // прячет карточки.
+      // Полный сброс карточки: снять все анимации и вернуть в исходный вид.
+      // Источник правды — атрибут modal.hidden, а не флаг «идёт анимация»:
+      // так закрытие срабатывает всегда, даже посреди влёта карточек.
+      function clearCards(){
         mCards.forEach(function(card){
           card.getAnimations().forEach(function(a){ a.cancel(); });
+          card.style.opacity = '';
+          card.style.transform = '';
         });
-        if (reduce.matches){ if (done) done(); return; }
-        var cx = innerWidth / 2, cy = innerHeight / 2, last = null, count = mCards.length;
-        mCards.forEach(function(card, i){
-          var r = card.getBoundingClientRect();
-          var dx = (cx - (r.left + r.width / 2)).toFixed(1);
-          var dy = (cy - (r.top + r.height / 2)).toFixed(1);
-          var rot = (i % 2 ? 3.5 : -3.5);
-          var stacked = 'translate(' + dx + 'px,' + dy + 'px) scale(.6) rotate(' + rot + 'deg)';
-          var home = 'translate(0,0) scale(1) rotate(0)';
-          var kf = dir === 'in'
-            ? [{transform: stacked, opacity: 0}, {transform: home, opacity: 1}]
-            : [{transform: home, opacity: 1}, {transform: stacked, opacity: 0}];
-          var opt = dir === 'in'
-            ? {duration: 520, delay: i * 60, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'backwards'}
-            : {duration: 300, delay: (count - 1 - i) * 40, easing: 'cubic-bezier(.5,0,.75,0)', fill: 'forwards'};
-          var anim = card.animate(kf, opt);
-          if (dir === 'in' ? i === count - 1 : i === 0) last = anim;
-        });
-        if (done){ if (last) last.onfinish = done; else done(); }
       }
 
       function onKey(e){ if (e.key === 'Escape') closeModal(); }
 
       function openModal(){
-        if (animating) return;
-        animating = true;
+        if (!modal.hidden) return;
         document.body.classList.add('sched-locked');
         modal.hidden = false;
+        modal.scrollTop = 0;
         modal.getBoundingClientRect();
         modal.classList.add('open');
         document.addEventListener('keydown', onKey);
+        clearCards();
+        if (!reduce.matches){
+          var cx = innerWidth / 2, cy = innerHeight / 2;
+          mCards.forEach(function(card, i){
+            var r = card.getBoundingClientRect();
+            var dx = (cx - (r.left + r.width / 2)).toFixed(1);
+            var dy = (cy - (r.top + r.height / 2)).toFixed(1);
+            var rot = (i % 2 ? 3.5 : -3.5);
+            var a = card.animate([
+              {transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.6) rotate(' + rot + 'deg)', opacity: 0},
+              {transform: 'none', opacity: 1}
+            ], {duration: 520, delay: i * 60, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'both'});
+            a.onfinish = function(){ a.cancel(); };
+          });
+        }
         closeX.focus();
-        fly('in', function(){ animating = false; });
-        if (reduce.matches) animating = false;
       }
 
       function closeModal(){
-        if (animating) return;
-        animating = true;
+        if (modal.hidden) return;
         document.removeEventListener('keydown', onKey);
-        fly('out', function(){
+        function finish(){
           modal.classList.remove('open');
-          setTimeout(function(){
-            modal.hidden = true;
-            document.body.classList.remove('sched-locked');
-            animating = false;
-            openBtn.focus();
-          }, 220);
+          modal.hidden = true;
+          document.body.classList.remove('sched-locked');
+          clearCards();
+          openBtn.focus();
+        }
+        if (reduce.matches){ finish(); return; }
+        var cx = innerWidth / 2, cy = innerHeight / 2, n = mCards.length, last = null;
+        mCards.forEach(function(card, i){
+          card.getAnimations().forEach(function(a){ a.cancel(); });
+          var r = card.getBoundingClientRect();
+          var dx = (cx - (r.left + r.width / 2)).toFixed(1);
+          var dy = (cy - (r.top + r.height / 2)).toFixed(1);
+          var rot = (i % 2 ? 3.5 : -3.5);
+          var a = card.animate([
+            {transform: 'none', opacity: 1},
+            {transform: 'translate(' + dx + 'px,' + dy + 'px) scale(.6) rotate(' + rot + 'deg)', opacity: 0}
+          ], {duration: 300, delay: (n - 1 - i) * 40, easing: 'cubic-bezier(.5,0,.75,0)', fill: 'forwards'});
+          if (i === 0) last = a;
         });
+        if (last) last.onfinish = function(){ modal.classList.remove('open'); setTimeout(finish, 200); };
+        else finish();
       }
 
       openBtn.addEventListener('click', openModal);
@@ -1063,7 +1071,7 @@
           modal.classList.remove('open');
           modal.hidden = true;
           document.body.classList.remove('sched-locked');
-          animating = false;
+          clearCards();
         }
       });
     }
