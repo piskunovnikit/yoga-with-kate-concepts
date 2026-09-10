@@ -16,6 +16,14 @@
       "location": "Студия Йога-Хата, м. Юго-Западная",
       "type": "group",
       "book_url": "https://t.me/BlagoyogaKatebot?start=book_22"
+    },
+    {
+      "date": "2026-09-16",
+      "time": "20:00",
+      "label": "Аудит-тест группа",
+      "location": "ул. Тестовая, д. 1, м. Тестовая",
+      "type": "group",
+      "book_url": "https://t.me/BlagoyogaKatebot?start=book_33"
     }
   ]
 }
