@@ -2,20 +2,12 @@
   "visible": true,
   "items": [
     {
-      "date": "2026-09-10",
-      "time": "18:00",
-      "label": "Вечерняя практика",
-      "location": "Онлайн, Zoom",
-      "type": "online",
-      "book_url": "https://t.me/blazhka3710"
-    },
-    {
-      "date": "2026-09-13",
-      "time": "11:00",
-      "label": "Хатха + дыхание",
-      "location": "Студия Йога-Хата, м. Юго-Западная",
+      "date": "2026-09-27",
+      "time": "10:00",
+      "label": null,
+      "location": "ЙогаЛаборатория , м. Василеостровская ,  5-я линия Васильевского острова, 54",
       "type": "group",
-      "book_url": "https://t.me/BlagoyogaKatebot?start=book_22"
+      "book_url": "https://t.me/BlagoyogaKatebot?start=book_36"
     }
   ]
 }
