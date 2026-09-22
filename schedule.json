@@ -32,6 +32,14 @@
       "location": "ЙогаЛаборатория , м. Василеостровская ,  5-я линия Васильевского острова, 54",
       "type": "group",
       "book_url": "https://t.me/BlagoyogaKatebot?start=book_38"
+    },
+    {
+      "date": "2026-10-04",
+      "time": "17:30",
+      "label": null,
+      "location": "Студия Йога-Хата, м. Юго-Западная, ул. Ленина 5»",
+      "type": "group",
+      "book_url": "https://t.me/BlagoyogaKatebot?start=book_41"
     }
   ]
 }
