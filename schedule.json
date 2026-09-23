@@ -40,6 +40,14 @@
       "location": "Студия Йога-Хата, м. Юго-Западная, ул. Ленина 5»",
       "type": "group",
       "book_url": "https://t.me/BlagoyogaKatebot?start=book_41"
+    },
+    {
+      "date": "2026-10-15",
+      "time": "19:00",
+      "label": "Тест-живая",
+      "location": "Студия Тест, м. Тестовая",
+      "type": "group",
+      "book_url": "https://t.me/BlagoyogaKatebot?start=book_42"
     }
   ]
 }
