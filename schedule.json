@@ -35,35 +35,11 @@
     },
     {
       "date": "2026-10-04",
-      "time": "12:00",
-      "label": null,
-      "location": "Студия Тест-Календарь, м. Тестовая",
-      "type": "group",
-      "book_url": "https://t.me/BlagoyogaKatebot?start=book_44"
-    },
-    {
-      "date": "2026-10-04",
       "time": "17:30",
       "label": null,
       "location": "Студия Йога-Хата, м. Юго-Западная, ул. Ленина 5»",
       "type": "group",
       "book_url": "https://t.me/BlagoyogaKatebot?start=book_41"
-    },
-    {
-      "date": "2026-10-15",
-      "time": "19:00",
-      "label": "Тест-живая",
-      "location": "Студия Тест, м. Тестовая",
-      "type": "group",
-      "book_url": "https://t.me/BlagoyogaKatebot?start=book_42"
-    },
-    {
-      "date": "2026-10-16",
-      "time": "20:00",
-      "label": "Тест-онлайн",
-      "location": "Zoom-ссылка в личку",
-      "type": "online",
-      "book_url": "https://t.me/blazhka3710"
     }
   ]
 }
