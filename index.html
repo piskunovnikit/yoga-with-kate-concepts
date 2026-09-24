@@ -827,6 +827,12 @@
       return;
     }
     var items = data.items || [];
+    // прошедшие занятия скрываем на лету: время начала — по Москве (+03:00), не ждём перевыгрузки от бота
+    var nowMs = Date.now();
+    items = items.filter(function(it){
+      var t = new Date(it.date + 'T' + (it.time || '23:59') + ':00+03:00').getTime();
+      return isNaN(t) || t > nowMs;
+    });
     if(!items.length){
       hideScheduleEverywhere();
       return;
