@@ -40,6 +40,14 @@
       "location": "Студия Йога-Хата, м. Юго-Западная, ул. Ленина 5»",
       "type": "group",
       "book_url": "https://t.me/BlagoyogaKatebot?start=book_41"
+    },
+    {
+      "date": "2027-01-01",
+      "time": "10:00",
+      "label": null,
+      "location": "Студия, м. Юго-Западная",
+      "type": "group",
+      "book_url": "https://t.me/BlagoyogaKatebot?start=book_45"
     }
   ]
 }
