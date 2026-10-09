@@ -2,44 +2,12 @@
   "visible": true,
   "items": [
     {
-      "date": "2026-09-27",
+      "date": "2026-10-11",
       "time": "10:00",
-      "label": null,
-      "location": "ЙогаЛаборатория , м. Василеостровская ,  5-я линия Васильевского острова, 54",
-      "type": "group",
-      "book_url": "https://t.me/BlagoyogaKatebot?start=book_36"
-    },
-    {
-      "date": "2026-09-30",
-      "time": "06:00",
-      "label": null,
-      "location": "ЙогаЛаборатория , м. Василеостровская ,  5-я линия Васильевского острова, 54",
-      "type": "group",
-      "book_url": "https://t.me/BlagoyogaKatebot?start=book_39"
-    },
-    {
-      "date": "2026-10-01",
-      "time": "21:45",
-      "label": null,
-      "location": "ЙогаЛаборатория , м. Василеостровская ,  5-я линия Васильевского острова, 54",
+      "label": "Хатха-Йога",
+      "location": "онлайн , zoom",
       "type": "online",
       "book_url": "https://t.me/blazhka3710"
-    },
-    {
-      "date": "2026-10-04",
-      "time": "10:00",
-      "label": null,
-      "location": "ЙогаЛаборатория , м. Василеостровская ,  5-я линия Васильевского острова, 54",
-      "type": "group",
-      "book_url": "https://t.me/BlagoyogaKatebot?start=book_38"
-    },
-    {
-      "date": "2026-10-04",
-      "time": "17:30",
-      "label": null,
-      "location": "Студия Йога-Хата, м. Юго-Западная, ул. Ленина 5»",
-      "type": "group",
-      "book_url": "https://t.me/BlagoyogaKatebot?start=book_41"
     }
   ]
 }
