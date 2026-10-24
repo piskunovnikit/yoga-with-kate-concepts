@@ -8,6 +8,14 @@
       "location": "Студия RassvetFit, м. Василеостровская , 7-я линия В.О. 28в",
       "type": "group",
       "book_url": "https://t.me/BlagoyogaKatebot?start=book_48"
+    },
+    {
+      "date": "2026-10-29",
+      "time": "20:00",
+      "label": null,
+      "location": "Хатха-Йога | онлайн , zoom",
+      "type": "online",
+      "book_url": "https://t.me/blazhka3710"
     }
   ]
 }
