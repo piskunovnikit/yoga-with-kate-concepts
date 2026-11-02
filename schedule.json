@@ -2,28 +2,12 @@
   "visible": true,
   "items": [
     {
-      "date": "2026-10-25",
-      "time": "10:00",
-      "label": null,
-      "location": "Студия RassvetFit, м. Василеостровская , 7-я линия В.О. 28в",
-      "type": "group",
-      "book_url": "https://t.me/BlagoyogaKatebot?start=book_48"
-    },
-    {
-      "date": "2026-10-29",
+      "date": "2026-11-05",
       "time": "20:00",
       "label": null,
       "location": "Хатха-Йога | онлайн , zoom",
       "type": "online",
-      "book_url": "https://t.me/blazhka3710"
-    },
-    {
-      "date": "2026-11-01",
-      "time": "10:00",
-      "label": null,
-      "location": "Хатха-Йога | онлайн , zoom",
-      "type": "online",
-      "book_url": "https://t.me/blazhka3710"
+      "book_url": "https://t.me/BlagoyogaKatebot?start=book_51"
     }
   ]
 }
