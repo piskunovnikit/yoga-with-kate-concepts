@@ -16,6 +16,14 @@
       "location": "Хатха-Йога | онлайн , zoom",
       "type": "online",
       "book_url": "https://t.me/BlagoyogaKatebot?start=book_53"
+    },
+    {
+      "date": "2026-11-15",
+      "time": "10:00",
+      "label": "Хатха-Йога",
+      "location": "Студия ЙогаЛаборатория , м. Василеостровская , 5я линия В.О. 54",
+      "type": "group",
+      "book_url": "https://t.me/BlagoyogaKatebot?start=book_54"
     }
   ]
 }
