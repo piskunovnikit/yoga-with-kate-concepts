@@ -2,28 +2,12 @@
   "visible": true,
   "items": [
     {
-      "date": "2026-11-08",
-      "time": "10:00",
-      "label": "Студия ЙогаЛаборатория",
-      "location": "5я линия В.О. 54 | м. Василеостровская",
-      "type": "group",
-      "book_url": "https://t.me/BlagoyogaKatebot?start=book_52"
-    },
-    {
-      "date": "2026-11-12",
-      "time": "20:30",
+      "date": "2026-11-19",
+      "time": "20:00",
       "label": null,
       "location": "Хатха-Йога | онлайн , zoom",
       "type": "online",
-      "book_url": "https://t.me/BlagoyogaKatebot?start=book_53"
-    },
-    {
-      "date": "2026-11-15",
-      "time": "10:00",
-      "label": "Хатха-Йога",
-      "location": "Студия ЙогаЛаборатория , м. Василеостровская , 5я линия В.О. 54",
-      "type": "group",
-      "book_url": "https://t.me/BlagoyogaKatebot?start=book_54"
+      "book_url": "https://t.me/BlagoyogaKatebot?start=book_55"
     }
   ]
 }
